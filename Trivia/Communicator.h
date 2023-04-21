@@ -1,4 +1,5 @@
 #pragma once
+#include "IRequestHandler.h"
 #include "Helper.h"
 #include <map>
 
@@ -12,5 +13,5 @@ private:
 	void handleNewClient(SOCKET client_socket);
 
 	SOCKET m_serverSocket;
-	std::map <SOCKET, int> m_clients;
+	std::map <SOCKET, IRequestHandler> m_clients;
 };
