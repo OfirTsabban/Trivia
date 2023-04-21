@@ -1,7 +1,7 @@
 #pragma once
 #include "IRequestHandler.h"
 
-class LoginRequestHandlerc : public IRequestHandler
+class LoginRequestHandler : public IRequestHandler
 {
 
 };

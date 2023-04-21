@@ -33,8 +33,12 @@ void Communicator::acceptClient()
 	// create new thread for client	and detach from it
 	std::thread tr(&Communicator::handleNewClient, this, client_socket);
 	tr.detach();
+
+	LoginRequestHandler temp;
+	m_clients.insert(client_socket, temp);
 }
 
 void Communicator::handleNewClient(SOCKET client_socket)
 {
+	Helper::sendData(client_socket, "Hello");
 }
