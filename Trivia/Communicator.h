@@ -2,6 +2,7 @@
 #include "IRequestHandler.h"
 #include "Helper.h"
 #include <map>
+#include <thread>
 
 class Communicator 
 {
@@ -10,6 +11,7 @@ public:
 
 private:
 	void bindAndListen();
+	void acceptClient();
 	void handleNewClient(SOCKET client_socket);
 
 	SOCKET m_serverSocket;

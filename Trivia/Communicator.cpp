@@ -22,3 +22,19 @@ void Communicator::bindAndListen()
 		throw std::exception(__FUNCTION__ " - listen");
 	TRACE("listening...");
 }
+
+void Communicator::acceptClient()
+{
+	SOCKET client_socket = accept(m_serverSocket, NULL, NULL);
+	if (client_socket == INVALID_SOCKET)
+		throw std::exception(__FUNCTION__);
+
+	TRACE("Client accepted !");
+	// create new thread for client	and detach from it
+	std::thread tr(&Communicator::handleNewClient, this, client_socket);
+	tr.detach();
+}
+
+void Communicator::handleNewClient(SOCKET client_socket)
+{
+}
