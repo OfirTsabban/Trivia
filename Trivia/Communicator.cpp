@@ -7,6 +7,22 @@
 static const unsigned short PORT = 12345;
 static const unsigned int IFACE = 0;
 
+void Communicator::startHandleRequests()
+{
+	bindAndListen();
+
+	/*std::thread tr(&MagshMessageServer::handleReceivedMessages, this);
+	tr.detach();*/
+
+	while (true)
+	{
+		// the main thread is only accepting clients
+		// and add then to the list of handlers
+		TRACE("accepting client...");
+		acceptClient();
+	}
+}
+
 void Communicator::bindAndListen()
 {
 	struct sockaddr_in sa = { 0 };
@@ -34,11 +50,14 @@ void Communicator::acceptClient()
 	std::thread tr(&Communicator::handleNewClient, this, client_socket);
 	tr.detach();
 
-	LoginRequestHandler temp;
-	m_clients.insert(client_socket, temp);
+	LoginRequestHandler* temp;
+	
+	m_clients.emplace(std::make_pair(client_socket, temp));
 }
 
 void Communicator::handleNewClient(SOCKET client_socket)
 {
 	Helper::sendData(client_socket, "Hello");
+
+	//not finished
 }
