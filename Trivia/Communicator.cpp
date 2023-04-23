@@ -55,6 +55,5 @@ void Communicator::acceptClient()
 void Communicator::handleNewClient(SOCKET client_socket)
 {
 	Helper::sendData(client_socket, "Hello");
-
-	//not finished
+	std::cout << Helper::getStringPartFromSocket(client_socket, 1024) << std::endl;
 }
