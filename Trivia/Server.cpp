@@ -4,13 +4,19 @@ void Server::run()
 {
 	std::string input = "";
 
-	std::thread t_connector(&Communicator::startHandleRequests, this);
-	t_connector.detach();
+	try {
+		std::thread t_connector(&Communicator::startHandleRequests, m_communicator);
+		t_connector.detach();
 
-	while (true)
+		while (true)
+		{
+			std::cin >> input;
+			if (input == "EXIT")
+				break;
+		}
+	}
+	catch (...)
 	{
-		std::cin >> input;
-		if (input == "EXIT")
-			break;
+		std::cout << "Error" << std::endl;
 	}
 }

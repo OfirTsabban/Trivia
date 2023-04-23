@@ -7,6 +7,22 @@
 static const unsigned short PORT = 12345;
 static const unsigned int IFACE = 0;
 
+Communicator::Communicator()
+{
+	this->m_serverSocket = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
+
+	if (m_serverSocket == INVALID_SOCKET)
+		throw std::exception(__FUNCTION__ " - socket");
+}
+
+Communicator::~Communicator()
+{
+	try {
+		closesocket(m_serverSocket);
+	}
+	catch(...) {}
+}
+
 void Communicator::startHandleRequests()
 {
 	bindAndListen();

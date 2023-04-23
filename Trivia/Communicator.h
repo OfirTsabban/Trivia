@@ -8,6 +8,8 @@
 class Communicator 
 {
 public:
+	Communicator();
+	~Communicator();
 	void startHandleRequests();
 
 private:
