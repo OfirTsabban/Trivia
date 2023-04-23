@@ -129,12 +129,14 @@
   <ItemGroup>
     <ClCompile Include="Communicator.cpp" />
     <ClCompile Include="Helper.cpp" />
+    <ClCompile Include="Server.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Communicator.h" />
     <ClInclude Include="Helper.h" />
     <ClInclude Include="IRequestHandler.h" />
     <ClInclude Include="LoginRequestHandler.h" />
+    <ClInclude Include="Server.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -11,9 +11,6 @@ void Communicator::startHandleRequests()
 {
 	bindAndListen();
 
-	/*std::thread tr(&MagshMessageServer::handleReceivedMessages, this);
-	tr.detach();*/
-
 	while (true)
 	{
 		// the main thread is only accepting clients
