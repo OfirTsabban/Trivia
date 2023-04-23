@@ -31,7 +31,7 @@ void Communicator::startHandleRequests()
 	{
 		// the main thread is only accepting clients
 		// and add then to the list of handlers
-		TRACE("accepting client...");
+		TRACE("Waiting for client...");
 		acceptClient();
 	}
 }
