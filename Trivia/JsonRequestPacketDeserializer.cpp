@@ -3,7 +3,6 @@
 LoginRequest JsonRequestPacketDeserializer::deserializeLoginRequest(char* buffer)
 {
 	std::string bufferString = buffer;
-	bufferString.substr(41);
 
 	auto json = nlohmann::json::parse(bufferString);
 
@@ -18,7 +17,6 @@ LoginRequest JsonRequestPacketDeserializer::deserializeLoginRequest(char* buffer
 SignupRequest JsonRequestPacketDeserializer::deserializeSignupRequest(char* buffer)
 {
 	std::string bufferString = buffer;
-	bufferString.substr(41);
 
 	auto json = nlohmann::json::parse(bufferString);
 
