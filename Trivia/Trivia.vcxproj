@@ -137,7 +137,12 @@
     <ClInclude Include="Communicator.h" />
     <ClInclude Include="Helper.h" />
     <ClInclude Include="IRequestHandler.h" />
+<<<<<<< HEAD
     <ClInclude Include="JsonRequestPacketDeserializer.h" />
+=======
+    <ClInclude Include="json.hpp" />
+    <ClInclude Include="JsonResponsePacketSerializer.h" />
+>>>>>>> 41f48e8a141e769f09cb44024345f5768ba0515a
     <ClInclude Include="LoginRequestHandler.h" />
     <ClInclude Include="Server.h" />
   </ItemGroup>

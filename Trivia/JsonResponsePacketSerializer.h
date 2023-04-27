@@ -1,4 +1,7 @@
 #pragma once
+#include <fstream>
+#include <nlohmann/json.hpp>
+
 #include "Communicator.h"
 struct LoginResponse
 {
@@ -16,8 +19,8 @@ struct ErrorResponse
 class JsonResponsePacketSerializer
 {
 public:
-	unsigned char* serializeResponse(ErrorResponse); 
-	unsigned char* serializeResponse(LoginResponse);
-	unsigned char* serializeResponse(SignupResponse);
+	unsigned char* serializeErrorResponse(ErrorResponse); 
+	unsigned char* serializeLoginResponse(LoginResponse);
+	unsigned char* serializeSignupResponse(SignupResponse); 
 };
 
