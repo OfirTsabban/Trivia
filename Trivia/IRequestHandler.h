@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 #include <vector>
 #include <ctime>
 
@@ -6,7 +7,7 @@ struct RequestInfo
 {
 	int id;
 	std::time_t receivalTime;
-	std::vector<byte> buffer;
+	std::vector<unsigned char> buffer;
 };
 
 struct RequestResult
