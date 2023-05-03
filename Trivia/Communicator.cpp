@@ -1,4 +1,7 @@
 #include "Communicator.h"
+#include "JsonResponsePacketSerializer.h"
+#include "JsonResponsePacketSerializer.h"
+#include "IRequestHandler.h"
 #include <exception>
 #include <iostream>
 #include <string>
@@ -69,7 +72,18 @@ void Communicator::acceptClient()
 }
 
 void Communicator::handleNewClient(SOCKET client_socket)
-{
-	Helper::sendData(client_socket, "Hello");
-	std::cout << Helper::getStringPartFromSocket(client_socket, 1024) << std::endl;
+{	
+	int id = Helper::getIntPartFromSocket(client_socket, 4);
+	std::string msg = Helper::getStringPartFromSocket(client_socket, 1024);
+	time_t recivalTime = std::time(nullptr);
+	std::vector<unsigned char> buffer;
+	for (int i = 0; i < msg.length(); i++)
+	{
+		buffer.push_back(msg[i]);
+	}
+	RequestInfo reqInfo = { id,recivalTime,buffer };
+	IRequestHandler* handle;	
+	RequestResult reqRes = handle->handleRequest(reqInfo);	
+	std::string s = reinterpret_cast<char*>(reqRes.response);
+	Helper::sendData(client_socket, s);
 }
