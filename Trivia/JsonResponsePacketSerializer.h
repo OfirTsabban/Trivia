@@ -19,8 +19,8 @@ enum action { error = 0, login = 1, signup = 2 };
 class JsonResponsePacketSerializer
 {
 public:
-	unsigned char* serializeErrorResponse(ErrorResponse); 
-	unsigned char* serializeLoginResponse(LoginResponse);
-	unsigned char* serializeSignupResponse(SignupResponse); 
+	static unsigned char* serializeErrorResponse(ErrorResponse); 
+	static unsigned char* serializeLoginResponse(LoginResponse);
+	static unsigned char* serializeSignupResponse(SignupResponse); 
 };
 
