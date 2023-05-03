@@ -1,5 +1,5 @@
 #pragma once
-#include <fstream>
+#include <iostream>
 #include "json.hpp"
 
 #include "Communicator.h"
@@ -15,7 +15,7 @@ struct ErrorResponse
 {
 	std::string message;
 };
-
+enum action { error = 0, login = 1, signup = 2 };
 class JsonResponsePacketSerializer
 {
 public:
