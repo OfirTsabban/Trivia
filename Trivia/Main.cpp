@@ -1,6 +1,5 @@
 #include "Server.h"
 
-
 int main()
 {
 	WSADATA wsa;
@@ -9,7 +8,8 @@ int main()
 	{
 		printf("Failed. Error Code : %d", WSAGetLastError());
 		return 1;
-	}
+	}	
+
 	Server serv;
 	serv.run();
 }
