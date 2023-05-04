@@ -5,20 +5,21 @@
 #include <vector>
 #include <ctime>
 
-struct RequestInfo
+class IRequestHandler;
+
+typedef struct RequestInfo
 {
 	int id;
 	std::time_t receivalTime;
 	std::vector<unsigned char> buffer;
-};
+}RequestInfo;
 
-class IRequestHandler;
 
-struct RequestResult
+typedef struct RequestResult
 {
 	unsigned char* response;
 	IRequestHandler* newHandler;
-};
+}RequestResult;
 
 class IRequestHandler
 {

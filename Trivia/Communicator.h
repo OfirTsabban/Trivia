@@ -1,9 +1,9 @@
 #pragma once
+#include <map>
+#include <thread>
 #include "IRequestHandler.h"
 #include "LoginRequestHandler.h"
 #include "Helper.h"
-#include <map>
-#include <thread>
 
 class Communicator 
 {
@@ -18,5 +18,5 @@ private:
 	void handleNewClient(SOCKET client_socket);
 
 	SOCKET m_serverSocket;
-	std::map <SOCKET, IRequestHandler*> m_clients;
+	std::map<SOCKET, IRequestHandler*> m_clients;
 };
