@@ -6,7 +6,7 @@ unsigned char* JsonResponsePacketSerializer::serializeErrorResponse(ErrorRespons
 	unsigned char* buffer = new unsigned char(5 + json.size());
 	buffer[0] = error;
 	int length = json.size();
-	buffer[1] = char(&length);
+	buffer[1] = char(length);
 	buffer[5] = json;
 	std::cout << buffer << std::endl;
 	return buffer;
@@ -18,7 +18,7 @@ unsigned char* JsonResponsePacketSerializer::serializeLoginResponse(LoginRespons
 	unsigned char* buffer = new unsigned char(5 + json.size());
 	buffer[1] = login;
 	int length = json.size();
-	buffer[1] = char(&length);
+	buffer[1] = char(length);
 	buffer[5] = json;
 	std::cout << buffer << std::endl;
 	return buffer;
@@ -30,7 +30,7 @@ unsigned char* JsonResponsePacketSerializer::serializeSignupResponse(SignupRespo
 	unsigned char* buffer = new unsigned char(5 + json.size());
 	buffer[1] = signup;
 	int length = json.size();
-	buffer[1] = char(&length);
+	buffer[1] = char(length);
 	buffer[5] = json;
 	std::cout << buffer << std::endl;
 	return buffer;

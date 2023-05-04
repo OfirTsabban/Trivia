@@ -12,10 +12,12 @@ struct RequestInfo
 	std::vector<unsigned char> buffer;
 };
 
+class IRequestHandler;
+
 struct RequestResult
 {
 	unsigned char* response;
-	IRequestHandler* newHanlder;
+	IRequestHandler* newHandler;
 };
 
 class IRequestHandler
