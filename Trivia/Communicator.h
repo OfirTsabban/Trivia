@@ -19,5 +19,5 @@ private:
 	void handleNewClient(SOCKET client_socket);
 
 	SOCKET m_serverSocket;
-	std::map<SOCKET, IRequestHandler*> m_clients;
+	std::map < SOCKET, IRequestHandler* > m_clients;
 };
