@@ -1,9 +1,10 @@
 #pragma once
+#include "LoginRequestHandler.h"
 #include <map>
 #include <thread>
-#include "IRequestHandler.h"
-#include "LoginRequestHandler.h"
 #include "Helper.h"
+
+class IRequestHandler;//tal helped <3
 
 class Communicator 
 {
