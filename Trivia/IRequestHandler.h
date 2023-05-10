@@ -7,6 +7,7 @@
 #include <vector>
 #include <ctime>
 
+class IRequestHandler;
 
 typedef struct RequestResult
 {
