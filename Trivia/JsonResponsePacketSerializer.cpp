@@ -22,46 +22,51 @@ unsigned char* JsonResponsePacketSerializer::serializeErrorResponse(ErrorRespons
 
 unsigned char* JsonResponsePacketSerializer::serializeLoginResponse(LoginResponse lr)
 {
-	json jsonMSG = { {"message", lr.status} };
+	json jsonMSG = { {"status", lr.status} };
 	std::string str_json = jsonMSG.dump();
-	unsigned char* buffer = new unsigned char((5 + str_json.length() + 1));
-	buffer[0] = login;
+	
+	std::string s = std::to_string(login);
 	int cut = 1000;
-	int length = str_json.length();
-
-	for (int i = 1; i < 5; i++)
+	int length = str_json.length();	
+	//std::cout << str_json
+	std::string len = std::to_string(str_json.length());
+	while (len.length() < 4)
 	{
-		buffer[i] = str_json.length() / cut;
-		cut /= 10;
+		len = "0" + len;
 	}
-	for (int i = 5; i < str_json.length(); i++)
+	s += len;
+	for (int i = 0; i < str_json.length(); i++)
 	{
-		buffer[i] = str_json[i - 5];
+		s += str_json[i];
 	}
-
-	std::cout << buffer << std::endl;
+	unsigned char* buffer = new unsigned char[(s.length()+1)];
+	std::copy(s.begin(), s.end(), buffer);
+	buffer[s.length()] = 0;
+	std::cout << std::endl << buffer << std::endl;
 	return buffer;
 }
 
 unsigned char* JsonResponsePacketSerializer::serializeSignupResponse(SignupResponse sur)
 {	
-	json jsonMSG = { {"message", sur.status} };
+	json jsonMSG = { {"status", sur.status} };
 	std::string str_json = jsonMSG.dump();
-	unsigned char* buffer = new unsigned char(5 + str_json.length() + 1);
-	buffer[0] = signup;
+
+	std::string s = std::to_string(signup);
 	int cut = 1000;
 	int length = str_json.length();
-
-	for (int i = 1; i < 5; i++)
+	std::string len = std::to_string(str_json.length());
+	while (len.length() < 4)
 	{
-		buffer[i] = str_json.length() / cut;
-		cut /= 10;
+		len = "0" + len;
 	}
-	for (int i = 5; i < str_json.length(); i++)
+	s += len;
+	for (int i = 0; i < str_json.length(); i++)
 	{
-		buffer[i] = str_json[i - 5];
+		s += str_json[i];
 	}
-
-	std::cout << buffer << std::endl;
+	unsigned char* buffer = new unsigned char[(s.length() + 1)];
+	std::copy(s.begin(), s.end(), buffer);
+	buffer[s.length()] = 0;
+	std::cout << std::endl << buffer << std::endl; 
 	return buffer;
 }
