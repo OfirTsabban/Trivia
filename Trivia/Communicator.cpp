@@ -66,14 +66,14 @@ void Communicator::acceptClient()
 	std::thread tr(&Communicator::handleNewClient, this, client_socket);
 	tr.detach();
 
-	LoginRequestHandler* temp;
+	LoginRequestHandler* clientHandler = new LoginRequestHandler();
 	
-	m_clients.emplace(std::make_pair(client_socket, temp));
+	m_clients.insert(std::pair<SOCKET, IRequestHandler*>(client_socket, clientHandler));
 }
 
 void Communicator::handleNewClient(SOCKET client_socket)
 {	
-	int id = Helper::getIntPartFromSocket(client_socket, 4);
+	int id = Helper::getIntPartFromSocket(client_socket, 1);
 	std::string msg = Helper::getStringPartFromSocket(client_socket, 1024);
 	time_t recivalTime = std::time(nullptr);
 	std::vector<unsigned char> buffer;

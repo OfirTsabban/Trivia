@@ -22,7 +22,7 @@ def client():
     print("Json that has been created: " + json)
 
     message = msg_code_encoded + str(len(json)).encode() + json.encode()
-
+    message = message.decode().replace("'", '"').encode()
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     client_socket.connect((socket.gethostname(), 12345))
 
