@@ -37,6 +37,8 @@ bool SqliteDatabase::open()
 		}
 
 	}
+
+	return true;
 }
 
 bool SqliteDatabase::doesUserExist(std::string name)

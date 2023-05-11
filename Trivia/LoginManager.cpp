@@ -17,7 +17,7 @@ void LoginManager::login(std::string name, std::string password)
 {
 	if (std::find(m_loggedUsers.begin(), m_loggedUsers.end(), LoggedUser(name)) != m_loggedUsers.end())
 	{
-		std::cout << "user already looged in" << std::endl; //need to add exeptions
+		std::cout << "user already logged in" << std::endl; //need to add exeptions
 	}
 	else if(!m_database->doesPasswordMatch(name, password))
 	{
@@ -26,5 +26,17 @@ void LoginManager::login(std::string name, std::string password)
 	else
 	{
 		m_loggedUsers.push_back(LoggedUser(name));
+	}
+}
+
+void LoginManager::logout(std::string name)
+{
+	for (auto it = m_loggedUsers.begin(); it != m_loggedUsers.end(); it++)
+	{
+		if (it->getUsername() == name)
+		{
+			m_loggedUsers.erase(it);
+			return;
+		}
 	}
 }
