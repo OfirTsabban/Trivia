@@ -1,4 +1,5 @@
 #include "SqliteDatabase.h"
+#include <string>
 
 int callBackGlobal(void* data, int argc, char** argv, char** azColName)
 {
@@ -44,10 +45,35 @@ bool SqliteDatabase::doesUserExist(std::string name)
 
 	std::string sqlStatement = "SELECT * FROM Users WHERE USERNAME = " + name + ";";
 	char* errMessage = nullptr;
-	int res = sqlite3_exec(&this->_db, sqlStatement.c_str(), callBackGlobal, &data, &errMessage);
+	int res = sqlite3_exec(this->_db, sqlStatement.c_str(), callBackGlobal, &data, &errMessage);
 	if (res != SQLITE_OK) {
 		std::cout << std::endl << "error" << std::endl;
 	}
 
 	return data.length();
+}
+
+bool SqliteDatabase::doesPasswordMatch(std::string name, std::string password)
+{
+	std::string data = "";
+
+	std::string sqlStatement = "SELECT * FROM Users WHERE USERNAME = " + name + " AND PASSWORD = " + password + ";";
+	char* errMessage = nullptr;
+	int res = sqlite3_exec(this->_db, sqlStatement.c_str(), callBackGlobal, &data, &errMessage);
+	if (res != SQLITE_OK) {
+		std::cout << std::endl << "error" << std::endl;
+	}
+
+	return data.length();
+}
+
+void SqliteDatabase::addNewUser(std::string name, std::string password, std::string email, std::string street, int apt, std::string city, std::string prefix, std::string number, std::string yearBorn)
+{
+	std::string sqlStatement = "INSERT INTO Users(USERNAME, PASSWORD, EMAIL, STREET, APT, CITY, PREFIX, NUMBER, YEARBORN) VALUES('" + name + "', '" + password + "', '" + email + "', '" + street + "', " + std::to_string(apt) + ", '" + city + "', '" + prefix + "', '" + number + "', '" + yearBorn + "'); ";
+	char* errMessage = nullptr;
+	int res = sqlite3_exec(this->_db, sqlStatement.c_str(), nullptr, nullptr, &errMessage);
+	if (res != SQLITE_OK)
+	{
+		std::cout << "error" << std::endl;
+	}
 }
