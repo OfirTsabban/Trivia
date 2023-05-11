@@ -4,6 +4,7 @@
 class LoggedUser
 {
 public:
+	LoggedUser(std::string name);
 	std::string getUsername();
 
 private:
