@@ -4,7 +4,8 @@ void LoginManager::signup(std::string name, std::string password, std::string em
 {
 	if (m_database->doesUserExist(name))
 	{
-		std::cout << "user already exists!" << std::endl; //need to add exeptions
+		std::cout << "user already exists!" << std::endl;
+		throw ExceptionHandler("Error - user already exists!");
 	}
 	else
 	{
@@ -17,11 +18,13 @@ void LoginManager::login(std::string name, std::string password)
 {
 	if (std::find(m_loggedUsers.begin(), m_loggedUsers.end(), LoggedUser(name)) != m_loggedUsers.end())
 	{
-		std::cout << "user already logged in" << std::endl; //need to add exeptions
+		std::cout << "user already logged in" << std::endl;
+		throw ExceptionHandler("Error! User Already logged in!");
 	}
 	else if(!m_database->doesPasswordMatch(name, password))
 	{
-		std::cout << "password did not match user..." << std::endl; //need to add exeptions
+		std::cout << "password did not match user..." << std::endl;
+		throw ExceptionHandler("Error! Password did not match the user you looked for!");
 	}
 	else
 	{

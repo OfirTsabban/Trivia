@@ -2,6 +2,7 @@
 #include <vector>
 #include "LoggedUser.h"
 #include "SqliteDatabase.h"
+#include "ExceptionHandler.h"
 
 class LoginManager
 {
