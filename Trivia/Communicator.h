@@ -5,7 +5,6 @@
 #include "Helper.h"
 
 class IRequestHandler;//tal helped <3
-
 class Communicator 
 {
 public:

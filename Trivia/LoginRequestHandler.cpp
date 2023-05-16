@@ -30,12 +30,14 @@ RequestResult LoginRequestHandler::Login(RequestInfo reqInfo)
 {
     LoginRequest newUser = JsonRequestPacketDeserializer::deserializeLoginRequest((char*)reqInfo.buffer);
     this->m_handleFactory.getLoginManager().login(newUser.username, newUser.password);
+
     LoginResponse logResp = { 1 };
 
     unsigned char* buffer = JsonResponsePacketSerializer::serializeLoginResponse(logResp);
-    LoggedUser newUser(newUser.username);
-
-    RequestResult reqRes = { buffer, nullptr };//should be next handler
+    LoggedUser newUser(newUser.username);    
+    IRequestHandler* req = this->m_handleFactory.createLoginRequestHandler();
+    
+    RequestResult reqRes = { buffer, req };
     return reqRes;
 }
 
@@ -47,7 +49,8 @@ RequestResult LoginRequestHandler::Signup(RequestInfo reqInfo)
 
     unsigned char* buffer = JsonResponsePacketSerializer::serializeSignupResponse(signResp);
     LoggedUser newUser(newUser.username);
+    IRequestHandler* req = this->m_handleFactory.createLoginRequestHandler();
 
-    RequestResult reqRes = { buffer, nullptr };//should be next handler
+    RequestResult reqRes = { buffer, req };
     return reqRes;
 }

@@ -4,6 +4,7 @@
 #include "LoginRequestHandler.h"
 #include "MenuRequestHandler.h"
 enum loginDef { succeeded = true, failed = false }; 
+
 class RequestHandlerFactory
 {
 public:
