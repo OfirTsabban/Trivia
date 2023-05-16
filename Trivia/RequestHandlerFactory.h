@@ -3,7 +3,7 @@
 #include "IDatabase.h" 
 #include "LoginRequestHandler.h"
 #include "MenuRequestHandler.h"
-enum loginDef { succeeded = 1, failed = 2 };
+enum loginDef { succeeded = true, failed = false }; 
 class RequestHandlerFactory
 {
 public:
