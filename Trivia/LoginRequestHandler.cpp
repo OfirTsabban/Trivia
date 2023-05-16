@@ -28,27 +28,26 @@ RequestResult LoginRequestHandler::handleRequest(RequestInfo reqInfo)
 
 RequestResult LoginRequestHandler::Login(RequestInfo reqInfo)
 {
-    LoginResponse loginResp = { 1 };
-    unsigned char* resp = JsonResponsePacketSerializer::serializeLoginResponse(loginResp);
+    LoginRequest newUser = JsonRequestPacketDeserializer::deserializeLoginRequest((char*)reqInfo.buffer);
+    this->m_handleFactory.getLoginManager().login(newUser.username, newUser.password);
+    LoginResponse logResp = { 1 };
 
-    //need to wait for your exception;         
-    RequestResult reqRes;
-    LoginRequestHandler* logReq;
-    try
-    {
-        logReq =
+    unsigned char* buffer = JsonResponsePacketSerializer::serializeLoginResponse(logResp);
+    LoggedUser newUser(newUser.username);
 
-    }
-    catch (/*exception e*/)
-    {
-        logReq = nullptr;
-    }
+    RequestResult reqRes = { buffer, nullptr };//should be next handler
+    return reqRes;
 }
 
 RequestResult LoginRequestHandler::Signup(RequestInfo reqInfo)
 {
-    SignupResponse signUpResp = { 2 };
-    unsigned char* resp = JsonResponsePacketSerializer::serializeSignupResponse(signUpResp);
+    SignupRequest newUser = JsonRequestPacketDeserializer::deserializeSignupRequest((char*)reqInfo.buffer);
+    this->m_handleFactory.getLoginManager().signup(newUser.username, newUser.password, newUser.email, newUser.street, newUser.apt, newUser.city, newUser.prefix, newUser.number, newUser.yearBorn);
+    SignupResponse signResp= { 1 };
 
-    RequestResult reqRes = { resp, NULL }; //will change null when new hanlder will be made
+    unsigned char* buffer = JsonResponsePacketSerializer::serializeSignupResponse(signResp);
+    LoggedUser newUser(newUser.username);
+
+    RequestResult reqRes = { buffer, nullptr };//should be next handler
+    return reqRes;
 }

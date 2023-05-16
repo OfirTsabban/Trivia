@@ -19,7 +19,7 @@ typedef struct RequestInfo
 {
 	int id;
 	std::time_t receivalTime;
-	std::vector<unsigned char> buffer;
+	unsigned char* buffer;
 }RequestInfo;
 
 class IRequestHandler
