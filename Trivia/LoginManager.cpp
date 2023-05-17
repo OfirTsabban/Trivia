@@ -7,6 +7,12 @@ void LoginManager::signup(std::string name, std::string password, std::string em
 		std::cout << "user already exists!" << std::endl;
 		throw ExceptionHandler("Error - user already exists!");
 	}
+	else if(!checkName(name))
+	{
+		std::cout << "Invalid username!" << std::endl;
+		throw ExceptionHandler("Error - Invalid username!");
+		
+	}
 	else
 	{
 		m_database->addNewUser(name, password, email, street, apt, city, prefix, number, yearBorn);

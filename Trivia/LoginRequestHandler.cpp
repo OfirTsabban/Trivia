@@ -2,6 +2,7 @@
 #include "LoginManager.h"
 #include "IDatabase.h"
 #include "RequestHandlerFactory.h"
+#include "ExceptionHandler.h"
 
 LoginRequestHandler::LoginRequestHandler(RequestHandlerFactory& handleFactory) : IRequestHandler(), m_handleFactory(handleFactory)
 {
@@ -31,27 +32,46 @@ RequestResult LoginRequestHandler::handleRequest(RequestInfo reqInfo)
 RequestResult LoginRequestHandler::login(RequestInfo reqInfo)
 {
     LoginRequest newSignUser = JsonRequestPacketDeserializer::deserializeLoginRequest((char*)reqInfo.buffer);
-    this->m_handleFactory.getLoginManager().login(newSignUser.username, newSignUser.password);
-
     LoginResponse logResp = { 1 };
 
-    unsigned char* buffer = JsonResponsePacketSerializer::serializeLoginResponse(logResp);
-    LoggedUser newLogUser(newSignUser.username);
-    IRequestHandler* req = this->m_handleFactory.createLoginRequestHandler();
-    
+    unsigned char*  buffer = JsonResponsePacketSerializer::serializeLoginResponse(logResp);   
+    IRequestHandler* req;
+    try
+    {
+        this->m_handleFactory.getLoginManager().login(newSignUser.username, newSignUser.password);
+        LoggedUser newLogUser(newSignUser.username);
+        req = this->m_handleFactory.createLoginRequestHandler();        
+    }
+    catch (ExceptionHandler& exception)
+    {
+        std::cout << exception.what() << std::endl;
+        req = nullptr;
+    }
     RequestResult reqRes = { buffer, req };
     return reqRes;
 }
 
 RequestResult LoginRequestHandler::signup(RequestInfo reqInfo)
 {
+    
     SignupRequest newSignUser = JsonRequestPacketDeserializer::deserializeSignupRequest((char*)reqInfo.buffer);
-    this->m_handleFactory.getLoginManager().signup(newSignUser.username, newSignUser.password, newSignUser.email, newSignUser.street, newSignUser.apt, newSignUser.city, newSignUser.prefix, newSignUser.number, newSignUser.yearBorn);
-    SignupResponse signResp= { 1 };
+    SignupResponse signResp = { 1 };
 
-    unsigned char* buffer = JsonResponsePacketSerializer::serializeSignupResponse(signResp);
-    LoggedUser newLogUser(newSignUser.username);
-    IRequestHandler* req = this->m_handleFactory.createLoginRequestHandler();
+    unsigned char* buffer = JsonResponsePacketSerializer::serializeSignupResponse(signResp);   
+    IRequestHandler* req;
+    try
+    {
+        
+        this->m_handleFactory.getLoginManager().signup(newSignUser.username, newSignUser.password, newSignUser.email, newSignUser.street, newSignUser.apt, newSignUser.city, newSignUser.prefix, newSignUser.number, newSignUser.yearBorn);
+        
+        LoggedUser newLogUser(newSignUser.username);
+        req = this->m_handleFactory.createLoginRequestHandler();
+    }
+    catch (ExceptionHandler& exception)
+    {
+        std::cout << exception.what() << std::endl;
+        req = nullptr;
+    }
 
     RequestResult reqRes = { buffer, req };
     return reqRes;
