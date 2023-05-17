@@ -34,7 +34,7 @@ RequestResult LoginRequestHandler::login(RequestInfo reqInfo)
     LoginRequest newSignUser = JsonRequestPacketDeserializer::deserializeLoginRequest((char*)reqInfo.buffer);
     LoginResponse logResp = { 1 };
 
-    unsigned char*  buffer = JsonResponsePacketSerializer::serializeLoginResponse(logResp);   
+    unsigned char* buffer = JsonResponsePacketSerializer::serializeLoginResponse(logResp);   
     IRequestHandler* req;
     try
     {
@@ -46,6 +46,8 @@ RequestResult LoginRequestHandler::login(RequestInfo reqInfo)
     {
         std::cout << exception.what() << std::endl;
         req = nullptr;
+        logResp = { 0 };
+        buffer = JsonResponsePacketSerializer::serializeLoginResponse(logResp);
     }
     RequestResult reqRes = { buffer, req };
     return reqRes;
