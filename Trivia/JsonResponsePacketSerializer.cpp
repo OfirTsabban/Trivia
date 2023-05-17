@@ -28,7 +28,7 @@ unsigned char* JsonResponsePacketSerializer::serializeLoginResponse(LoginRespons
 	std::string s = std::to_string(LogIn);
 	int cut = 1000;
 	int length = str_json.length();	
-	//std::cout << str_json
+	
 	std::string len = std::to_string(str_json.length());
 	while (len.length() < 4)
 	{

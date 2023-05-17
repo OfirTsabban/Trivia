@@ -1,16 +1,20 @@
 #include "LoginManager.h"
 #include <vector>
 
-LoginManager::LoginManager(IDatabase* db) :m_database()
+LoginManager::LoginManager(IDatabase* db) :m_database(db)
 {
 }
 
-void LoginManager::signup(std::string name, std::string password, std::string email, std::string street, int apt, std::string city, std::string prefix, std::string number, std::string yearBorn)
+void LoginManager::signup(std::string name, std::string password, std::string email, std::string street, std::string apt, std::string city, std::string prefix, std::string number, std::string yearBorn)
 {
 	if (m_database->doesUserExist(name))
 	{
 		std::cout << "user already exists!" << std::endl;
 		throw ExceptionHandler("Error - user already exists!");
+	}
+	else if (!checkName(name))
+	{
+		throw ExceptionHandler("Error - Invalid username!");
 	}
 	else
 	{

@@ -71,6 +71,8 @@ RequestResult LoginRequestHandler::signup(RequestInfo reqInfo)
     {
         std::cout << exception.what() << std::endl;
         req = nullptr;
+        signResp = { 0 };
+        buffer = JsonResponsePacketSerializer::serializeSignupResponse(signResp);
     }
 
     RequestResult reqRes = { buffer, req };

@@ -14,7 +14,7 @@ struct SignupRequest
 	std::string password;
 	std::string email;
 	std::string street;
-	int apt;
+	std::string apt;
 	std::string city;
 	std::string prefix;
 	std::string number;

@@ -71,7 +71,7 @@ bool SqliteDatabase::doesUserExist(std::string name)
 {
 	std::string data = "";
 
-	std::string sqlStatement = "SELECT * FROM Users WHERE USERNAME = " + name + ";";
+	std::string sqlStatement = "SELECT * FROM Users WHERE USERNAME = '" + name + "';";
 	char* errMessage = nullptr;
 	int res = sqlite3_exec(this->_db, sqlStatement.c_str(), callBackGlobal, &data, &errMessage);
 	if (res != SQLITE_OK) {
@@ -85,7 +85,7 @@ bool SqliteDatabase::doesPasswordMatch(std::string name, std::string password)
 {
 	std::string data = "";
 
-	std::string sqlStatement = "SELECT * FROM Users WHERE USERNAME = " + name + " AND PASSWORD = " + password + ";";
+	std::string sqlStatement = "SELECT * FROM Users WHERE USERNAME = '" + name + "' AND PASSWORD = '" + password + "';";
 	char* errMessage = nullptr;
 	int res = sqlite3_exec(this->_db, sqlStatement.c_str(), callBackGlobal, &data, &errMessage);
 	if (res != SQLITE_OK) {
@@ -95,9 +95,9 @@ bool SqliteDatabase::doesPasswordMatch(std::string name, std::string password)
 	return data.length();
 }
 
-void SqliteDatabase::addNewUser(std::string name, std::string password, std::string email, std::string street, int apt, std::string city, std::string prefix, std::string number, std::string yearBorn)
+void SqliteDatabase::addNewUser(std::string name, std::string password, std::string email, std::string street, std::string apt, std::string city, std::string prefix, std::string number, std::string yearBorn)
 {
-	std::string sqlStatement = "INSERT INTO Users(USERNAME, PASSWORD, EMAIL, STREET, APT, CITY, PREFIX, NUMBER, YEARBORN) VALUES('" + name + "', '" + password + "', '" + email + "', '" + street + "', " + std::to_string(apt) + ", '" + city + "', '" + prefix + "', '" + number + "', '" + yearBorn + "'); ";
+	std::string sqlStatement = "INSERT INTO Users(USERNAME, PASSWORD, EMAIL, STREET, APT, CITY, PREFIX, NUMBER, YEARBORN) VALUES('" + name + "', '" + password + "', '" + email + "', '" + street + "', " + apt + ", '" + city + "', '" + prefix + "', '" + number + "', '" + yearBorn + "'); ";
 	char* errMessage = nullptr;
 	int res = sqlite3_exec(this->_db, sqlStatement.c_str(), nullptr, nullptr, &errMessage);
 	if (res != SQLITE_OK)
