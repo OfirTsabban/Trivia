@@ -1,11 +1,13 @@
 #pragma once
 #include "LoginRequestHandler.h"
+#include "RequestHandlerFactory.h"
 #include <map>
 #include <thread>
 #include "Helper.h"
 
 class IRequestHandler;//tal helped <3
 class RequestHandlerFactory;
+
 class Communicator 
 {
 public:
@@ -20,4 +22,5 @@ private:
 
 	SOCKET m_serverSocket;
 	std::map < SOCKET, IRequestHandler* > m_clients;
+	RequestHandlerFactory* m_handle;
 };

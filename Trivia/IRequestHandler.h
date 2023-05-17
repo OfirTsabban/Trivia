@@ -1,13 +1,21 @@
 #pragma once
-#ifndef IREQUESTHANDLER_H
-#define IREQUESTHANDLER_H
 #include "JsonRequestPacketDeserializer.h"
 #include "JsonResponsePacketSerializer.h"
 #include <iostream>
 #include <vector>
 #include <ctime>
 
-class IRequestHandler;
+struct RequestResult;
+struct RequestInfo;
+
+class IRequestHandler
+{
+public:
+	IRequestHandler();
+	~IRequestHandler();
+	virtual bool isRequestRelevant(RequestInfo reqInfo) = 0;
+	virtual RequestResult handleRequest(RequestInfo reqInfo) = 0;
+};
 
 typedef struct RequestResult
 {
@@ -21,15 +29,3 @@ typedef struct RequestInfo
 	std::time_t receivalTime;
 	unsigned char* buffer;
 }RequestInfo;
-
-class IRequestHandler
-{
-public:
-	IRequestHandler();
-	virtual bool isRequestRelevant(RequestInfo reqInfo)= 0;
-	virtual RequestResult handleRequest(RequestInfo reqInfo) =0 ;
-};
-
-
-
-#endif // IREQUESTHANDLER_H

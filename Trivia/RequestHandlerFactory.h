@@ -1,9 +1,10 @@
 #pragma once 
 #include "LoginManager.h"
 #include "IDatabase.h" 
-#include "LoginRequestHandler.h"
-#include "MenuRequestHandler.h"
+
 enum loginDef { succeeded = true, failed = false }; 
+
+class LoginRequestHandler;
 
 class RequestHandlerFactory
 {
@@ -14,4 +15,3 @@ private:
 	LoginManager m_loginManager;
 	IDatabase* m_database; 
 };
-

@@ -2,5 +2,8 @@
 
 IRequestHandler::IRequestHandler()
 {
+}
 
+IRequestHandler::~IRequestHandler()
+{
 }
