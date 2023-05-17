@@ -2,7 +2,12 @@
 
 LoginRequest JsonRequestPacketDeserializer::deserializeLoginRequest(char* buffer)
 {
-	std::string bufferString = buffer;
+	std::string bufferString;
+	int i = 0;
+	while (buffer[i] != NULL)
+	{
+		bufferString[i] += buffer[i];
+	}
 	bufferString = bufferString.substr(bufferString.find("{"));
 	auto json = nlohmann::json::parse(bufferString);
 
