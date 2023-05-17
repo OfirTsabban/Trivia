@@ -1,21 +1,16 @@
 #pragma once
-#include "JsonRequestPacketDeserializer.h"
-#include "JsonResponsePacketSerializer.h"
+#include <ctime>
 #include <iostream>
 #include <vector>
-#include <ctime>
 
-struct RequestResult;
-struct RequestInfo;
+class IRequestHandler;
 
-class IRequestHandler
+typedef struct RequestInfo
 {
-public:
-	IRequestHandler();
-	~IRequestHandler();
-	virtual bool isRequestRelevant(RequestInfo reqInfo) = 0;
-	virtual RequestResult handleRequest(RequestInfo reqInfo) = 0;
-};
+	int id;
+	std::time_t recivedTime;
+	unsigned char* buffer;
+}RequestInfo;
 
 typedef struct RequestResult
 {
@@ -23,9 +18,12 @@ typedef struct RequestResult
 	IRequestHandler* newHandler;
 }RequestResult;
 
-typedef struct RequestInfo
+class IRequestHandler
 {
-	int id;
-	std::time_t receivalTime;
-	unsigned char* buffer;
-}RequestInfo;
+public:
+	IRequestHandler();
+	~IRequestHandler();
+
+	virtual bool isRequestRelevent(RequestInfo reqInfo) = 0;
+	virtual RequestResult handleRequest(RequestInfo reqInfo) = 0;
+};
