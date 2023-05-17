@@ -3,7 +3,7 @@
 LoginRequest JsonRequestPacketDeserializer::deserializeLoginRequest(char* buffer)
 {
 	std::string bufferString = buffer;
-
+	bufferString = bufferString.substr(bufferString.find("{"));
 	auto json = nlohmann::json::parse(bufferString);
 
 	std::string username = json.at("username");
@@ -19,7 +19,7 @@ LoginRequest JsonRequestPacketDeserializer::deserializeLoginRequest(char* buffer
 SignupRequest JsonRequestPacketDeserializer::deserializeSignupRequest(char* buffer)
 {
 	std::string bufferString = buffer;
-
+	bufferString = bufferString.substr(bufferString.find("{"));
 	auto json = nlohmann::json::parse(bufferString);
 
 	std::string username = json.at("username");
