@@ -43,3 +43,18 @@ void LoginManager::logout(std::string name)
 		}
 	}
 }
+
+bool LoginManager::checkName(std::string username)
+{
+	int i = 0;
+
+	for (i = 0; i < username.length(); i++)
+	{
+		if (!isalnum(username[i]))
+		{
+			return false;
+		}
+	}
+
+	return true;
+}

@@ -12,6 +12,8 @@ public:
 	void logout(std::string name);
 
 private:
+	bool checkName(std::string username);//true - valid username, false - username contains numbers or digits
+
 	IDatabase* m_database;
 	std::vector<LoggedUser> m_loggedUsers;
 };
