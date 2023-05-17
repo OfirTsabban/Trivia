@@ -1,8 +1,11 @@
 #include "Server.h"
+#include "SqliteDatabase.h"
 
 int main()
 {
 	WSADATA wsa;
+
+	SqliteDatabase* db = new SqliteDatabase();
 
 	if (WSAStartup(MAKEWORD(2, 2), &wsa) != 0)
 	{

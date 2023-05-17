@@ -7,6 +7,8 @@
 class SqliteDatabase : public IDatabase
 {
 public:
+	SqliteDatabase();
+	~SqliteDatabase() = default;
 	bool open();
 	virtual bool doesUserExist(std::string name);
 	virtual bool doesPasswordMatch(std::string name, std::string password);

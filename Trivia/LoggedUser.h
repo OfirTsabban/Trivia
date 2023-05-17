@@ -4,7 +4,7 @@
 class LoggedUser
 {
 public:
-	LoggedUser(std::string name);
+	LoggedUser(const std::string& name);
 	std::string getUsername();
 
 	bool operator==(LoggedUser const& other);

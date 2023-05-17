@@ -10,12 +10,13 @@
 static const unsigned short PORT = 12345;
 static const unsigned int IFACE = 0;
 
-Communicator::Communicator()
+Communicator::Communicator(RequestHandlerFactory& handleFactory) : m_handleFactory(handleFactory)
 {
 	this->m_serverSocket = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
 
 	if (m_serverSocket == INVALID_SOCKET)
 		throw std::exception(__FUNCTION__ " - socket");
+
 }
 
 Communicator::~Communicator()
@@ -66,7 +67,7 @@ void Communicator::acceptClient()
 	std::thread tr(&Communicator::handleNewClient, this, client_socket);
 	tr.detach();
 
-	LoginRequestHandler* clientHandler = m_handle->createLoginRequestHandler();//smth wrong here idk why...
+	LoginRequestHandler* clientHandler = m_handleFactory.createLoginRequestHandler();//smth wrong here idk why...
 	
 	m_clients.insert(std::pair<SOCKET, IRequestHandler*>(client_socket, clientHandler));
 }
