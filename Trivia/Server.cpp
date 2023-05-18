@@ -1,5 +1,10 @@
 #include "Server.h"
 
+Server::Server() :m_database(), m_hanlderFactory(&m_database), m_communicator(m_hanlderFactory)
+{
+
+}
+
 void Server::run()
 {
 	std::string input = "";

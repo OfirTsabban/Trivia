@@ -7,7 +7,7 @@ unsigned char* JsonResponsePacketSerializer::serializeErrorResponse(ErrorRespons
 {	
 	auto json = nlohmann::json::parse("message:" + ep.message); 
 	unsigned char* buffer = new unsigned char(5 + json.size());
-	buffer[0] = error;
+	buffer[0] = Error;
 	int cut = 1000;
 	int length = json.size();
 	for (int i = 1; i < 5; i++)
@@ -25,10 +25,10 @@ unsigned char* JsonResponsePacketSerializer::serializeLoginResponse(LoginRespons
 	json jsonMSG = { {"status", lr.status} };
 	std::string str_json = jsonMSG.dump();
 	
-	std::string s = std::to_string(login);
+	std::string s = std::to_string(LogIn);
 	int cut = 1000;
 	int length = str_json.length();	
-	//std::cout << str_json
+	
 	std::string len = std::to_string(str_json.length());
 	while (len.length() < 4)
 	{
@@ -51,7 +51,7 @@ unsigned char* JsonResponsePacketSerializer::serializeSignupResponse(SignupRespo
 	json jsonMSG = { {"status", sur.status} };
 	std::string str_json = jsonMSG.dump();
 
-	std::string s = std::to_string(signup);
+	std::string s = std::to_string(SignUp);
 	int cut = 1000;
 	int length = str_json.length();
 	std::string len = std::to_string(str_json.length());

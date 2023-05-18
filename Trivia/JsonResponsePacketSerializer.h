@@ -15,7 +15,7 @@ struct ErrorResponse
 {
 	std::string message;
 };
-enum action { error = 0, login = 1, signup = 2 };
+enum action { Error = 0, LogIn = 1, SignUp = 2 };
 class JsonResponsePacketSerializer
 {
 public:
