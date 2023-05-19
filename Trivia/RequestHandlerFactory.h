@@ -8,6 +8,7 @@
 
 enum loginDef { succeeded = true, failed = false }; 
 
+class MenuRequestHandler;
 class LoginRequestHandler;
 
 class RequestHandlerFactory

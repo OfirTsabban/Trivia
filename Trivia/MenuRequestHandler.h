@@ -5,6 +5,8 @@
 #include "StatisticsManager.h"
 #include "RequestHandlerFactory.h"
 
+class RequestHandlerFactory;
+
 class MenuRequestHandler : public IRequestHandler
 { 
 public:
