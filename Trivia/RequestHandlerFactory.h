@@ -17,9 +17,9 @@ public:
 	~RequestHandlerFactory() = default;
 	LoginRequestHandler* createLoginRequestHandler(); 
 	LoginManager& getLoginManager();
-	MenuRequestHandler* createMenuRequestHandler(const LoggedUser user);
-	StatisticsManager& getStatisticsManager() const;
-	RoomManager& getRoomManager() const;
+	MenuRequestHandler* createMenuRequestHandler(LoggedUser user);
+	StatisticsManager& getStatisticsManager();
+	RoomManager& getRoomManager();
 private: 
 	IDatabase* m_database;
 	LoginManager m_loginManager;

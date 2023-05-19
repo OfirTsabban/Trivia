@@ -15,3 +15,19 @@ LoginManager& RequestHandlerFactory::getLoginManager()
 {
 	return this->m_loginManager;
 }
+
+MenuRequestHandler* RequestHandlerFactory::createMenuRequestHandler(LoggedUser user)
+{
+	MenuRequestHandler* menu = new MenuRequestHandler(*this, user);
+	return menu;
+}
+
+StatisticsManager& RequestHandlerFactory::getStatisticsManager() 
+{
+	return this->m_StatisticsManager;
+}
+
+RoomManager& RequestHandlerFactory::getRoomManager()
+{
+	return this->m_roomManager;
+}

@@ -10,6 +10,8 @@ class MenuRequestHandler : public IRequestHandler
 public:
 	MenuRequestHandler(RequestHandlerFactory& handleFactory, LoggedUser& user);
 	~MenuRequestHandler() = default;
+	bool isRequestRelevent(RequestInfo reqInfo) override;
+	RequestResult handleRequest(RequestInfo reqInfo) override;
 private:
 	RequestResult signout(const RequestInfo reqInfo);
 	RequestResult getRooms(const RequestInfo reqInfo);
