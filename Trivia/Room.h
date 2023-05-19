@@ -12,15 +12,16 @@ typedef struct RoomData
 	unsigned int numOfQuestionsInGame;
 	unsigned int timePerQuestion;
 	unsigned int isActive;
-}RoomData;
+} RoomData;
 
 class Room
 {
 public:
 	Room(RoomData metadata);
-	void addUser(LoggedUser user);
-	void removeUser(LoggedUser user);
+	void addUser(const LoggedUser user);
+	void removeUser(const LoggedUser user);
 	std::vector<std::string> getAllUsers();
+	RoomData getData() const;
 
 private:
 	RoomData m_metadata;

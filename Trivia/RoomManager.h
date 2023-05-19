@@ -6,20 +6,18 @@
 #include "LoggedUser.h"
 #include "Room.h"
 
-typedef struct roomID
-{
-	int id;
-}roomID;
 
 class RoomManager
 {
 public:
-	void createRoom(LoggedUser host, Room newRoom);
-	void deleteRoom(int ID);
-	unsigned int getRoomState(int ID);
+	RoomManager() = default;
+	~RoomManager() = default;
+	void createRoom(const LoggedUser host, RoomData newRoomData);
+	void deleteRoom(const int ID);
+	unsigned int getRoomState(const int ID) const;
 	std::vector<RoomData> getRooms();
-	Room& getRooms(int ID);
+	Room& getRoom(int ID);
 
 private:
-	std::map<roomID, Room> m_rooms;
+	std::map<int, Room> m_rooms;
 };

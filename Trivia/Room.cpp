@@ -5,7 +5,7 @@ Room::Room(RoomData metadata)
 	this->m_metadata = metadata;
 }
 
-void Room::addUser(LoggedUser user)
+void Room::addUser(const LoggedUser user)
 {
 	if (this->m_users.size() == this->m_metadata.maxPlayers)
 	{
@@ -21,7 +21,7 @@ void Room::addUser(LoggedUser user)
 	}
 }
 
-void Room::removeUser(LoggedUser user)
+void Room::removeUser(const LoggedUser user)
 {
 	for (auto iter = this->m_users.begin(); iter != this->m_users.end(); iter++)
 	{
@@ -35,7 +35,7 @@ void Room::removeUser(LoggedUser user)
 	throw ExceptionHandler("Error - User doesn't exist in room");
 }
 
-std::vector<std::string> Room::getAllUsers()
+std::vector<std::string> Room::getAllUsers() 
 {
 	std::vector<std::string> allUsers;
 	for (auto iter = this->m_users.begin(); iter != this->m_users.end(); iter++)
@@ -44,5 +44,10 @@ std::vector<std::string> Room::getAllUsers()
 	}
 
 	return allUsers;
+}
+
+RoomData Room::getData() const
+{
+	return this->m_metadata;
 }
 
