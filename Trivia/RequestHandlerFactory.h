@@ -1,6 +1,10 @@
-#pragma once 
+#pragma once
 #include "LoginManager.h"
 #include "IDatabase.h" 
+#include "RoomManager.h"
+#include "StatisticsManager.h"
+#include "MenuRequestHandler.h"
+
 
 enum loginDef { succeeded = true, failed = false }; 
 
@@ -13,7 +17,12 @@ public:
 	~RequestHandlerFactory() = default;
 	LoginRequestHandler* createLoginRequestHandler(); 
 	LoginManager& getLoginManager();
+	MenuRequestHandler* createMenuRequestHandler(const LoggedUser user);
+	StatisticsManager& getStatisticsManager() const;
+	RoomManager& getRoomManager() const;
 private: 
+	IDatabase* m_database;
 	LoginManager m_loginManager;
-	IDatabase* m_database; 
+	RoomManager m_roomManager;
+	StatisticsManager m_StatisticsManager;
 };
