@@ -2,8 +2,9 @@
 #include <vector>
 #include <iostream>
 #include "LoggedUser.h"
+#include "ExceptionHandler.h"
 
-struct RoomData
+typedef struct RoomData
 {
 	unsigned int id;
 	std::string name;
@@ -11,11 +12,12 @@ struct RoomData
 	unsigned int numOfQuestionsInGame;
 	unsigned int timePerQuestion;
 	unsigned int isActive;
-};
+}RoomData;
 
 class Room
 {
 public:
+	Room(RoomData metadata);
 	void addUser(LoggedUser user);
 	void removeUser(LoggedUser user);
 	std::vector<std::string> getAllUsers();
