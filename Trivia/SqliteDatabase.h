@@ -10,6 +10,9 @@ public:
 	SqliteDatabase();
 	~SqliteDatabase() = default;
 	bool open();
+	void addQuestions();
+	void addNewQuestion(std::string question, std::string first, std::string second, std::string third, std::string fourth, std::string right);
+	
 	virtual bool doesUserExist(std::string name);
 	virtual bool doesPasswordMatch(std::string name, std::string password);
 	virtual void addNewUser(std::string name, std::string password, std::string email, std::string street, std::string apt, std::string city, std::string prefix, std::string number, std::string yearBorn);
