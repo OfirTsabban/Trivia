@@ -15,6 +15,38 @@ struct ErrorResponse
 {
 	std::string message;
 };
+struct LogoutResponse
+{
+	unsigned int status;
+};
+struct GetRoomsResponse
+{
+	unsigned int status;
+	vector<RoomData> rooms;
+};
+struct GetPlayersInRoomResponse
+{
+	vector<std::string> players;
+};
+struct GetHighScoreResponse
+{
+	unsigned int status;
+	vector<std::string> statistics;
+};
+struct GetPersonalStatsResponse
+{
+	unsigned int status;
+	vector<std::string> statistics;
+};
+struct JoinRoomResponse
+{
+	unsigned int status;
+};
+struct CreateRoomResponse
+{
+	unsigned int status;
+};
+
 enum Requests {
 	Error = 0,
 	Log_In = 1,
