@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include "json.hpp"
+#include <string>
 
 #include "Communicator.h"
 struct LoginResponse
@@ -65,5 +66,13 @@ public:
 	static unsigned char* serializeErrorResponse(ErrorResponse); 
 	static unsigned char* serializeLoginResponse(LoginResponse);
 	static unsigned char* serializeSignupResponse(SignupResponse); 
+	static unsigned char* serializeResponse(LogoutResponse);
+	static unsigned char* serializeResponse(GetRoomsResponse);
+	static unsigned char* serializeResponse(GetPlayersInRoomResponse);
+	static unsigned char* serializeResponse(JoinRoomResponse);
+	static unsigned char* serializeResponse(CreateRoomResponse);
+	static unsigned char* serializeResponse(GetHighScoreResponse);
+	static unsigned char* serializeResponse(GetPersonalStatsResponse);
+	static unsigned char* help(json jsonMSG);
 };
 
