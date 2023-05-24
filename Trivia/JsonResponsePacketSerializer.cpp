@@ -25,7 +25,7 @@ unsigned char* JsonResponsePacketSerializer::serializeLoginResponse(LoginRespons
 	json jsonMSG = { {"status", lr.status} };
 	std::string str_json = jsonMSG.dump();
 	
-	std::string s = std::to_string(LogIn);
+	std::string s = std::to_string(Log_In);
 	int cut = 1000;
 	int length = str_json.length();	
 	
@@ -51,7 +51,7 @@ unsigned char* JsonResponsePacketSerializer::serializeSignupResponse(SignupRespo
 	json jsonMSG = { {"status", sur.status} };
 	std::string str_json = jsonMSG.dump();
 
-	std::string s = std::to_string(SignUp);
+	std::string s = std::to_string(Sign_Up);
 	int cut = 1000;
 	int length = str_json.length();
 	std::string len = std::to_string(str_json.length());

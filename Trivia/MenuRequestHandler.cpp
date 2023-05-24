@@ -4,3 +4,14 @@ MenuRequestHandler::MenuRequestHandler(RequestHandlerFactory& handleFactory, Log
  m_statisticsManager(handleFactory.getStatisticsManager())
 {
 }
+
+bool MenuRequestHandler::isRequestRelevent(RequestInfo reqInfo)
+{
+	
+}
+
+RequestResult MenuRequestHandler::handleRequest(RequestInfo reqInfo)
+{
+	return RequestResult();
+}
+

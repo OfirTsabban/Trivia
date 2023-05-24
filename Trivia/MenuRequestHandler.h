@@ -4,6 +4,8 @@
 #include "RoomManager.h"
 #include "StatisticsManager.h"
 #include "RequestHandlerFactory.h"
+#include "JsonRequestPacketDeserializer.h"
+#include "JsonResponsePacketSerializer.h"
 
 class RequestHandlerFactory;
 

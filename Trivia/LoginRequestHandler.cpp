@@ -15,14 +15,14 @@ bool LoginRequestHandler::isRequestRelevent(RequestInfo reqInfo)
 
 RequestResult LoginRequestHandler::handleRequest(RequestInfo reqInfo)
 {
-    if (reqInfo.id == LogIn)
+    if (reqInfo.id == Log_In)
     {
         
         return this->login(reqInfo);
 
 
     }
-    else if (reqInfo.id == SignUp)
+    else if (reqInfo.id == Sign_Up)
     {
         
         return this->signup(reqInfo);
