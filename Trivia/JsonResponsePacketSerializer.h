@@ -52,7 +52,7 @@ enum Requests {
 	Error = 0,
 	Log_In = 1,
 	Sign_Up = 2,
-	Sign_Out = 3,
+	Log_Out = 3,
 	Get_Rooms = 4,
 	Get_Players = 5,
 	Get_Personal_Stats = 6,
@@ -73,6 +73,6 @@ public:
 	static unsigned char* serializeResponse(CreateRoomResponse);
 	static unsigned char* serializeResponse(GetHighScoreResponse);
 	static unsigned char* serializeResponse(GetPersonalStatsResponse);
-	static unsigned char* help(json jsonMSG);
+	static unsigned char* help(json jsonMSG, std::string mode);
 };
 
