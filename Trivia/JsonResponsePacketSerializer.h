@@ -2,8 +2,12 @@
 #include <iostream>
 #include "json.hpp"
 #include <string>
-
+#include <vector>
 #include "Communicator.h"
+#include "Room.h"
+
+using json = nlohmann::json;
+
 struct LoginResponse
 {
 	unsigned int status;
@@ -23,21 +27,21 @@ struct LogoutResponse
 struct GetRoomsResponse
 {
 	unsigned int status;
-	vector<RoomData> rooms;
+	std::vector<RoomData> rooms;
 };
 struct GetPlayersInRoomResponse
 {
-	vector<std::string> players;
+	std::vector<std::string> players;
 };
 struct GetHighScoreResponse
 {
 	unsigned int status;
-	vector<std::string> statistics;
+	std::vector<std::string> statistics;
 };
 struct GetPersonalStatsResponse
 {
 	unsigned int status;
-	vector<std::string> statistics;
+	std::vector<std::string> statistics;
 };
 struct JoinRoomResponse
 {

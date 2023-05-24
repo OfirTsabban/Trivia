@@ -111,7 +111,7 @@ void SqliteDatabase::addQuestions()
 	addNewQuestion("Who caused the big bang in the episode “The Big Bang Theory”?", "Peter", "Quagmire", "Chris", "Stewie", "Stewie");
 	addNewQuestion("Which Family Guy character is a brainwashed Russian sleeper agent?", "Lois", "Peter", "Adam West", "Nicole", "Adam West");
 	addNewQuestion("When Peter finds out his house isn’t part of the United States, what does he name his property?", "Peterland", "Griffinoa", "Petoria", "Fatherland", "Petoria");
-	addNewQuestion(" Who burned The Drunken Clam to the ground?", "God", "Peter", "the Bar Tender", "Chris", "God");
+	addNewQuestion("Who burned The Drunken Clam to the ground?", "God", "Peter", "the Bar Tender", "Chris", "God");
 }
 void SqliteDatabase::addNewQuestion(std::string question, std::string first, std::string second, std::string third, std::string fourth, std::string right)
 {
