@@ -45,41 +45,6 @@ SqliteDatabase::SqliteDatabase()
 	}
 }
 
-bool SqliteDatabase::open()
-{
-	std::string dbFileName = "TriviaDB.sqlite";
-
-	int fileExist = _access(dbFileName.c_str(), 0);
-	int res = sqlite3_open(dbFileName.c_str(), &this->_db);
-
-	if (res != SQLITE_OK)
-	{
-		this->_db = nullptr;
-		return false;
-	}
-
-	if (fileExist == -1)
-	{
-		const char* sqlStatement = "CREATE TABLE IF NOT EXISTS USERS(ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, USERNAME TEXT NOT NULL, PASSWORD TEXT NOT NULL, EMAIL TEXT NOT NULL, STREET TEXT NOT NULL, APT INT NOT NULL, CITY TEXT NOT NULL, PREFIX TEXT NOT NULL, NUMBER TEXT NOT NULL, YEARBORN TEXT NOT NULL);";
-		char* errMessage = nullptr;
-		int res = sqlite3_exec(this->_db, sqlStatement, nullptr, nullptr, &errMessage);
-		if (res != SQLITE_OK)
-		{
-			std::cout << "error creating Users" << std::endl;
-			return false;
-		}
-		sqlStatement = "CREATE TABLE IF NOT EXISTS QUESTIONS(QUESTION TEXT NOT NULL, FIRSTANSWER TEXT NOT NULL, SECONDANSWER TEXT NOT NULL, THIRDANSWER TEXT NOT NULL, FOURTHANSWER TEXT NOT NULL, RIGHTANSWER TEXT NOT NULL);";
-		res = sqlite3_exec(this->_db, sqlStatement, nullptr, nullptr, &errMessage);
-		if (res != SQLITE_OK)
-		{
-			std::cout << "error creating Questions" << std::endl;
-			return false;
-		}
-	}
-
-	return true;
-}
-
 bool SqliteDatabase::doesUserExist(std::string name)
 {
 	std::string data = "";
