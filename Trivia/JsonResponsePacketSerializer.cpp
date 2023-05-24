@@ -119,14 +119,14 @@ unsigned char* JsonResponsePacketSerializer::help(json jsonMSG , std::string mod
 	{
 		len = "0" + len;
 	}
-	s += len;
+	mode += len;
 	for (int i = 0; i < str_json.length(); i++)
 	{
-		s += str_json[i];
+		mode += str_json[i];
 	}
-	unsigned char* buffer = new unsigned char[(s.length() + 1)];
-	std::copy(s.begin(), s.end(), buffer);
-	buffer[s.length()] = 0;
+	unsigned char* buffer = new unsigned char[(mode.length() + 1)];
+	std::copy(mode.begin(), mode.end(), buffer);
+	buffer[mode.length()] = 0;
 	std::cout << std::endl << buffer << std::endl;
 	return buffer;
 }
