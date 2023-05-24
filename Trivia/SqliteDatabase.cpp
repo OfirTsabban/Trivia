@@ -102,6 +102,7 @@ std::list<Question> SqliteDatabase::getQuestions(int num)
 
 void SqliteDatabase::addQuestions()
 {	
+	/* addin python coming soon*/
 	addNewQuestion("During Peter and the Giant Chicken’s second fight, a scene from what movie is parodied at the end?","Dont Deal With the Zohan", "Indiana Jones: The Raiders of the Lost Ark", "Inception", "Dora the Explorar in the Big City", 2);
 	addNewQuestion("Which Family Guy character went to Brown University?", "Brian", "Lois", "Meg", "Stewie", 1);
 	addNewQuestion("What famous rocker did Lois once sleep with?", "Bon Jovi", "David Bowie", "John Lennon", "Gene Simmons", 4);
