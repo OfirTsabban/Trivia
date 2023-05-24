@@ -83,6 +83,23 @@ void SqliteDatabase::addNewUser(std::string name, std::string password, std::str
 		std::cout << "error" << std::endl;
 	}
 }
+
+std::list<Question> SqliteDatabase::getQuestions(int num)
+{
+	std::string data = "";
+
+	std::list<Question> allQuestions;
+	std::string sqlStatement = "SELECT * FROM QUESTIONS ORDER BY RANDOM() LIMIT " + std::to_string(num) + ";";
+	char* errMessage = nullptr;
+	int res = sqlite3_exec(this->_db, sqlStatement.c_str(), callBackGlobal, &data, &errMessage);
+	if (res != SQLITE_OK)
+	{
+		std::cout << "error" << std::endl;
+	}
+
+
+}
+
 void SqliteDatabase::addQuestions()
 {	
 	addNewQuestion("During Peter and the Giant Chicken’s second fight, a scene from what movie is parodied at the end?","Dont Deal With the Zohan", "Indiana Jones: The Raiders of the Lost Ark", "Inception", "Dora the Explorar in the Big City", "Indiana Jones: The Raiders of the Lost Ark");
