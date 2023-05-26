@@ -22,6 +22,16 @@ int callBackString(void* data, int argc, char** argv, char** azColName)
 	return 0;
 }
 
+int callBackVector(void* data, int argc, char** argv, char** azColName)
+{
+	std::vector<std::string>& vec = *((std::vector<std::string>*)data);
+	for (int i = 0; i < argc; i++)
+	{
+		vec.push_back(argv[i]);
+	}
+	return 0;
+}
+
 SqliteDatabase::SqliteDatabase()
 {
 	std::string dbFileName = "TriviaDB.sqlite";
@@ -45,7 +55,7 @@ SqliteDatabase::SqliteDatabase()
 			throw ExceptionHandler("Error opening users table");
 		}	
 
-		sqlStatement = "CREATE TABLE IF NOT EXISTS STATISTICS(USERNAME TEXT NOT NULL, TIME INTEGER NOT NULL, ANSWERS INTEGER NOT NULL, CORRECT INTEGER NOT NULL, GAMES INTEGER NOT NULL);";
+		sqlStatement = "CREATE TABLE IF NOT EXISTS STATISTICS(USERNAME TEXT NOT NULL, TIME INTEGER NOT NULL, ANSWERS INTEGER NOT NULL, CORRECT INTEGER NOT NULL, GAMES INTEGER NOT NULL, SCORE INTEGER);";
 		errMessage = nullptr;
 		res = sqlite3_exec(this->_db, sqlStatement, nullptr, nullptr, &errMessage);
 		if (res != SQLITE_OK)
@@ -134,4 +144,74 @@ float SqliteDatabase::getPlayerAverageAnswerTime(std::string name)
 	float answers = stoi(data);
 
 	return time / answers;
+}
+
+int SqliteDatabase::getNumOfCorrectAnswers(std::string name)
+{
+	std::string data = "";
+	std::string sqlStatement = "SELECT CORRECT FROM STATISTICS WHERE USERNAME = '" + name + "';";
+	char* errMessage = nullptr;
+	int res = sqlite3_exec(this->_db, sqlStatement.c_str(), callBackString, &data, &errMessage);
+	if (res != SQLITE_OK)
+	{
+		std::cout << "error" << std::endl;
+	}
+
+	return stoi(data);
+}
+
+int SqliteDatabase::getNumOfTotalAnswers(std::string name)
+{
+	std::string data = "";
+	std::string sqlStatement = "SELECT ANSWERS FROM STATISTICS WHERE USERNAME = '" + name + "';";
+	char* errMessage = nullptr;
+	int res = sqlite3_exec(this->_db, sqlStatement.c_str(), callBackString, &data, &errMessage);
+	if (res != SQLITE_OK)
+	{
+		std::cout << "error" << std::endl;
+	}
+
+	return stoi(data);
+}
+
+int SqliteDatabase::getNumOfPlayerGames(std::string name)
+{
+	std::string data = "";
+	std::string sqlStatement = "SELECT GAMES FROM STATISTICS WHERE USERNAME = '" + name + "';";
+	char* errMessage = nullptr;
+	int res = sqlite3_exec(this->_db, sqlStatement.c_str(), callBackString, &data, &errMessage);
+	if (res != SQLITE_OK)
+	{
+		std::cout << "error" << std::endl;
+	}
+
+	return stoi(data);
+}
+
+int SqliteDatabase::getPlayerScore(std::string name)
+{
+	std::string data = "";
+	std::string sqlStatement = "SELECT SCORE FROM STATISTICS WHERE USERNAME = '" + name + "';";
+	char* errMessage = nullptr;
+	int res = sqlite3_exec(this->_db, sqlStatement.c_str(), callBackString, &data, &errMessage);
+	if (res != SQLITE_OK)
+	{
+		std::cout << "error" << std::endl;
+	}
+
+	return stoi(data);
+}
+
+std::vector<std::string> SqliteDatabase::getHighScores()
+{
+	std::vector<std::string> highScores;
+	std::string sqlStatement = "SELECT USERNAME FROM STATISTICS ORDER BY SCORE DESC;";
+	char* errMessage = nullptr;
+	int res = sqlite3_exec(this->_db, sqlStatement.c_str(), callBackVector, &highScores, &errMessage);
+	if (res != SQLITE_OK)
+	{
+		std::cout << "error" << std::endl;
+	}
+
+	return highScores;
 }

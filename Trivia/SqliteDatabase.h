@@ -3,7 +3,6 @@
 #include <io.h>
 #include <iostream>
 
-
 class SqliteDatabase : public IDatabase
 {
 public:
