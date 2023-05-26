@@ -26,7 +26,6 @@ private:
 	RequestResult createRoom(const RequestInfo reqInfo);
 	int createRoomID();
 
-
 	LoggedUser m_user;
 	RoomManager& m_roomManager;
 	StatisticsManager& m_statisticsManager;

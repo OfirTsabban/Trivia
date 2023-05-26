@@ -11,7 +11,7 @@ int callBackGetQuestions(void* data, int argc, char** argv, char** azColName)
 	return 0;
 }
 
-int callBackGlobal(void* data, int argc, char** argv, char** azColName)
+int callBackString(void* data, int argc, char** argv, char** azColName)
 {
 	std::string& is_exist = *((std::string*)data);
 	for (int i = 0; i < argc; i++)
@@ -44,6 +44,15 @@ SqliteDatabase::SqliteDatabase()
 			std::cout << "error creating Users" << std::endl;
 			throw ExceptionHandler("Error opening users table");
 		}	
+
+		sqlStatement = "CREATE TABLE IF NOT EXISTS STATISTICS(USERNAME TEXT NOT NULL, TIME INTEGER NOT NULL, ANSWERS INTEGER NOT NULL, CORRECT INTEGER NOT NULL, GAMES INTEGER NOT NULL);";
+		errMessage = nullptr;
+		res = sqlite3_exec(this->_db, sqlStatement, nullptr, nullptr, &errMessage);
+		if (res != SQLITE_OK)
+		{
+			std::cout << "error creating Statistics" << std::endl;
+			throw ExceptionHandler("Error opening statistics table");
+		}
 	}
 }
 
@@ -53,7 +62,7 @@ bool SqliteDatabase::doesUserExist(std::string name)
 
 	std::string sqlStatement = "SELECT * FROM Users WHERE USERNAME = '" + name + "';";
 	char* errMessage = nullptr;
-	int res = sqlite3_exec(this->_db, sqlStatement.c_str(), callBackGlobal, &data, &errMessage);
+	int res = sqlite3_exec(this->_db, sqlStatement.c_str(), callBackString, &data, &errMessage);
 	if (res != SQLITE_OK) {
 		std::cout << std::endl << "error" << std::endl;
 	}
@@ -67,7 +76,7 @@ bool SqliteDatabase::doesPasswordMatch(std::string name, std::string password)
 
 	std::string sqlStatement = "SELECT * FROM Users WHERE USERNAME = '" + name + "' AND PASSWORD = '" + password + "';";
 	char* errMessage = nullptr;
-	int res = sqlite3_exec(this->_db, sqlStatement.c_str(), callBackGlobal, &data, &errMessage);
+	int res = sqlite3_exec(this->_db, sqlStatement.c_str(), callBackString, &data, &errMessage);
 	if (res != SQLITE_OK) {
 		std::cout << std::endl << "error" << std::endl;
 	}
@@ -89,7 +98,7 @@ void SqliteDatabase::addNewUser(std::string name, std::string password, std::str
 std::list<Question> SqliteDatabase::getQuestions(int num)
 {
 	std::list<Question> allQuestions;
-	std::string sqlStatement = "SELECT * FROM QUESTIONS ORDER BY RANDOM() LIMIT " + std::to_string(num) + ";";
+	std::string sqlStatement = "SELECT * FROM QUESTIONS ORDER BY RANDOM() LIMIT " + std::to_string(num) + " ;";
 	char* errMessage = nullptr;
 	int res = sqlite3_exec(this->_db, sqlStatement.c_str(), callBackGetQuestions, &allQuestions, &errMessage);
 	if (res != SQLITE_OK)
@@ -102,5 +111,27 @@ std::list<Question> SqliteDatabase::getQuestions(int num)
 
 float SqliteDatabase::getPlayerAverageAnswerTime(std::string name)
 {
+	std::string data = "";
+	std::string sqlStatement = "SELECT TIME FROM STATISTICS WHERE USERNAME = '" + name + "';";
+	char* errMessage = nullptr;
+	int res = sqlite3_exec(this->_db, sqlStatement.c_str(), callBackString, &data, &errMessage);
+	if (res != SQLITE_OK)
+	{
+		std::cout << "error" << std::endl;
+	}
+
+	float time = stoi(data);
 	
+	data = "";
+	sqlStatement = "SELECT ANSWERS FROM STATISTICS WHERE USERNAME = '" + name + "';";
+	errMessage = nullptr;
+	res = sqlite3_exec(this->_db, sqlStatement.c_str(), callBackString, &data, &errMessage);
+	if (res != SQLITE_OK)
+	{
+		std::cout << "error" << std::endl;
+	}
+
+	float answers = stoi(data);
+
+	return time / answers;
 }
