@@ -9,9 +9,6 @@ class SqliteDatabase : public IDatabase
 public:
 	SqliteDatabase();
 	~SqliteDatabase() = default;
-
-	void addQuestions();
-	void addNewQuestion(std::string question, std::string first, std::string second, std::string third, std::string fourth, int right);
 	
 	virtual bool doesUserExist(std::string name) override;
 	virtual bool doesPasswordMatch(std::string name, std::string password) override;
