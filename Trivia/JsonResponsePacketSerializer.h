@@ -70,13 +70,13 @@ public:
 	static unsigned char* serializeErrorResponse(ErrorResponse); 
 	static unsigned char* serializeLoginResponse(LoginResponse);
 	static unsigned char* serializeSignupResponse(SignupResponse); 
-	static unsigned char* serializeResponse(LogoutResponse);
-	static unsigned char* serializeResponse(GetRoomsResponse);
-	static unsigned char* serializeResponse(GetPlayersInRoomResponse);
-	static unsigned char* serializeResponse(JoinRoomResponse);
-	static unsigned char* serializeResponse(CreateRoomResponse);
-	static unsigned char* serializeResponse(GetHighScoreResponse);
-	static unsigned char* serializeResponse(GetPersonalStatsResponse);
+	static unsigned char* serializeResponse(LogoutResponse logRep);
+	static unsigned char* serializeResponse(GetRoomsResponse getRoom);
+	static unsigned char* serializeResponse(GetPlayersInRoomResponse getPlayers);
+	static unsigned char* serializeResponse(JoinRoomResponse joinRoom);
+	static unsigned char* serializeResponse(CreateRoomResponse createRoom);
+	static unsigned char* serializeResponse(GetHighScoreResponse highScore);
+	static unsigned char* serializeResponse(GetPersonalStatsResponse personalStatus);
 	static unsigned char* help(json jsonMSG, std::string mode);
 };
 

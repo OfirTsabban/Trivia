@@ -50,19 +50,29 @@ RequestResult MenuRequestHandler::handleRequest(RequestInfo reqInfo)
 
 RequestResult MenuRequestHandler::signout(const RequestInfo reqInfo)
 {
-	RequestResult reqRes;
-
 	LoginManager manager = m_handlerFactory.getLoginManager();
 	manager.logout(m_user.getUsername());
 
-	//need to wait for ofir to continue
+	LogoutResponse logOutResp = { 1 };
+	unsigned char* response = JsonResponsePacketSerializer::serializeResponse(logOutResp);
+
+	IRequestHandler* handle = m_handlerFactory.createLoginRequestHandler();
+
+	RequestResult reqRes = { response, handle };
+	return reqRes;
 }
 
 RequestResult MenuRequestHandler::getRooms(const RequestInfo reqInfo)
 {
 	std::vector<RoomData> rooms = m_roomManager.getRooms();
 
-	//need to wait for ofir to continue
+	GetRoomsResponse roomResp = { 1 };
+	unsigned char* response = JsonResponsePacketSerializer::serializeResponse(roomResp);
+
+	IRequestHandler* handle = nullptr;//change it when roomHandle is created
+
+	RequestResult reqRes = { response, handle };
+	return reqRes;
 }
 
 RequestResult MenuRequestHandler::getPlayers(const RequestInfo reqInfo)
@@ -72,21 +82,39 @@ RequestResult MenuRequestHandler::getPlayers(const RequestInfo reqInfo)
 	Room currRoom = m_roomManager.getRoom(getPlayersRequest.roomId);
 	std::vector<std::string> allPlayers = currRoom.getAllUsers();
 
-	//need to wait for ofir to continue
+	GetPlayersInRoomResponse playersInRoomResp = { allPlayers };
+	unsigned char* response = JsonResponsePacketSerializer::serializeResponse(playersInRoomResp);
+
+	IRequestHandler* handle = nullptr;//change it when roomHandle is created
+
+	RequestResult reqRes = { response, handle };
+	return reqRes;
 }
 
 RequestResult MenuRequestHandler::getPersonalStats(const RequestInfo reqInfo)
 {
 	std::vector<std::string> stats = m_statisticsManager.getUserStatistics(m_user.getUsername());
 
-	//need to wait for ofir to continue
+	GetPersonalStatsResponse personalStatsResp = { 1, stats };
+	unsigned char* response = JsonResponsePacketSerializer::serializeResponse(personalStatsResp);
+
+	IRequestHandler* handle = nullptr;//change it when roomHandle is created
+
+	RequestResult reqRes = { response, handle };
+	return reqRes;
 }
 
 RequestResult MenuRequestHandler::getHighScore(const RequestInfo reqInfo)
 {
 	std::vector<std::string> highScore = m_statisticsManager.getHighScore();
 
-	//need to wait for ofir to continue
+	GetHighScoreResponse highScoreResp = { 1, highScore };
+	unsigned char* response = JsonResponsePacketSerializer::serializeResponse(highScoreResp);
+
+	IRequestHandler* handle = nullptr;//change it when roomHandle is created
+
+	RequestResult reqRes = { response, handle };
+	return reqRes;
 }
 
 RequestResult MenuRequestHandler::joinRoom(const RequestInfo reqInfo)
@@ -95,14 +123,42 @@ RequestResult MenuRequestHandler::joinRoom(const RequestInfo reqInfo)
 	Room currRoom = m_roomManager.getRoom(joinReq.roomId);
 	currRoom.addUser(m_user);
 
-	//need to wait for ofir to continue
+	JoinRoomResponse joinRoomResp = { 1 };
+	unsigned char* response = JsonResponsePacketSerializer::serializeResponse(joinRoomResp);
+
+	IRequestHandler* handle = nullptr;//change it when roomHandle is created
+
+	RequestResult reqRes = { response, handle };
+	return reqRes;
 }
 
 RequestResult MenuRequestHandler::createRoom(const RequestInfo reqInfo)
 {
 	CreateRoomRequest createRoomReq = JsonRequestPacketDeserializer::deserializeCreateRoomRequest((char*)reqInfo.buffer);
-	RoomData newRoomData = { 1, createRoomReq.roomName, createRoomReq.maxUsers, createRoomReq.questionCount, createRoomReq.answerTimeout, 1/*dont know what to put in here*/ };//will change ID to random nuber later...
+	int roomID = createRoomID();
+	RoomData newRoomData = { roomID, createRoomReq.roomName, createRoomReq.maxUsers, createRoomReq.questionCount, createRoomReq.answerTimeout, 1/*dont know what to put in here*/ };//will change ID to random nuber later...
 	
 	m_roomManager.createRoom(m_user, newRoomData);
+
+	CreateRoomResponse createRoomResp = { roomID };
+	unsigned char* response = JsonResponsePacketSerializer::serializeResponse(createRoomResp);
+
+	IRequestHandler* handle = nullptr;//change it when roomHandle is created
+
+	RequestResult reqRes = { response, handle };
+	return reqRes;
+}
+
+int MenuRequestHandler::createRoomID()
+{
+	int id = 0;
+	do 
+	{
+		id = 100 + (rand() % 101);//id will be between 100 - 200
+
+	} while (std::find(m_roomsID.begin(), m_roomsID.end(), id) != m_roomsID.end());
+
+	m_roomsID.push_back(id);
+	return id;
 }
 

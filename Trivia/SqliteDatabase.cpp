@@ -107,6 +107,11 @@ std::list<Question> SqliteDatabase::getQuestions(int num)
 	return allQuestions;
 }
 
+float SqliteDatabase::getPlayerAverageAnswerTime(std::string name)
+{
+	
+}
+
 void SqliteDatabase::addQuestions()
 {	
 	addNewQuestion("During Peter and the Giant Chicken’s second fight, a scene from what movie is parodied at the end?","Dont Deal With the Zohan", "Indiana Jones: The Raiders of the Lost Ark", "Inception", "Dora the Explorar in the Big City", 2);
