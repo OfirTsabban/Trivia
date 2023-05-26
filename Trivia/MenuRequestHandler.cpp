@@ -7,7 +7,7 @@ MenuRequestHandler::MenuRequestHandler(RequestHandlerFactory& handleFactory, Log
 
 bool MenuRequestHandler::isRequestRelevent(RequestInfo reqInfo)
 {
-	return reqInfo.id == Sign_Out ||
+	return reqInfo.id == Log_Out ||
 		reqInfo.id == Get_Rooms ||
 		reqInfo.id == Get_Players ||
 		reqInfo.id == Get_Personal_Stats ||
@@ -18,7 +18,7 @@ bool MenuRequestHandler::isRequestRelevent(RequestInfo reqInfo)
 
 RequestResult MenuRequestHandler::handleRequest(RequestInfo reqInfo)
 {
-	if (reqInfo.id == Sign_Out)
+	if (reqInfo.id == Log_Out)
 	{
 		return signout(reqInfo);
 	}
