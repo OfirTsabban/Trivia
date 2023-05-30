@@ -10,21 +10,11 @@ using System.Windows.Forms;
 
 namespace GUI
 {
-    public partial class Form1 : Form
+    public partial class CreateRoom : Form
     {
-        public Form1()
+        public CreateRoom()
         {
             InitializeComponent();
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void buttonJoinRoom_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

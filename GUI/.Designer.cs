@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.buttonClose = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.buttonCreateRoom = new System.Windows.Forms.Button();
@@ -81,6 +82,7 @@
             this.buttonJoinRoom.TabIndex = 3;
             this.buttonJoinRoom.Text = "JOIN ROOM";
             this.buttonJoinRoom.UseVisualStyleBackColor = false;
+            this.buttonJoinRoom.Click += new System.EventHandler(this.buttonJoinRoom_Click);
             // 
             // buttonStatistics
             // 
@@ -105,8 +107,9 @@
             this.Controls.Add(this.buttonCreateRoom);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonClose);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Trivia-menu";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
