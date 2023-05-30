@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace GUI
 {
@@ -29,27 +30,29 @@ namespace GUI
 
         private void buttonStart_Click(object sender, EventArgs e)
         {
-
+            CreateRoom createRoom = new CreateRoom();           
+            createRoom.Show();            //need to delete the other screen
         }
 
         private void buttonSignup_Click(object sender, EventArgs e)
         {
-
+            //ignore
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-
+            signupGUI signup = new signupGUI();
+            signup.Show();            //need to delete the other screen
         }
 
         private void GUI_Load(object sender, EventArgs e)
         {
 
-        }
+        }        
     }
 }

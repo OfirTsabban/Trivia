@@ -37,7 +37,7 @@
             this.buttonStart = new System.Windows.Forms.Button();
             this.toSignupLabel = new System.Windows.Forms.Label();
             this.buttonClose = new System.Windows.Forms.Button();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.linkLabelSignup = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // triviaLabel
@@ -134,24 +134,27 @@
             this.buttonClose.UseVisualStyleBackColor = false;
             this.buttonClose.Click += new System.EventHandler(this.button1_Click);
             // 
-            // linkLabel1
+            // linkLabelSignup
             // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Font = new System.Drawing.Font("Showcard Gothic", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabel1.LinkColor = System.Drawing.Color.DarkRed;
-            this.linkLabel1.Location = new System.Drawing.Point(606, 435);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(62, 17);
-            this.linkLabel1.TabIndex = 9;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "sign-up";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            this.linkLabelSignup.ActiveLinkColor = System.Drawing.Color.DarkRed;
+            this.linkLabelSignup.AutoSize = true;
+            this.linkLabelSignup.DisabledLinkColor = System.Drawing.Color.MistyRose;
+            this.linkLabelSignup.Font = new System.Drawing.Font("Showcard Gothic", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLabelSignup.LinkColor = System.Drawing.Color.DarkRed;
+            this.linkLabelSignup.Location = new System.Drawing.Point(606, 435);
+            this.linkLabelSignup.Name = "linkLabelSignup";
+            this.linkLabelSignup.Size = new System.Drawing.Size(62, 17);
+            this.linkLabelSignup.TabIndex = 9;
+            this.linkLabelSignup.TabStop = true;
+            this.linkLabelSignup.Text = "sign-up";
+            this.linkLabelSignup.VisitedLinkColor = System.Drawing.Color.LightCoral;
+            this.linkLabelSignup.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // GUI
             // 
             this.BackColor = System.Drawing.Color.LemonChiffon;
             this.ClientSize = new System.Drawing.Size(1000, 534);
-            this.Controls.Add(this.linkLabel1);
+            this.Controls.Add(this.linkLabelSignup);
             this.Controls.Add(this.buttonClose);
             this.Controls.Add(this.toSignupLabel);
             this.Controls.Add(this.buttonStart);
@@ -183,7 +186,7 @@
         private System.Windows.Forms.Button buttonStart;
         private System.Windows.Forms.Label toSignupLabel;
         private System.Windows.Forms.Button buttonClose;
-        private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.LinkLabel linkLabelSignup;
     }
 }
 
