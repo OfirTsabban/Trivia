@@ -29,22 +29,23 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(JoinRoom));
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.listViewRooms = new System.Windows.Forms.ListView();
             this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.buttonRoomInfo = new System.Windows.Forms.Button();
+            this.buttonNext = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // listView1
+            // listViewRooms
             // 
-            this.listView1.BackColor = System.Drawing.Color.FloralWhite;
-            this.listView1.ForeColor = System.Drawing.Color.DarkRed;
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(66, 139);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(630, 183);
-            this.listView1.TabIndex = 0;
-            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listViewRooms.BackColor = System.Drawing.Color.FloralWhite;
+            this.listViewRooms.Font = new System.Drawing.Font("Showcard Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listViewRooms.ForeColor = System.Drawing.Color.DarkRed;
+            this.listViewRooms.HideSelection = false;
+            this.listViewRooms.Location = new System.Drawing.Point(66, 139);
+            this.listViewRooms.Name = "listViewRooms";
+            this.listViewRooms.Size = new System.Drawing.Size(630, 183);
+            this.listViewRooms.TabIndex = 0;
+            this.listViewRooms.UseCompatibleStateImageBehavior = false;
             // 
             // label1
             // 
@@ -56,27 +57,27 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "JOIN ROOM";
             // 
-            // button1
+            // buttonRoomInfo
             // 
-            this.button1.BackColor = System.Drawing.Color.FloralWhite;
-            this.button1.Font = new System.Drawing.Font("Showcard Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(136, 353);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(159, 64);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "ROOM INFO";
-            this.button1.UseVisualStyleBackColor = false;
+            this.buttonRoomInfo.BackColor = System.Drawing.Color.FloralWhite;
+            this.buttonRoomInfo.Font = new System.Drawing.Font("Showcard Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonRoomInfo.Location = new System.Drawing.Point(136, 353);
+            this.buttonRoomInfo.Name = "buttonRoomInfo";
+            this.buttonRoomInfo.Size = new System.Drawing.Size(159, 64);
+            this.buttonRoomInfo.TabIndex = 2;
+            this.buttonRoomInfo.Text = "ROOM INFO";
+            this.buttonRoomInfo.UseVisualStyleBackColor = false;
             // 
-            // button2
+            // buttonNext
             // 
-            this.button2.BackColor = System.Drawing.Color.FloralWhite;
-            this.button2.Font = new System.Drawing.Font("Showcard Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(435, 353);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(159, 64);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "NEXT";
-            this.button2.UseVisualStyleBackColor = false;
+            this.buttonNext.BackColor = System.Drawing.Color.FloralWhite;
+            this.buttonNext.Font = new System.Drawing.Font("Showcard Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonNext.Location = new System.Drawing.Point(435, 353);
+            this.buttonNext.Name = "buttonNext";
+            this.buttonNext.Size = new System.Drawing.Size(159, 64);
+            this.buttonNext.TabIndex = 3;
+            this.buttonNext.Text = "NEXT";
+            this.buttonNext.UseVisualStyleBackColor = false;
             // 
             // JoinRoom
             // 
@@ -84,10 +85,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LemonChiffon;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.buttonNext);
+            this.Controls.Add(this.buttonRoomInfo);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.listViewRooms);
             this.ForeColor = System.Drawing.Color.DarkRed;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "JoinRoom";
@@ -99,9 +100,9 @@
 
         #endregion
 
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView listViewRooms;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button buttonRoomInfo;
+        private System.Windows.Forms.Button buttonNext;
     }
 }

@@ -53,6 +53,12 @@
     <Compile Include="CreateRoom.Designer.cs">
       <DependentUpon>CreateRoom.cs</DependentUpon>
     </Compile>
+    <Compile Include="HighScores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HighScores.Designer.cs">
+      <DependentUpon>HighScores.cs</DependentUpon>
+    </Compile>
     <Compile Include="JoinRoom.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -65,6 +71,12 @@
     <Compile Include=".Designer.cs">
       <DependentUpon>MainMenuGUI.cs</DependentUpon>
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PersonalStatistics.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PersonalStatistics.Designer.cs">
+      <DependentUpon>PersonalStatistics.cs</DependentUpon>
     </Compile>
     <Compile Include="signupGUI.cs">
       <SubType>Form</SubType>
@@ -92,11 +104,17 @@
     <EmbeddedResource Include="GUI.resx">
       <DependentUpon>GUI.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="HighScores.resx">
+      <DependentUpon>HighScores.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="JoinRoom.resx">
       <DependentUpon>JoinRoom.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainMenuGUI.resx">
       <DependentUpon>MainMenuGUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PersonalStatistics.resx">
+      <DependentUpon>PersonalStatistics.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
