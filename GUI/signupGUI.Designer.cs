@@ -53,9 +53,10 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Showcard Gothic", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(322, 27);
+            this.label1.Location = new System.Drawing.Point(242, 22);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(257, 74);
+            this.label1.Size = new System.Drawing.Size(209, 60);
             this.label1.TabIndex = 0;
             this.label1.Text = "sign up";
             // 
@@ -63,9 +64,10 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Showcard Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(278, 122);
+            this.label2.Location = new System.Drawing.Point(208, 99);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(73, 29);
+            this.label2.Size = new System.Drawing.Size(60, 23);
             this.label2.TabIndex = 1;
             this.label2.Text = "NAME";
             // 
@@ -73,9 +75,10 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Showcard Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(278, 166);
+            this.label3.Location = new System.Drawing.Point(208, 135);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(140, 29);
+            this.label3.Size = new System.Drawing.Size(116, 23);
             this.label3.TabIndex = 2;
             this.label3.Text = "PASSWORD";
             // 
@@ -83,9 +86,10 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Showcard Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(276, 213);
+            this.label4.Location = new System.Drawing.Point(207, 173);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(79, 29);
+            this.label4.Size = new System.Drawing.Size(65, 23);
             this.label4.TabIndex = 3;
             this.label4.Text = "EMAIL";
             // 
@@ -93,9 +97,10 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Showcard Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(276, 256);
+            this.label5.Location = new System.Drawing.Point(207, 208);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(95, 29);
+            this.label5.Size = new System.Drawing.Size(81, 23);
             this.label5.TabIndex = 4;
             this.label5.Text = "STREET";
             // 
@@ -103,9 +108,10 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Showcard Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(278, 303);
+            this.label6.Location = new System.Drawing.Point(208, 246);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(56, 29);
+            this.label6.Size = new System.Drawing.Size(48, 23);
             this.label6.TabIndex = 5;
             this.label6.Text = "APT";
             // 
@@ -113,9 +119,10 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Showcard Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(278, 349);
+            this.label7.Location = new System.Drawing.Point(208, 284);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(95, 29);
+            this.label7.Size = new System.Drawing.Size(78, 23);
             this.label7.TabIndex = 6;
             this.label7.Text = "PREFIX";
             // 
@@ -123,9 +130,10 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Showcard Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(276, 396);
+            this.label8.Location = new System.Drawing.Point(207, 322);
+            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(106, 29);
+            this.label8.Size = new System.Drawing.Size(87, 23);
             this.label8.TabIndex = 7;
             this.label8.Text = "NUMBER";
             // 
@@ -133,9 +141,10 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Showcard Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(276, 442);
+            this.label9.Location = new System.Drawing.Point(207, 359);
+            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(139, 29);
+            this.label9.Size = new System.Drawing.Size(115, 23);
             this.label9.TabIndex = 8;
             this.label9.Text = "YEAR BORN";
             // 
@@ -144,9 +153,10 @@
             this.textBoxName.BackColor = System.Drawing.Color.FloralWhite;
             this.textBoxName.Font = new System.Drawing.Font("Showcard Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxName.ForeColor = System.Drawing.Color.DarkRed;
-            this.textBoxName.Location = new System.Drawing.Point(425, 125);
+            this.textBoxName.Location = new System.Drawing.Point(319, 102);
+            this.textBoxName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBoxName.Name = "textBoxName";
-            this.textBoxName.Size = new System.Drawing.Size(169, 26);
+            this.textBoxName.Size = new System.Drawing.Size(128, 22);
             this.textBoxName.TabIndex = 9;
             this.textBoxName.Text = "ENTER NAME...";
             this.textBoxName.TextChanged += new System.EventHandler(this.textBoxName_TextChanged);
@@ -156,9 +166,11 @@
             this.textBoxPassword.BackColor = System.Drawing.Color.FloralWhite;
             this.textBoxPassword.Font = new System.Drawing.Font("Showcard Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxPassword.ForeColor = System.Drawing.Color.DarkRed;
-            this.textBoxPassword.Location = new System.Drawing.Point(425, 172);
+            this.textBoxPassword.Location = new System.Drawing.Point(319, 140);
+            this.textBoxPassword.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBoxPassword.Name = "textBoxPassword";
-            this.textBoxPassword.Size = new System.Drawing.Size(169, 26);
+            this.textBoxPassword.PasswordChar = '*';
+            this.textBoxPassword.Size = new System.Drawing.Size(128, 22);
             this.textBoxPassword.TabIndex = 10;
             this.textBoxPassword.Text = "password";
             this.textBoxPassword.TextChanged += new System.EventHandler(this.textBoxPassword_TextChanged);
@@ -168,9 +180,10 @@
             this.textBoxEmail.BackColor = System.Drawing.Color.FloralWhite;
             this.textBoxEmail.Font = new System.Drawing.Font("Showcard Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxEmail.ForeColor = System.Drawing.Color.DarkRed;
-            this.textBoxEmail.Location = new System.Drawing.Point(425, 220);
+            this.textBoxEmail.Location = new System.Drawing.Point(319, 179);
+            this.textBoxEmail.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBoxEmail.Name = "textBoxEmail";
-            this.textBoxEmail.Size = new System.Drawing.Size(169, 26);
+            this.textBoxEmail.Size = new System.Drawing.Size(128, 22);
             this.textBoxEmail.TabIndex = 11;
             this.textBoxEmail.Text = "EMAIL";
             this.textBoxEmail.TextChanged += new System.EventHandler(this.textBoxEmail_TextChanged);
@@ -180,9 +193,10 @@
             this.textBoxStreet.BackColor = System.Drawing.Color.FloralWhite;
             this.textBoxStreet.Font = new System.Drawing.Font("Showcard Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxStreet.ForeColor = System.Drawing.Color.DarkRed;
-            this.textBoxStreet.Location = new System.Drawing.Point(425, 262);
+            this.textBoxStreet.Location = new System.Drawing.Point(319, 213);
+            this.textBoxStreet.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBoxStreet.Name = "textBoxStreet";
-            this.textBoxStreet.Size = new System.Drawing.Size(169, 26);
+            this.textBoxStreet.Size = new System.Drawing.Size(128, 22);
             this.textBoxStreet.TabIndex = 12;
             this.textBoxStreet.Text = "STREET";
             this.textBoxStreet.TextChanged += new System.EventHandler(this.textBoxStreet_TextChanged);
@@ -192,9 +206,10 @@
             this.textBoxApt.BackColor = System.Drawing.Color.FloralWhite;
             this.textBoxApt.Font = new System.Drawing.Font("Showcard Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxApt.ForeColor = System.Drawing.Color.DarkRed;
-            this.textBoxApt.Location = new System.Drawing.Point(425, 309);
+            this.textBoxApt.Location = new System.Drawing.Point(319, 251);
+            this.textBoxApt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBoxApt.Name = "textBoxApt";
-            this.textBoxApt.Size = new System.Drawing.Size(169, 26);
+            this.textBoxApt.Size = new System.Drawing.Size(128, 22);
             this.textBoxApt.TabIndex = 13;
             this.textBoxApt.Text = "APT";
             this.textBoxApt.TextChanged += new System.EventHandler(this.textBoxApt_TextChanged);
@@ -204,9 +219,10 @@
             this.textBoxPrefix.BackColor = System.Drawing.Color.FloralWhite;
             this.textBoxPrefix.Font = new System.Drawing.Font("Showcard Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxPrefix.ForeColor = System.Drawing.Color.DarkRed;
-            this.textBoxPrefix.Location = new System.Drawing.Point(425, 355);
+            this.textBoxPrefix.Location = new System.Drawing.Point(319, 288);
+            this.textBoxPrefix.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBoxPrefix.Name = "textBoxPrefix";
-            this.textBoxPrefix.Size = new System.Drawing.Size(169, 26);
+            this.textBoxPrefix.Size = new System.Drawing.Size(128, 22);
             this.textBoxPrefix.TabIndex = 14;
             this.textBoxPrefix.Text = "PREFIX";
             this.textBoxPrefix.TextChanged += new System.EventHandler(this.textBoxPrefix_TextChanged);
@@ -216,9 +232,10 @@
             this.textBoxNumber.BackColor = System.Drawing.Color.FloralWhite;
             this.textBoxNumber.Font = new System.Drawing.Font("Showcard Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxNumber.ForeColor = System.Drawing.Color.DarkRed;
-            this.textBoxNumber.Location = new System.Drawing.Point(425, 402);
+            this.textBoxNumber.Location = new System.Drawing.Point(319, 327);
+            this.textBoxNumber.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBoxNumber.Name = "textBoxNumber";
-            this.textBoxNumber.Size = new System.Drawing.Size(169, 26);
+            this.textBoxNumber.Size = new System.Drawing.Size(128, 22);
             this.textBoxNumber.TabIndex = 15;
             this.textBoxNumber.Text = "NUMBER";
             this.textBoxNumber.TextChanged += new System.EventHandler(this.textBoxNumber_TextChanged);
@@ -228,9 +245,10 @@
             this.textBoxYearBorn.BackColor = System.Drawing.Color.FloralWhite;
             this.textBoxYearBorn.Font = new System.Drawing.Font("Showcard Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxYearBorn.ForeColor = System.Drawing.Color.DarkRed;
-            this.textBoxYearBorn.Location = new System.Drawing.Point(425, 448);
+            this.textBoxYearBorn.Location = new System.Drawing.Point(319, 364);
+            this.textBoxYearBorn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBoxYearBorn.Name = "textBoxYearBorn";
-            this.textBoxYearBorn.Size = new System.Drawing.Size(169, 26);
+            this.textBoxYearBorn.Size = new System.Drawing.Size(128, 22);
             this.textBoxYearBorn.TabIndex = 17;
             this.textBoxYearBorn.Text = "YEAR BORN";
             this.textBoxYearBorn.TextChanged += new System.EventHandler(this.textBoxYearBorn_TextChanged);
@@ -239,9 +257,10 @@
             // 
             this.buttonNext.BackColor = System.Drawing.Color.FloralWhite;
             this.buttonNext.Font = new System.Drawing.Font("Showcard Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonNext.Location = new System.Drawing.Point(354, 503);
+            this.buttonNext.Location = new System.Drawing.Point(266, 409);
+            this.buttonNext.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonNext.Name = "buttonNext";
-            this.buttonNext.Size = new System.Drawing.Size(154, 58);
+            this.buttonNext.Size = new System.Drawing.Size(116, 47);
             this.buttonNext.TabIndex = 18;
             this.buttonNext.Text = "NEXT";
             this.buttonNext.UseVisualStyleBackColor = false;
@@ -249,10 +268,10 @@
             // 
             // signupGUI
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LemonChiffon;
-            this.ClientSize = new System.Drawing.Size(970, 590);
+            this.ClientSize = new System.Drawing.Size(728, 479);
             this.Controls.Add(this.buttonNext);
             this.Controls.Add(this.textBoxYearBorn);
             this.Controls.Add(this.textBoxNumber);
@@ -273,6 +292,7 @@
             this.Controls.Add(this.label1);
             this.ForeColor = System.Drawing.Color.DarkRed;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "signupGUI";
             this.Text = "Trivia-signup";
             this.Load += new System.EventHandler(this.signupGUI_Load);
