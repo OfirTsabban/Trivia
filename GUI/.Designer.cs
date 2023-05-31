@@ -41,19 +41,20 @@
             this.buttonClose.BackColor = System.Drawing.Color.FloralWhite;
             this.buttonClose.Font = new System.Drawing.Font("Showcard Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonClose.ForeColor = System.Drawing.Color.DarkRed;
-            this.buttonClose.Location = new System.Drawing.Point(387, 291);
+            this.buttonClose.Location = new System.Drawing.Point(596, 378);
             this.buttonClose.Name = "buttonClose";
-            this.buttonClose.Size = new System.Drawing.Size(149, 99);
+            this.buttonClose.Size = new System.Drawing.Size(213, 130);
             this.buttonClose.TabIndex = 0;
             this.buttonClose.Text = "CLOSE";
             this.buttonClose.UseVisualStyleBackColor = false;
+            this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Showcard Gothic", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.DarkRed;
-            this.label1.Location = new System.Drawing.Point(243, 33);
+            this.label1.Location = new System.Drawing.Point(413, 42);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(261, 98);
             this.label1.TabIndex = 1;
@@ -64,21 +65,22 @@
             this.buttonCreateRoom.BackColor = System.Drawing.Color.FloralWhite;
             this.buttonCreateRoom.Font = new System.Drawing.Font("Showcard Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonCreateRoom.ForeColor = System.Drawing.Color.DarkRed;
-            this.buttonCreateRoom.Location = new System.Drawing.Point(207, 291);
+            this.buttonCreateRoom.Location = new System.Drawing.Point(268, 378);
             this.buttonCreateRoom.Name = "buttonCreateRoom";
-            this.buttonCreateRoom.Size = new System.Drawing.Size(145, 99);
+            this.buttonCreateRoom.Size = new System.Drawing.Size(215, 130);
             this.buttonCreateRoom.TabIndex = 2;
             this.buttonCreateRoom.Text = "CREATE ROOM";
             this.buttonCreateRoom.UseVisualStyleBackColor = false;
+            this.buttonCreateRoom.Click += new System.EventHandler(this.buttonCreateRoom_Click);
             // 
             // buttonJoinRoom
             // 
             this.buttonJoinRoom.BackColor = System.Drawing.Color.FloralWhite;
             this.buttonJoinRoom.Font = new System.Drawing.Font("Showcard Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonJoinRoom.ForeColor = System.Drawing.Color.DarkRed;
-            this.buttonJoinRoom.Location = new System.Drawing.Point(387, 174);
+            this.buttonJoinRoom.Location = new System.Drawing.Point(596, 189);
             this.buttonJoinRoom.Name = "buttonJoinRoom";
-            this.buttonJoinRoom.Size = new System.Drawing.Size(149, 95);
+            this.buttonJoinRoom.Size = new System.Drawing.Size(213, 119);
             this.buttonJoinRoom.TabIndex = 3;
             this.buttonJoinRoom.Text = "JOIN ROOM";
             this.buttonJoinRoom.UseVisualStyleBackColor = false;
@@ -89,19 +91,20 @@
             this.buttonStatistics.BackColor = System.Drawing.Color.FloralWhite;
             this.buttonStatistics.Font = new System.Drawing.Font("Showcard Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonStatistics.ForeColor = System.Drawing.Color.DarkRed;
-            this.buttonStatistics.Location = new System.Drawing.Point(207, 174);
+            this.buttonStatistics.Location = new System.Drawing.Point(268, 189);
             this.buttonStatistics.Name = "buttonStatistics";
-            this.buttonStatistics.Size = new System.Drawing.Size(145, 95);
+            this.buttonStatistics.Size = new System.Drawing.Size(215, 119);
             this.buttonStatistics.TabIndex = 4;
             this.buttonStatistics.Text = "STATISTICS";
             this.buttonStatistics.UseVisualStyleBackColor = false;
+            this.buttonStatistics.Click += new System.EventHandler(this.buttonStatistics_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LemonChiffon;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1092, 655);
             this.Controls.Add(this.buttonStatistics);
             this.Controls.Add(this.buttonJoinRoom);
             this.Controls.Add(this.buttonCreateRoom);

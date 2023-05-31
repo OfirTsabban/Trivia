@@ -61,5 +61,11 @@ namespace GUI
         {
 
         }
+
+        private void buttonNext_Click(object sender, EventArgs e)
+        {
+            Form1 mainMenu = new Form1();
+            mainMenu.Show();
+        }
     }
 }

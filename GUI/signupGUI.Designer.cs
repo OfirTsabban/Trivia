@@ -46,6 +46,7 @@
             this.textBoxPrefix = new System.Windows.Forms.TextBox();
             this.textBoxNumber = new System.Windows.Forms.TextBox();
             this.textBoxYearBorn = new System.Windows.Forms.TextBox();
+            this.buttonNext = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -234,12 +235,25 @@
             this.textBoxYearBorn.Text = "YEAR BORN";
             this.textBoxYearBorn.TextChanged += new System.EventHandler(this.textBoxYearBorn_TextChanged);
             // 
+            // buttonNext
+            // 
+            this.buttonNext.BackColor = System.Drawing.Color.FloralWhite;
+            this.buttonNext.Font = new System.Drawing.Font("Showcard Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonNext.Location = new System.Drawing.Point(354, 503);
+            this.buttonNext.Name = "buttonNext";
+            this.buttonNext.Size = new System.Drawing.Size(154, 58);
+            this.buttonNext.TabIndex = 18;
+            this.buttonNext.Text = "NEXT";
+            this.buttonNext.UseVisualStyleBackColor = false;
+            this.buttonNext.Click += new System.EventHandler(this.buttonNext_Click);
+            // 
             // signupGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LemonChiffon;
-            this.ClientSize = new System.Drawing.Size(970, 557);
+            this.ClientSize = new System.Drawing.Size(970, 590);
+            this.Controls.Add(this.buttonNext);
             this.Controls.Add(this.textBoxYearBorn);
             this.Controls.Add(this.textBoxNumber);
             this.Controls.Add(this.textBoxPrefix);
@@ -286,5 +300,6 @@
         private System.Windows.Forms.TextBox textBoxPrefix;
         private System.Windows.Forms.TextBox textBoxNumber;
         private System.Windows.Forms.TextBox textBoxYearBorn;
+        private System.Windows.Forms.Button buttonNext;
     }
 }

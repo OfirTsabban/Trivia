@@ -40,9 +40,9 @@
             this.listViewHighScores.Font = new System.Drawing.Font("Showcard Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listViewHighScores.ForeColor = System.Drawing.Color.DarkRed;
             this.listViewHighScores.HideSelection = false;
-            this.listViewHighScores.Location = new System.Drawing.Point(154, 166);
+            this.listViewHighScores.Location = new System.Drawing.Point(234, 204);
             this.listViewHighScores.Name = "listViewHighScores";
-            this.listViewHighScores.Size = new System.Drawing.Size(482, 133);
+            this.listViewHighScores.Size = new System.Drawing.Size(537, 181);
             this.listViewHighScores.TabIndex = 0;
             this.listViewHighScores.UseCompatibleStateImageBehavior = false;
             // 
@@ -50,7 +50,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Showcard Gothic", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(122, 28);
+            this.label1.Location = new System.Drawing.Point(232, 47);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(549, 98);
             this.label1.TabIndex = 1;
@@ -60,9 +60,9 @@
             // 
             this.buttonBack.BackColor = System.Drawing.Color.FloralWhite;
             this.buttonBack.Font = new System.Drawing.Font("Showcard Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonBack.Location = new System.Drawing.Point(309, 338);
+            this.buttonBack.Location = new System.Drawing.Point(409, 434);
             this.buttonBack.Name = "buttonBack";
-            this.buttonBack.Size = new System.Drawing.Size(127, 55);
+            this.buttonBack.Size = new System.Drawing.Size(175, 85);
             this.buttonBack.TabIndex = 2;
             this.buttonBack.Text = "BACK";
             this.buttonBack.UseVisualStyleBackColor = false;
@@ -72,7 +72,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LemonChiffon;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1046, 648);
             this.Controls.Add(this.buttonBack);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.listViewHighScores);
@@ -80,6 +80,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "HighScores";
             this.Text = "Trivia-high scores";
+            this.Load += new System.EventHandler(this.HighScores_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

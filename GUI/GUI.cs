@@ -30,8 +30,8 @@ namespace GUI
 
         private void buttonStart_Click(object sender, EventArgs e)
         {
-            CreateRoom createRoom = new CreateRoom();           
-            createRoom.Show();            //need to delete the other screen
+            Form1 mainMenu = new Form1();
+            mainMenu.Show();//need to delete the other screen
         }
 
         private void buttonSignup_Click(object sender, EventArgs e)
@@ -46,8 +46,9 @@ namespace GUI
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            signupGUI signup = new signupGUI();
-            signup.Show();            //need to delete the other screen
+            signupGUI signup = new signupGUI();            
+            signup.Show();
+            //need to delete the other screen
         }
 
         private void GUI_Load(object sender, EventArgs e)
