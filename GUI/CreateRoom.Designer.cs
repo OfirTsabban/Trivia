@@ -123,6 +123,7 @@
             this.buttonRoomInfo.TabIndex = 7;
             this.buttonRoomInfo.Text = "ROOM INFO";
             this.buttonRoomInfo.UseVisualStyleBackColor = false;
+            this.buttonRoomInfo.Click += new System.EventHandler(this.buttonRoomInfo_Click);
             // 
             // buttonNext
             // 
@@ -134,6 +135,7 @@
             this.buttonNext.TabIndex = 8;
             this.buttonNext.Text = "NEXT";
             this.buttonNext.UseVisualStyleBackColor = false;
+            this.buttonNext.Click += new System.EventHandler(this.buttonNext_Click);
             // 
             // CreateRoom
             // 
@@ -154,6 +156,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CreateRoom";
             this.Text = "Trivia-create room";
+            this.Load += new System.EventHandler(this.CreateRoom_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

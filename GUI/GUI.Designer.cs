@@ -163,6 +163,7 @@
             this.Controls.Add(this.passLabel);
             this.Controls.Add(this.userLabel);
             this.Controls.Add(this.triviaLabel);
+            this.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ForeColor = System.Drawing.Color.DarkRed;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "GUI";

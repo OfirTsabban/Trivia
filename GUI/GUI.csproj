@@ -78,6 +78,12 @@
     <Compile Include="PersonalStatistics.Designer.cs">
       <DependentUpon>PersonalStatistics.cs</DependentUpon>
     </Compile>
+    <Compile Include="RoomInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RoomInfo.Designer.cs">
+      <DependentUpon>RoomInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="signupGUI.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -125,6 +131,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="RoomInfo.resx">
+      <DependentUpon>RoomInfo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="signupGUI.resx">
       <DependentUpon>signupGUI.cs</DependentUpon>
     </EmbeddedResource>

@@ -10,24 +10,24 @@ using System.Windows.Forms;
 
 namespace GUI
 {
-    public partial class CreateRoom : Form
+    public partial class RoomInfo : Form
     {
-        public CreateRoom()
+        public RoomInfo()
         {
             InitializeComponent();
         }
 
-        private void CreateRoom_Load(object sender, EventArgs e)
+        private void LabelAdminName_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void listViewPlayers_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void buttonRoomInfo_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void buttonNext_Click(object sender, EventArgs e)
+        private void RoomInfo_Load(object sender, EventArgs e)
         {
 
         }

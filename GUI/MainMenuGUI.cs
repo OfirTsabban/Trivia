@@ -25,6 +25,7 @@ namespace GUI
         private void buttonJoinRoom_Click(object sender, EventArgs e)
         {
             JoinRoom joinRoom = new JoinRoom();
+            Hide();
             joinRoom.Show();
         }
 
@@ -36,12 +37,14 @@ namespace GUI
         private void buttonStatistics_Click(object sender, EventArgs e)
         {
             Statistics statistics = new Statistics();
+            Hide();
             statistics.Show();
         }
 
         private void buttonCreateRoom_Click(object sender, EventArgs e)
         {
             CreateRoom createRoom = new CreateRoom();
+            Hide();
             createRoom.Show();
         }
     }
