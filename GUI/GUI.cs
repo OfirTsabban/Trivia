@@ -46,7 +46,8 @@ namespace GUI
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            signupGUI signup = new signupGUI();            
+            signupGUI signup = new signupGUI(); 
+            Hide();
             signup.Show();
             //need to delete the other screen
         }
