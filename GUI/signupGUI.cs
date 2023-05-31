@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace GUI
 {
@@ -74,7 +73,7 @@ namespace GUI
                 fieldsFilled++;
             }
             string password = textBoxPassword.Text;
-            if(chkPW(password) != "" && !error)
+            if (chkPW(password) != "" && !error)
             {
                 MessageBox.Show(chkPW(password));
                 error = true;
@@ -116,7 +115,7 @@ namespace GUI
                 fieldsFilled++;
             }
             string prefix = textBoxPrefix.Text;
-            if(!(Regex.IsMatch(prefix, "^(050|052|053|054|055|057|058|02|03|04|08|09|077)")) && !error)
+            if (!(Regex.IsMatch(prefix, "^(050|052|053|054|055|057|058|02|03|04|08|09|077)")) && !error)
             {
                 MessageBox.Show("Error - prefix havnt fount");
                 error = true;
@@ -183,15 +182,15 @@ namespace GUI
 
         private string chkPW(string pw)
         {
-            if(pw.Length < 8)
+            if (pw.Length < 8)
             {
                 return "Error - password cant be shorter than 8 characters";
             }
-            else if(pw.Length > 30)
+            else if (pw.Length > 30)
             {
                 return "Error - password cant be longer than 30 characters";
             }
-            else if(!chkPWConditions(pw))
+            else if (!chkPWConditions(pw))
             {
                 return "Error - password need to contain a number, upper case letter and lower case letter";
             }
@@ -205,19 +204,19 @@ namespace GUI
 
         private string chkMail(string mail)
         {
-            if(mail.Length < 6 || mail.Length > 30)
+            if (mail.Length < 6 || mail.Length > 30)
             {
                 return "Error - email is too short or too long";
             }
-            else if(mail.IndexOf('@') == -1)
+            else if (mail.IndexOf('@') == -1)
             {
                 return "Error - @ sign wasnt found";
             }
-            else if(mail.IndexOf('@') != mail.LastIndexOf('@'))
+            else if (mail.IndexOf('@') != mail.LastIndexOf('@'))
             {
                 return "Error - @ sign cannot appear twice";
             }
-            else if(mail.IndexOf('@') < 2 || mail.LastIndexOf('@') == mail.Length - 1)
+            else if (mail.IndexOf('@') < 2 || mail.LastIndexOf('@') == mail.Length - 1)
             {
                 return "Error - @ sign cannot appear at the beggining or at the end";
             }
@@ -225,7 +224,7 @@ namespace GUI
             {
                 return "Error - dot cannot appear at the beggining or at the end";
             }
-            else if(mail.IndexOf('.', mail.IndexOf('@')) - mail.IndexOf('@') <= 1)
+            else if (mail.IndexOf('.', mail.IndexOf('@')) - mail.IndexOf('@') <= 1)
             {
                 return "Error - dot need to be at least 2 characters away from @ sign";
             }
@@ -236,7 +235,7 @@ namespace GUI
         private bool chkStreet(string street)
         {
             bool number = false;
-            for(int i = 0; i < street.Length; i++)
+            for (int i = 0; i < street.Length; i++)
             {
                 if (Char.IsDigit(street[i]))
                 {
@@ -256,7 +255,7 @@ namespace GUI
             {
                 return "Error - phone number length need to be 7";
             }
-            else if(!numberChk)
+            else if (!numberChk)
             {
                 return "Error - phone number can only contain numbers";
             }
@@ -269,7 +268,7 @@ namespace GUI
             int yearVerifier = 0;
             bool yearChk = int.TryParse(year, out yearVerifier);
 
-            if(year.Length != 4)
+            if (year.Length != 4)
             {
                 return "Error - year doesnt make sense";
             }
@@ -322,7 +321,7 @@ namespace GUI
         {
             bool number = false, upper = false, lower = false;
 
-            for(int i = 0; i < pw.Length; i++)
+            for (int i = 0; i < pw.Length; i++)
             {
                 if (Char.IsDigit(pw[i]))
                 {
