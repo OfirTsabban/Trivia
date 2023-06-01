@@ -45,7 +45,7 @@ RequestResult LoginRequestHandler::login(RequestInfo reqInfo)
     catch (ExceptionHandler& exception)
     {
         std::cout << exception.what() << std::endl;
-        req = nullptr;
+        req = this->m_handleFactory.createLoginRequestHandler();
         logResp = { 0 };
         buffer = JsonResponsePacketSerializer::serializeLoginResponse(logResp);
     }
@@ -72,7 +72,7 @@ RequestResult LoginRequestHandler::signup(RequestInfo reqInfo)
     catch (ExceptionHandler& exception)
     {
         std::cout << exception.what() << std::endl;
-        req = nullptr;
+        req = this->m_handleFactory.createLoginRequestHandler();
         signResp = { 0 };
         buffer = JsonResponsePacketSerializer::serializeSignupResponse(signResp);
     }
