@@ -40,7 +40,7 @@ RequestResult LoginRequestHandler::login(RequestInfo reqInfo)
     {
         this->m_handleFactory.getLoginManager().login(newSignUser.username, newSignUser.password);
         LoggedUser newLogUser(newSignUser.username);
-        req = this->m_handleFactory.createLoginRequestHandler();        
+        req = this->m_handleFactory.createMenuRequestHandler(newLogUser);
     }
     catch (ExceptionHandler& exception)
     {
@@ -67,7 +67,7 @@ RequestResult LoginRequestHandler::signup(RequestInfo reqInfo)
         this->m_handleFactory.getLoginManager().signup(newSignUser.username, newSignUser.password, newSignUser.email, newSignUser.street, newSignUser.apt, newSignUser.city, newSignUser.prefix, newSignUser.number, newSignUser.yearBorn);
         
         LoggedUser newLogUser(newSignUser.username);
-        req = this->m_handleFactory.createLoginRequestHandler();
+        req = this->m_handleFactory.createMenuRequestHandler(newLogUser);
     }
     catch (ExceptionHandler& exception)
     {
