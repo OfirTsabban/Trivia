@@ -59,11 +59,7 @@ namespace GUI
 
         private void buttonNext_Click(object sender, EventArgs e)
         {
-<<<<<<< HEAD
-            Form1 mainMenu = new Form1();
-            Hide();
-            mainMenu.Show();
-=======
+
             bool error = false;
             int fieldsFilled = 0;
 
@@ -343,7 +339,6 @@ namespace GUI
             }
 
             return number && upper && lower;
->>>>>>> 9f42d60b1c1b240bde09a7eaf76d5cd709fcfd54
         }
     }
 }

@@ -23,11 +23,7 @@ namespace GUI
 
         private void buttonStart_Click(object sender, EventArgs e)
         {
-<<<<<<< HEAD
-            Form1 mainMenu = new Form1();
-            Hide();
-            mainMenu.Show();
-=======
+
             bool error = false;
             int fieldsFilled = 0;
 
@@ -58,8 +54,6 @@ namespace GUI
                 Hide();
                 mainMenu.Show();
             }
-            
->>>>>>> 9f42d60b1c1b240bde09a7eaf76d5cd709fcfd54
         }
 
         private void buttonSignup_Click(object sender, EventArgs e)
@@ -83,8 +77,7 @@ namespace GUI
         {
 
         }
-<<<<<<< HEAD
-=======
+
 
         private string checkUsername(string userName)
         {
@@ -153,7 +146,7 @@ namespace GUI
 
             for (int i = 0; i < name.Length; i++)
             {
-                if (badChars.Contains(name[i]))
+                if (badChars.Contains(Char.ToString(name[i])))
                 {
                     return true;
                 }
@@ -193,6 +186,5 @@ namespace GUI
 
             return number && upper && lower;
         }
->>>>>>> 9f42d60b1c1b240bde09a7eaf76d5cd709fcfd54
     }
 }
