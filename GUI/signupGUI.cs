@@ -66,7 +66,7 @@ namespace GUI
             string userName = textBoxName.Text;
             if (checkUsername(userName) != "" && !error)
             {
-                MessageBox.Show(checkUsername(userName), "Signup Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(checkUsername(userName), "Signup Error", MessageBoxButtons.OK, MessageBoxIcon.Warning); 
                 error = true;
             }
             else
