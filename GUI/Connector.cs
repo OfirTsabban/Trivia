@@ -11,11 +11,13 @@ namespace GUI
     internal class Connector
     {
         public static bool connected { get; set; }
+        public static IPAddress serverIP { get; } = IPAddress.Parse("127.0.0.1");
+        public static int serverPort { get; } = 12345;
 
         static Connector()
         {
             TcpClient client = new TcpClient();
-            IPEndPoint serverEndPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 12345);
+            IPEndPoint serverEndPoint = new IPEndPoint(serverIP, serverPort);
             try
             {
                 client.Connect(serverEndPoint);
@@ -25,7 +27,7 @@ namespace GUI
                 connected = false;
                 return;
             }
-
+            
             connected = true;
         }
     }

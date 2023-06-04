@@ -66,7 +66,7 @@ namespace GUI
             string userName = textBoxName.Text;
             if (checkUsername(userName) != "" && !error)
             {
-                MessageBox.Show(checkUsername(userName));
+                MessageBox.Show(checkUsername(userName), "Signup Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 error = true;
             }
             else
@@ -76,7 +76,7 @@ namespace GUI
             string password = textBoxPassword.Text;
             if (chkPW(password) != "" && !error)
             {
-                MessageBox.Show(chkPW(password));
+                MessageBox.Show(chkPW(password), "Signup Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 error = true;
             }
             else
@@ -86,7 +86,7 @@ namespace GUI
             string email = textBoxEmail.Text;
             if (chkMail(email) != "" && !error)
             {
-                MessageBox.Show(chkMail(email));
+                MessageBox.Show(chkMail(email), "Signup Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 error = true;
             }
             else
@@ -96,7 +96,7 @@ namespace GUI
             string street = textBoxStreet.Text;
             if (chkStreet(street) && !error)
             {
-                MessageBox.Show("Error - write only name of the street");
+                MessageBox.Show("Error - write only name of the street", "Signup Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 error = true;
             }
             else
@@ -108,7 +108,7 @@ namespace GUI
             bool aptChk = int.TryParse(apt, out aptNum);
             if (aptChk == false && !error)
             {
-                MessageBox.Show("Error - apt need to be a number");
+                MessageBox.Show("Error - apt need to be a number", "Signup Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 error = true;
             }
             else
@@ -118,7 +118,7 @@ namespace GUI
             string prefix = textBoxPrefix.Text;
             if (!(Regex.IsMatch(prefix, "^(050|052|053|054|055|057|058|02|03|04|08|09|077)")) && !error)
             {
-                MessageBox.Show("Error - prefix havnt fount");
+                MessageBox.Show("Error - prefix havnt fount", "Signup Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 error = true;
             }
             else
@@ -128,7 +128,7 @@ namespace GUI
             string number = textBoxNumber.Text;
             if (chkNumber(number) != "" && !error)
             {
-                MessageBox.Show(chkNumber(number));
+                MessageBox.Show(chkNumber(number), "Signup Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 error = true;
             }
             else
@@ -139,7 +139,7 @@ namespace GUI
             string year = textBoxYearBorn.Text;
             if (chkYear(year) != "" && !error)
             {
-                MessageBox.Show(chkYear(year));
+                MessageBox.Show(chkYear(year), "Signup Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 error = true;
             }
             else
