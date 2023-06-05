@@ -54,11 +54,15 @@ namespace GUI
 
                 string json = Protocol.signInProtocol(name, pw);
 
-                if (Connector.sendMSG(json.ToString(), (int)Connector.Requests.Log_In))
+                if (Connector.sendMSG(json, (int)Connector.Requests.Log_In))
                 {
                     Form1 mainMenu = new Form1();
                     Hide();
                     mainMenu.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Failed to send to server", "Server Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

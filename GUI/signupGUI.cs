@@ -149,9 +149,19 @@ namespace GUI
 
             if (fieldsFilled == 8)
             {
-                Form1 mainMenu = new Form1();
-                Hide();
-                mainMenu.Show();
+                string city = "temp";
+                string json = Protocol.signUpProtocol(userName, password, email, street, apt, city, prefix, number, year);
+
+                if(Connector.sendMSG(json, (int)Connector.Requests.Sign_Up))
+                {
+                    Form1 mainMenu = new Form1();
+                    Hide();
+                    mainMenu.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Failed to send to server", "Server Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 

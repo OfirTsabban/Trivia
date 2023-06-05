@@ -16,5 +16,15 @@ namespace GUI
         {
             InitializeComponent();
         }
+
+        private void buttonRoomInfo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonNext_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

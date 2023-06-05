@@ -16,5 +16,15 @@ namespace GUI
         {
             InitializeComponent();
         }
+
+        private void buttonTableRecord_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonPersonalStatistics_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

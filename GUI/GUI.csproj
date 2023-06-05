@@ -79,6 +79,7 @@
     <Compile Include="PersonalStatistics.Designer.cs">
       <DependentUpon>PersonalStatistics.cs</DependentUpon>
     </Compile>
+    <Compile Include="Protocol.cs" />
     <Compile Include="RoomInfo.cs">
       <SubType>Form</SubType>
     </Compile>
