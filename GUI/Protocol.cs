@@ -18,15 +18,22 @@ namespace GUI
 
         public static string signUpProtocol(string name, string pw, string email, string street, string apt, string city, string prefix, string number, string year)
         {
-            string json = "{{\"username\": '" + name + "'}," +
-                            "{\"password\": '" + pw + "'}," +
-                            "{\"email\": '" + email + "'}," +
-                            "{\"street\": '" + street + "'}," +
-                            "{\"apt\": '" + apt + "'}," +
-                            "{\"city\": '"+ city + "'}," +
-                            "{\"prefix\": '" + prefix + "'}," +
-                            "{\"number\": '" + number + "'}," +
-                            "{\"year\": '" + year + "'}}";
+            string json = "{{\"username\": \"" + name + "\"}," +
+                            "{\"password\": \"" + pw + "\"}," +
+                            "{\"email\": \"" + email + "\"}," +
+                            "{\"street\": \"" + street + "\"}," +
+                            "{\"apt\": \"" + apt + "\"}," +
+                            "{\"city\": \"" + city + "\"}," +
+                            "{\"prefix\": \"" + prefix + "\"}," +
+                            "{\"number\": \"" + number + "\"}," +
+                            "{\"year\": \"" + year + "\"}}";
+
+            return json;
+        }
+
+        public static string getPlayersProtocol(int roomID)
+        {
+            string json = "{{\"roomID\": " + roomID + "}}";
 
             return json;
         }
