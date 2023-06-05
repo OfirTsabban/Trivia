@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace GUI
@@ -50,9 +51,15 @@ namespace GUI
 
             if (fieldsFilled == 2)
             {
-                Form1 mainMenu = new Form1();
-                Hide();
-                mainMenu.Show();
+
+                string json = Protocol.signInProtocol(name, pw);
+
+                if (Connector.sendMSG(json.ToString(), (int)Connector.Requests.Log_In))
+                {
+                    Form1 mainMenu = new Form1();
+                    Hide();
+                    mainMenu.Show();
+                }
             }
         }
 

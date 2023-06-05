@@ -12,7 +12,7 @@ namespace GUI
 {
     internal class Connector
     {
-        enum Requests
+        public enum Requests
         {
             Error = 0,
             Log_In = 1,
