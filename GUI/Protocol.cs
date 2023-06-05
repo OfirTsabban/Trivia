@@ -37,5 +37,12 @@ namespace GUI
 
             return json;
         }
+
+        public static string joinRoomProtocol(int roomID)
+        {
+            string json = "{{\"roomID\": " + roomID + "}}";
+
+            return json;
+        }
     }
 }
