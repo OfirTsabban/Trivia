@@ -44,5 +44,15 @@ namespace GUI
 
             return json;
         }
+
+        public static string createRoomRequestProtocol(string roomName, int maxUsers, int qCount, int time)
+        {
+            string json = "{{\"roomName\": \"" + roomName +"\"}," +
+                            "{\"maxUsers\": " + maxUsers +"}," +
+                            "{\"questionCount\": " + qCount + "}," +
+                            "{\"answerTimeout\": " + time + "}}";
+
+            return json;
+        }
     }
 }
