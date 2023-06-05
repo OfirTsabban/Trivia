@@ -12,6 +12,20 @@ namespace GUI
 {
     internal class Connector
     {
+        enum Requests
+        {
+            Error = 0,
+            Log_In = 1,
+            Sign_Up = 2,
+            Log_Out = 3,
+            Get_Rooms = 4,
+            Get_Players = 5,
+            Get_Personal_Stats = 6,
+            Get_High_Score = 7,
+            Join_Room = 8,
+            Create_Room = 9,
+        };
+
         private static TcpClient client = new TcpClient();
         public static bool connected { get; set; }
         public static IPAddress serverIP { get; } = IPAddress.Parse("127.0.0.1");
@@ -34,10 +48,11 @@ namespace GUI
             connected = true;
         }
 
-        public static bool sendMSG(string msg)
+        public static bool sendMSG(string msg, int code)
         {
             try
             {
+                msg = code.ToString() + msg.Length.ToString() + msg;//protocol
                 NetworkStream clientStream = client.GetStream();
                 byte[] buffer = new ASCIIEncoding().GetBytes(msg);
                 clientStream.Write(buffer, 0, buffer.Length);
