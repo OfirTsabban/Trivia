@@ -104,7 +104,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LemonChiffon;
-            this.ClientSize = new System.Drawing.Size(1092, 655);
+            this.ClientSize = new System.Drawing.Size(1109, 655);
             this.Controls.Add(this.buttonStatistics);
             this.Controls.Add(this.buttonJoinRoom);
             this.Controls.Add(this.buttonCreateRoom);
