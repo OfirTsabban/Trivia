@@ -38,6 +38,9 @@
             this.buttonNext = new System.Windows.Forms.Button();
             this.cboTime = new System.Windows.Forms.ComboBox();
             this.cboPlayersNum = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.cboNumberQuestions = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -65,7 +68,7 @@
             this.textBoxRoomName.BackColor = System.Drawing.Color.FloralWhite;
             this.textBoxRoomName.Font = new System.Drawing.Font("Showcard Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxRoomName.ForeColor = System.Drawing.Color.DarkRed;
-            this.textBoxRoomName.Location = new System.Drawing.Point(505, 168);
+            this.textBoxRoomName.Location = new System.Drawing.Point(555, 168);
             this.textBoxRoomName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxRoomName.Multiline = true;
             this.textBoxRoomName.Name = "textBoxRoomName";
@@ -99,10 +102,10 @@
             // 
             this.buttonRoomInfo.BackColor = System.Drawing.Color.FloralWhite;
             this.buttonRoomInfo.Font = new System.Drawing.Font("Showcard Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonRoomInfo.Location = new System.Drawing.Point(265, 380);
+            this.buttonRoomInfo.Location = new System.Drawing.Point(228, 380);
             this.buttonRoomInfo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonRoomInfo.Name = "buttonRoomInfo";
-            this.buttonRoomInfo.Size = new System.Drawing.Size(171, 47);
+            this.buttonRoomInfo.Size = new System.Drawing.Size(208, 67);
             this.buttonRoomInfo.TabIndex = 7;
             this.buttonRoomInfo.Text = "ROOM INFO";
             this.buttonRoomInfo.UseVisualStyleBackColor = false;
@@ -115,7 +118,7 @@
             this.buttonNext.Location = new System.Drawing.Point(485, 380);
             this.buttonNext.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonNext.Name = "buttonNext";
-            this.buttonNext.Size = new System.Drawing.Size(171, 47);
+            this.buttonNext.Size = new System.Drawing.Size(199, 67);
             this.buttonNext.TabIndex = 8;
             this.buttonNext.Text = "NEXT";
             this.buttonNext.UseVisualStyleBackColor = false;
@@ -123,6 +126,7 @@
             // 
             // cboTime
             // 
+            this.cboTime.AccessibleRole = System.Windows.Forms.AccessibleRole.ScrollBar;
             this.cboTime.BackColor = System.Drawing.Color.FloralWhite;
             this.cboTime.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboTime.ForeColor = System.Drawing.Color.DarkRed;
@@ -136,8 +140,8 @@
             "40",
             "45",
             "5"});
-            this.cboTime.Location = new System.Drawing.Point(505, 230);
-            this.cboTime.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboTime.Location = new System.Drawing.Point(555, 231);
+            this.cboTime.Margin = new System.Windows.Forms.Padding(4);
             this.cboTime.Name = "cboTime";
             this.cboTime.Size = new System.Drawing.Size(211, 24);
             this.cboTime.TabIndex = 9;
@@ -147,6 +151,7 @@
             // 
             this.cboPlayersNum.BackColor = System.Drawing.Color.FloralWhite;
             this.cboPlayersNum.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboPlayersNum.ForeColor = System.Drawing.Color.DarkRed;
             this.cboPlayersNum.FormattingEnabled = true;
             this.cboPlayersNum.Items.AddRange(new object[] {
             "2",
@@ -158,12 +163,44 @@
             "8",
             "9",
             "10"});
-            this.cboPlayersNum.Location = new System.Drawing.Point(505, 278);
-            this.cboPlayersNum.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboPlayersNum.Location = new System.Drawing.Point(555, 279);
+            this.cboPlayersNum.Margin = new System.Windows.Forms.Padding(4);
             this.cboPlayersNum.Name = "cboPlayersNum";
             this.cboPlayersNum.Size = new System.Drawing.Size(211, 24);
             this.cboPlayersNum.TabIndex = 10;
             this.cboPlayersNum.SelectedIndexChanged += new System.EventHandler(this.cboPlayersNum_SelectedIndexChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Showcard Gothic", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(213, 315);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(329, 35);
+            this.label5.TabIndex = 11;
+            this.label5.Text = "NUMBER OF QUESTIONS";
+            // 
+            // cboNumberQuestions
+            // 
+            this.cboNumberQuestions.BackColor = System.Drawing.Color.FloralWhite;
+            this.cboNumberQuestions.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboNumberQuestions.ForeColor = System.Drawing.Color.DarkRed;
+            this.cboNumberQuestions.FormattingEnabled = true;
+            this.cboNumberQuestions.Items.AddRange(new object[] {
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"});
+            this.cboNumberQuestions.Location = new System.Drawing.Point(555, 326);
+            this.cboNumberQuestions.Margin = new System.Windows.Forms.Padding(4);
+            this.cboNumberQuestions.Name = "cboNumberQuestions";
+            this.cboNumberQuestions.Size = new System.Drawing.Size(211, 24);
+            this.cboNumberQuestions.TabIndex = 12;
             // 
             // CreateRoom
             // 
@@ -171,6 +208,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LemonChiffon;
             this.ClientSize = new System.Drawing.Size(930, 531);
+            this.Controls.Add(this.cboNumberQuestions);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.cboPlayersNum);
             this.Controls.Add(this.cboTime);
             this.Controls.Add(this.buttonNext);
@@ -202,5 +241,8 @@
         private System.Windows.Forms.Button buttonNext;
         private System.Windows.Forms.ComboBox cboTime;
         private System.Windows.Forms.ComboBox cboPlayersNum;
+        private System.Windows.Forms.Label label5;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.ComboBox cboNumberQuestions;
     }
 }
