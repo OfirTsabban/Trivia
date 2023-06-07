@@ -26,5 +26,15 @@ namespace GUI
         {
 
         }
+
+        private void JoinRoom_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonRefresh_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
