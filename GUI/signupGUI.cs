@@ -103,6 +103,16 @@ namespace GUI
             {
                 fieldsFilled++;
             }
+            string city = textBoxCity.Text;
+            if (chkStreet(city) && !error)
+            {
+                MessageBox.Show("Error - city cant contain numbers", "Signup Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                error = true;
+            }
+            else
+            {
+                fieldsFilled++;
+            }
             string apt = textBoxApt.Text;
             int aptNum = 0;
             bool aptChk = int.TryParse(apt, out aptNum);
@@ -147,9 +157,8 @@ namespace GUI
                 fieldsFilled++;
             }
 
-            if (fieldsFilled == 8)
+            if (fieldsFilled == 9)
             {
-                string city = "temp";
                 string json = Protocol.signUpProtocol(userName, password, email, street, apt, city, prefix, number, year);
 
                 if(Connector.sendMSG(json, (int)Connector.Requests.Sign_Up))
