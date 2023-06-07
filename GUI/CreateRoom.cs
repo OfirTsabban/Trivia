@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace GUI
 {
@@ -31,14 +32,48 @@ namespace GUI
         private void buttonNext_Click(object sender, EventArgs e)
         {
             bool error = false;
-            int fieldsFilled = 0;
+            int fieldsFilled = 0, timePerQ = 0, playersNum = 0, questionsNum = 0;
             string roomName = textBoxRoomName.Text;
             if (chkRoomName(roomName) != "" && !error)
             {
                 MessageBox.Show(chkRoomName(roomName));
                 error = true;
             }
+            else
+            {
+                fieldsFilled++;
+            }
+            if(cboTime.SelectedItem != null)
+            {
+                timePerQ = int.Parse(cboTime.SelectedItem.ToString());
+                fieldsFilled++;
+            }
+            if (cboPlayersNum.SelectedItem != null)
+            {
+                playersNum = int.Parse(cboPlayersNum.SelectedItem.ToString());
+                fieldsFilled++;
+            }
+            if (cboNumberQuestions.SelectedItem != null)
+            {
+                questionsNum = int.Parse(cboNumberQuestions.SelectedItem.ToString());
+                fieldsFilled++;
+            }
+            
+            if(fieldsFilled == 4)
+            {
+                string json = Protocol.createRoomRequestProtocol(roomName, playersNum, questionsNum, timePerQ);
 
+                if (Connector.sendMSG(json, (int)Connector.Requests.Create_Room))
+                {
+                    Form1 mainMenu = new Form1();//need to change in 3.0.0
+                    Hide();
+                    mainMenu.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Failed to send to server", "Server Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
 
         }
 
