@@ -163,9 +163,12 @@ namespace GUI
 
                 if(Connector.sendMSG(json, (int)Connector.Requests.Sign_Up))
                 {
-                    Form1 mainMenu = new Form1();
-                    Hide();
-                    mainMenu.Show();
+                    if(Connector.statusFromServer())
+                    {
+                        Form1 mainMenu = new Form1();
+                        Hide();
+                        mainMenu.Show();
+                    }
                 }
                 else
                 {

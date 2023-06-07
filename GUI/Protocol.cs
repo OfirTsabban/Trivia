@@ -33,24 +33,24 @@ namespace GUI
 
         public static string getPlayersProtocol(int roomID)
         {
-            string json = "{{\"roomID\": " + roomID + "}}";
+            string json = "{\"roomID\": " + roomID + "}";
 
             return json;
         }
 
         public static string joinRoomProtocol(int roomID)
         {
-            string json = "{{\"roomID\": " + roomID + "}}";
+            string json = "{\"roomID\": " + roomID + "}";
 
             return json;
         }
 
         public static string createRoomRequestProtocol(string roomName, int maxUsers, int qCount, int time)
         {
-            string json = "{{\"roomName\": \"" + roomName +"\"}," +
-                            "{\"maxUsers\": " + maxUsers +"}," +
-                            "{\"questionCount\": " + qCount + "}," +
-                            "{\"answerTimeout\": " + time + "}}";
+            string json = "{\"roomName\": \"" + roomName +"\"," +
+                            "\"maxUsers\": " + maxUsers +"," +
+                            "\"questionCount\": " + qCount + "," +
+                            "\"answerTimeout\": " + time + "}";
 
             return json;
         }

@@ -83,5 +83,12 @@ namespace GUI
                 return null;
             }
         }
+
+        public static bool statusFromServer()
+        {
+            string msgFromServer = recvMSG();
+
+            return msgFromServer.Contains('1');
+        }
     }
 }

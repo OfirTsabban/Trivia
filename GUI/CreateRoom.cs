@@ -65,9 +65,12 @@ namespace GUI
 
                 if (Connector.sendMSG(json, (int)Connector.Requests.Create_Room))
                 {
-                    Form1 mainMenu = new Form1();//need to change in 3.0.0
-                    Hide();
-                    mainMenu.Show();
+                    if(Connector.statusFromServer())
+                    {
+                        Form1 mainMenu = new Form1();//need to change in 3.0.0
+                        Hide();
+                        mainMenu.Show();
+                    }
                 }
                 else
                 {
