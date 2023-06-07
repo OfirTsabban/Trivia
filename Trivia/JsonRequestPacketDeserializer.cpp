@@ -30,7 +30,7 @@ SignupRequest JsonRequestPacketDeserializer::deserializeSignupRequest(char* buff
 	std::string city = json.at("city");
 	std::string prefix = json.at("prefix");
 	std::string number = json.at("number");
-	std::string yearBorn = json.at("yearBorn");
+	std::string yearBorn = json.at("year");
 
 	std::cout << "Username: " << username << " pw: " << password << " Email: " << email << std::endl;
 
