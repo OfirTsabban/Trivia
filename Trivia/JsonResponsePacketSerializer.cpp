@@ -57,8 +57,9 @@ unsigned char* JsonResponsePacketSerializer::serializeResponse(GetPlayersInRoomR
 	std::string players = "";
 	for (int i = 0; i < getPlayers.players.size(); i++)
 	{		
-		players += getPlayers.players[i];
+		players += getPlayers.players[i] + ",";  
 	}
+	std::cout << players << std::endl;
 	json jsonMSG = { {"Players", players} };
 	std::string s = std::to_string(Get_Players);
 	return help(jsonMSG, s);

@@ -167,5 +167,12 @@ namespace GUI
         {
 
         }
+
+        private void buttonBack_Click(object sender, EventArgs e)
+        {
+            Form1 mainMenu = new Form1();
+            Hide();
+            mainMenu.Show(); 
+        }
     }
 }

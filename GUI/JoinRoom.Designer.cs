@@ -31,9 +31,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(JoinRoom));
             this.listViewRooms = new System.Windows.Forms.ListView();
             this.label1 = new System.Windows.Forms.Label();
-            this.buttonRoomInfo = new System.Windows.Forms.Button();
             this.buttonNext = new System.Windows.Forms.Button();
             this.buttonRefresh = new System.Windows.Forms.Button();
+            this.buttonBack = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listViewRooms
@@ -62,20 +62,6 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "JOIN ROOM";
             // 
-            // buttonRoomInfo
-            // 
-            this.buttonRoomInfo.AutoSize = true;
-            this.buttonRoomInfo.BackColor = System.Drawing.Color.FloralWhite;
-            this.buttonRoomInfo.Font = new System.Drawing.Font("Showcard Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonRoomInfo.Location = new System.Drawing.Point(221, 579);
-            this.buttonRoomInfo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.buttonRoomInfo.Name = "buttonRoomInfo";
-            this.buttonRoomInfo.Size = new System.Drawing.Size(210, 100);
-            this.buttonRoomInfo.TabIndex = 2;
-            this.buttonRoomInfo.Text = "ROOM INFO";
-            this.buttonRoomInfo.UseVisualStyleBackColor = false;
-            this.buttonRoomInfo.Click += new System.EventHandler(this.buttonRoomInfo_Click);
-            // 
             // buttonNext
             // 
             this.buttonNext.AutoSize = true;
@@ -103,6 +89,18 @@
             this.buttonRefresh.UseVisualStyleBackColor = false;
             this.buttonRefresh.Click += new System.EventHandler(this.buttonRefresh_Click);
             // 
+            // buttonBack
+            // 
+            this.buttonBack.BackColor = System.Drawing.Color.FloralWhite;
+            this.buttonBack.Font = new System.Drawing.Font("Showcard Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonBack.Location = new System.Drawing.Point(229, 579);
+            this.buttonBack.Name = "buttonBack";
+            this.buttonBack.Size = new System.Drawing.Size(190, 100);
+            this.buttonBack.TabIndex = 5;
+            this.buttonBack.Text = "BACK";
+            this.buttonBack.UseVisualStyleBackColor = false;
+            this.buttonBack.Click += new System.EventHandler(this.buttonBack_Click);
+            // 
             // JoinRoom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -110,9 +108,9 @@
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.LemonChiffon;
             this.ClientSize = new System.Drawing.Size(1322, 713);
+            this.Controls.Add(this.buttonBack);
             this.Controls.Add(this.buttonRefresh);
             this.Controls.Add(this.buttonNext);
-            this.Controls.Add(this.buttonRoomInfo);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.listViewRooms);
             this.ForeColor = System.Drawing.Color.DarkRed;
@@ -129,9 +127,9 @@
 
         #endregion
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button buttonRoomInfo;
         private System.Windows.Forms.Button buttonNext;
         private System.Windows.Forms.Button buttonRefresh;
         private System.Windows.Forms.ListView listViewRooms;
+        private System.Windows.Forms.Button buttonBack;
     }
 }

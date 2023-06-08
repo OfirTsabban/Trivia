@@ -34,16 +34,19 @@
             this.label2 = new System.Windows.Forms.Label();
             this.LabelAdminName = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.buttonStart = new System.Windows.Forms.Button();
+            this.buttonRefresh = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listViewPlayers
             // 
+            this.listViewPlayers.Alignment = System.Windows.Forms.ListViewAlignment.Left;
             this.listViewPlayers.Font = new System.Drawing.Font("Showcard Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listViewPlayers.ForeColor = System.Drawing.Color.DarkRed;
             this.listViewPlayers.HideSelection = false;
-            this.listViewPlayers.Location = new System.Drawing.Point(158, 294);
+            this.listViewPlayers.Location = new System.Drawing.Point(149, 281);
             this.listViewPlayers.Name = "listViewPlayers";
-            this.listViewPlayers.Size = new System.Drawing.Size(572, 152);
+            this.listViewPlayers.Size = new System.Drawing.Size(658, 189);
             this.listViewPlayers.TabIndex = 0;
             this.listViewPlayers.UseCompatibleStateImageBehavior = false;
             this.listViewPlayers.SelectedIndexChanged += new System.EventHandler(this.listViewPlayers_SelectedIndexChanged);
@@ -53,7 +56,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Showcard Gothic", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.DarkRed;
-            this.label1.Location = new System.Drawing.Point(254, 54);
+            this.label1.Location = new System.Drawing.Point(273, 55);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(350, 74);
             this.label1.TabIndex = 1;
@@ -87,18 +90,46 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Showcard Gothic", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.DarkRed;
-            this.label4.Location = new System.Drawing.Point(161, 247);
+            this.label4.Location = new System.Drawing.Point(161, 231);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(134, 35);
             this.label4.TabIndex = 4;
             this.label4.Text = "PLAYERS";
+            // 
+            // buttonStart
+            // 
+            this.buttonStart.BackColor = System.Drawing.Color.FloralWhite;
+            this.buttonStart.Font = new System.Drawing.Font("Showcard Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonStart.ForeColor = System.Drawing.Color.DarkRed;
+            this.buttonStart.Location = new System.Drawing.Point(204, 491);
+            this.buttonStart.Name = "buttonStart";
+            this.buttonStart.Size = new System.Drawing.Size(206, 62);
+            this.buttonStart.TabIndex = 5;
+            this.buttonStart.Text = "START";
+            this.buttonStart.UseVisualStyleBackColor = false;
+            this.buttonStart.Click += new System.EventHandler(this.buttonStart_Click);
+            // 
+            // buttonRefresh
+            // 
+            this.buttonRefresh.BackColor = System.Drawing.Color.FloralWhite;
+            this.buttonRefresh.Font = new System.Drawing.Font("Showcard Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonRefresh.ForeColor = System.Drawing.Color.DarkRed;
+            this.buttonRefresh.Location = new System.Drawing.Point(525, 491);
+            this.buttonRefresh.Name = "buttonRefresh";
+            this.buttonRefresh.Size = new System.Drawing.Size(206, 62);
+            this.buttonRefresh.TabIndex = 6;
+            this.buttonRefresh.Text = "REFRESH";
+            this.buttonRefresh.UseVisualStyleBackColor = false;
+            this.buttonRefresh.Click += new System.EventHandler(this.buttonRefresh_Click);
             // 
             // RoomInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LemonChiffon;
-            this.ClientSize = new System.Drawing.Size(859, 485);
+            this.ClientSize = new System.Drawing.Size(953, 582);
+            this.Controls.Add(this.buttonRefresh);
+            this.Controls.Add(this.buttonStart);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.LabelAdminName);
             this.Controls.Add(this.label2);
@@ -120,5 +151,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label LabelAdminName;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button buttonStart;
+        private System.Windows.Forms.Button buttonRefresh;
     }
 }
