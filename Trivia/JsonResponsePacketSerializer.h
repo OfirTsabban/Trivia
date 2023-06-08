@@ -52,17 +52,18 @@ struct CreateRoomResponse
 	unsigned int status;
 };
 
-enum Requests {
-	Error = 0,
-	Log_In = 1,
-	Sign_Up = 2,
-	Log_Out = 3,
-	Get_Rooms = 4,
-	Get_Players = 5,
-	Get_Personal_Stats = 6,
-	Get_High_Score = 7,
-	Join_Room = 8,
-	Create_Room = 9,
+static enum Requests {
+	Error = 100,
+	Log_In = 101,
+	Sign_Up = 102,
+	Log_Out = 103,
+	Get_Rooms = 104,
+	Get_Players = 105,
+	Get_Personal_Stats = 106,
+	Get_High_Score = 107,
+	Join_Room = 108,
+	Create_Room = 109,
+	Exit = 200
 };
 class JsonResponsePacketSerializer
 {
