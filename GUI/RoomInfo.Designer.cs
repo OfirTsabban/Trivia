@@ -35,7 +35,6 @@
             this.LabelAdminName = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.buttonStart = new System.Windows.Forms.Button();
-            this.buttonRefresh = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listViewPlayers
@@ -101,7 +100,7 @@
             this.buttonStart.BackColor = System.Drawing.Color.FloralWhite;
             this.buttonStart.Font = new System.Drawing.Font("Showcard Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonStart.ForeColor = System.Drawing.Color.DarkRed;
-            this.buttonStart.Location = new System.Drawing.Point(204, 491);
+            this.buttonStart.Location = new System.Drawing.Point(353, 492);
             this.buttonStart.Name = "buttonStart";
             this.buttonStart.Size = new System.Drawing.Size(206, 62);
             this.buttonStart.TabIndex = 5;
@@ -109,26 +108,12 @@
             this.buttonStart.UseVisualStyleBackColor = false;
             this.buttonStart.Click += new System.EventHandler(this.buttonStart_Click);
             // 
-            // buttonRefresh
-            // 
-            this.buttonRefresh.BackColor = System.Drawing.Color.FloralWhite;
-            this.buttonRefresh.Font = new System.Drawing.Font("Showcard Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonRefresh.ForeColor = System.Drawing.Color.DarkRed;
-            this.buttonRefresh.Location = new System.Drawing.Point(525, 491);
-            this.buttonRefresh.Name = "buttonRefresh";
-            this.buttonRefresh.Size = new System.Drawing.Size(206, 62);
-            this.buttonRefresh.TabIndex = 6;
-            this.buttonRefresh.Text = "REFRESH";
-            this.buttonRefresh.UseVisualStyleBackColor = false;
-            this.buttonRefresh.Click += new System.EventHandler(this.buttonRefresh_Click);
-            // 
             // RoomInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LemonChiffon;
             this.ClientSize = new System.Drawing.Size(953, 582);
-            this.Controls.Add(this.buttonRefresh);
             this.Controls.Add(this.buttonStart);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.LabelAdminName);
@@ -152,6 +137,5 @@
         private System.Windows.Forms.Label LabelAdminName;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button buttonStart;
-        private System.Windows.Forms.Button buttonRefresh;
     }
 }
