@@ -61,7 +61,11 @@ namespace GUI
                         Form1 mainMenu = new Form1();
                         Hide();
                         mainMenu.Show();
-                    }         
+                    }
+                    else
+                    {
+                        MessageBox.Show("Name or Password are incorrect, try something else", "Login Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
                 }
                 else
                 {
@@ -77,6 +81,7 @@ namespace GUI
 
         private void button1_Click(object sender, EventArgs e)
         {
+            Connector.sendMSG("EXIT", 200);
             this.Close();
         }
 

@@ -88,6 +88,7 @@ namespace GUI
         public static bool statusFromServer()
         {
             string msgFromServer = recvMSG();
+            msgFromServer = msgFromServer.Substring(msgFromServer.IndexOf("{"));
 
             return msgFromServer.Contains('1');
         }

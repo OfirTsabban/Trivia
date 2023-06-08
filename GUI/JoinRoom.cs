@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GUI
@@ -34,7 +27,16 @@ namespace GUI
 
         private void buttonRefresh_Click(object sender, EventArgs e)
         {
-
+            if (Connector.sendMSG("getRooms", (int)Connector.Requests.Get_Rooms))
+            {
+                string rooms = Connector.recvMSG();
+                rooms = rooms.Substring(rooms.IndexOf("{"));
+                rooms = rooms;
+            }
+            else
+            {
+                MessageBox.Show("Failed communicating with server", "Server Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
