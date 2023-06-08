@@ -44,9 +44,10 @@ unsigned char* JsonResponsePacketSerializer::serializeResponse(GetRoomsResponse 
 	std::string rooms = "";
 	for (int i = 0; i < getRoom.rooms.size(); i++)
 	{
-		rooms += " id: " + std::to_string(getRoom.rooms[i].id) + ", isActive: " + std::to_string(getRoom.rooms[i].isActive) + ", maxPlayers: " + std::to_string(getRoom.rooms[i].maxPlayers) + ", name: " + getRoom.rooms[i].name + ", numQuestions: " + std::to_string(getRoom.rooms[i].numOfQuestionsInGame) + ", timePerQuestion: " + std::to_string(getRoom.rooms[i].timePerQuestion);
+		rooms += " id: " + std::to_string(getRoom.rooms[i].id) + ", isActive: " + std::to_string(getRoom.rooms[i].isActive) + ", maxPlayers: " + std::to_string(getRoom.rooms[i].maxPlayers) + ", name: " + getRoom.rooms[i].name + ", numQuestions: " + std::to_string(getRoom.rooms[i].numOfQuestionsInGame) + ", timePerQuestion: " + std::to_string(getRoom.rooms[i].timePerQuestion) + "/";
 	}
-	json jsonMSG = { {"Rooms", rooms} };
+	std::cout << rooms << std::endl;
+	json jsonMSG = { { "Rooms", rooms } };
 	std::string s = std::to_string(Get_Rooms);
 	return help(jsonMSG, s);
 }
@@ -127,7 +128,5 @@ unsigned char* JsonResponsePacketSerializer::help(json jsonMSG , std::string mod
 	unsigned char* buffer = new unsigned char[(mode.length() + 1)];
 	std::copy(mode.begin(), mode.end(), buffer);
 	buffer[mode.length()] = 0;
-	std::cout << std::endl << buffer << std::endl;
-	std::cout << buffer << std::endl;
 	return buffer;
 }

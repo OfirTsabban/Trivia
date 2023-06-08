@@ -117,7 +117,276 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="triviaLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="triviaLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Showcard Gothic, 48pt</value>
+  </data>
+  <data name="triviaLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>329, 57</value>
+  </data>
+  <data name="triviaLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>310, 98</value>
+  </data>
+  <data name="triviaLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="triviaLabel.Text" xml:space="preserve">
+    <value>TRIVIA</value>
+  </data>
+  <data name="&gt;&gt;triviaLabel.Name" xml:space="preserve">
+    <value>triviaLabel</value>
+  </data>
+  <data name="&gt;&gt;triviaLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;triviaLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;triviaLabel.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="userLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="userLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Showcard Gothic, 13.8pt</value>
+  </data>
+  <data name="userLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>302, 207</value>
+  </data>
+  <data name="userLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>135, 29</value>
+  </data>
+  <data name="userLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="userLabel.Text" xml:space="preserve">
+    <value>USER NAME</value>
+  </data>
+  <data name="&gt;&gt;userLabel.Name" xml:space="preserve">
+    <value>userLabel</value>
+  </data>
+  <data name="&gt;&gt;userLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;userLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;userLabel.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="passLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="passLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Showcard Gothic, 13.8pt</value>
+  </data>
+  <data name="passLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>302, 264</value>
+  </data>
+  <data name="passLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>140, 29</value>
+  </data>
+  <data name="passLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="passLabel.Text" xml:space="preserve">
+    <value>PASSWORD</value>
+  </data>
+  <data name="&gt;&gt;passLabel.Name" xml:space="preserve">
+    <value>passLabel</value>
+  </data>
+  <data name="&gt;&gt;passLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;passLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;passLabel.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="userName.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Showcard Gothic, 7.8pt</value>
+  </data>
+  <data name="userName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>459, 214</value>
+  </data>
+  <data name="userName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>171, 24</value>
+  </data>
+  <data name="userName.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="userName.Text" xml:space="preserve">
+    <value>ENTER USERNAME...
+</value>
+  </data>
+  <data name="&gt;&gt;userName.Name" xml:space="preserve">
+    <value>userName</value>
+  </data>
+  <data name="&gt;&gt;userName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;userName.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;userName.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="password.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Showcard Gothic, 7.8pt</value>
+  </data>
+  <data name="password.Location" type="System.Drawing.Point, System.Drawing">
+    <value>459, 270</value>
+  </data>
+  <data name="password.Size" type="System.Drawing.Size, System.Drawing">
+    <value>171, 24</value>
+  </data>
+  <data name="password.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="password.Text" xml:space="preserve">
+    <value>......</value>
+  </data>
+  <data name="&gt;&gt;password.Name" xml:space="preserve">
+    <value>password</value>
+  </data>
+  <data name="&gt;&gt;password.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;password.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;password.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="buttonStart.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Showcard Gothic, 13.8pt</value>
+  </data>
+  <data name="buttonStart.Location" type="System.Drawing.Point, System.Drawing">
+    <value>364, 343</value>
+  </data>
+  <data name="buttonStart.Size" type="System.Drawing.Size, System.Drawing">
+    <value>111, 54</value>
+  </data>
+  <data name="buttonStart.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="buttonStart.Text" xml:space="preserve">
+    <value>START</value>
+  </data>
+  <data name="&gt;&gt;buttonStart.Name" xml:space="preserve">
+    <value>buttonStart</value>
+  </data>
+  <data name="&gt;&gt;buttonStart.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonStart.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;buttonStart.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="toSignupLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="toSignupLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Showcard Gothic, 9pt</value>
+  </data>
+  <data name="toSignupLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>304, 435</value>
+  </data>
+  <data name="toSignupLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>306, 18</value>
+  </data>
+  <data name="toSignupLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="toSignupLabel.Text" xml:space="preserve">
+    <value>dont have an account? press here to</value>
+  </data>
+  <data name="&gt;&gt;toSignupLabel.Name" xml:space="preserve">
+    <value>toSignupLabel</value>
+  </data>
+  <data name="&gt;&gt;toSignupLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toSignupLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;toSignupLabel.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="buttonClose.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Showcard Gothic, 13.8pt</value>
+  </data>
+  <data name="buttonClose.Location" type="System.Drawing.Point, System.Drawing">
+    <value>520, 343</value>
+  </data>
+  <data name="buttonClose.Size" type="System.Drawing.Size, System.Drawing">
+    <value>110, 54</value>
+  </data>
+  <data name="buttonClose.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="buttonClose.Text" xml:space="preserve">
+    <value>CLOSE</value>
+  </data>
+  <data name="&gt;&gt;buttonClose.Name" xml:space="preserve">
+    <value>buttonClose</value>
+  </data>
+  <data name="&gt;&gt;buttonClose.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonClose.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;buttonClose.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="linkLabelSignup.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="linkLabelSignup.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Showcard Gothic, 7.8pt</value>
+  </data>
+  <data name="linkLabelSignup.Location" type="System.Drawing.Point, System.Drawing">
+    <value>606, 435</value>
+  </data>
+  <data name="linkLabelSignup.Size" type="System.Drawing.Size, System.Drawing">
+    <value>62, 17</value>
+  </data>
+  <data name="linkLabelSignup.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="linkLabelSignup.Text" xml:space="preserve">
+    <value>sign-up</value>
+  </data>
+  <data name="&gt;&gt;linkLabelSignup.Name" xml:space="preserve">
+    <value>linkLabelSignup</value>
+  </data>
+  <data name="&gt;&gt;linkLabelSignup.Type" xml:space="preserve">
+    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;linkLabelSignup.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;linkLabelSignup.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>1000, 534</value>
+  </data>
+  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Showcard Gothic, 7.8pt</value>
+  </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAYAAAAAAAEAIAAkMgAAZgAAAICAAAABACAAKAgBAIoyAABAQAAAAQAgAChCAACyOgEAMDAAAAEA
@@ -1997,5 +2266,14 @@
         /9s9Gv+ZPRv/MgAAAAAAAAAAAAAAAAAAAADwDwAAwAMAAIABAACAAQAAAAAAAAAAAAAAAAAAAAAAAAAA
         AAAAAAAAAAAAAAAAAACAAQAAgAEAAMADAADwDwAA
 </value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Trivia-login</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>GUI</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

@@ -38,22 +38,25 @@
             // 
             // listViewRooms
             // 
+            this.listViewRooms.Alignment = System.Windows.Forms.ListViewAlignment.Left;
             this.listViewRooms.BackColor = System.Drawing.Color.FloralWhite;
-            this.listViewRooms.Font = new System.Drawing.Font("Showcard Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listViewRooms.Font = new System.Drawing.Font("Showcard Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listViewRooms.ForeColor = System.Drawing.Color.DarkRed;
             this.listViewRooms.HideSelection = false;
-            this.listViewRooms.Location = new System.Drawing.Point(67, 139);
+            this.listViewRooms.Location = new System.Drawing.Point(68, 187);
             this.listViewRooms.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listViewRooms.Name = "listViewRooms";
-            this.listViewRooms.Size = new System.Drawing.Size(631, 182);
+            this.listViewRooms.Size = new System.Drawing.Size(1193, 337);
             this.listViewRooms.TabIndex = 0;
             this.listViewRooms.UseCompatibleStateImageBehavior = false;
+            this.listViewRooms.View = System.Windows.Forms.View.List;
+            this.listViewRooms.SelectedIndexChanged += new System.EventHandler(this.listViewRooms_SelectedIndexChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Showcard Gothic", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(161, 30);
+            this.label1.Location = new System.Drawing.Point(431, 44);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(464, 98);
             this.label1.TabIndex = 1;
@@ -61,12 +64,13 @@
             // 
             // buttonRoomInfo
             // 
+            this.buttonRoomInfo.AutoSize = true;
             this.buttonRoomInfo.BackColor = System.Drawing.Color.FloralWhite;
             this.buttonRoomInfo.Font = new System.Drawing.Font("Showcard Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonRoomInfo.Location = new System.Drawing.Point(106, 354);
+            this.buttonRoomInfo.Location = new System.Drawing.Point(221, 579);
             this.buttonRoomInfo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonRoomInfo.Name = "buttonRoomInfo";
-            this.buttonRoomInfo.Size = new System.Drawing.Size(159, 64);
+            this.buttonRoomInfo.Size = new System.Drawing.Size(210, 100);
             this.buttonRoomInfo.TabIndex = 2;
             this.buttonRoomInfo.Text = "ROOM INFO";
             this.buttonRoomInfo.UseVisualStyleBackColor = false;
@@ -74,12 +78,13 @@
             // 
             // buttonNext
             // 
+            this.buttonNext.AutoSize = true;
             this.buttonNext.BackColor = System.Drawing.Color.FloralWhite;
             this.buttonNext.Font = new System.Drawing.Font("Showcard Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonNext.Location = new System.Drawing.Point(518, 353);
+            this.buttonNext.Location = new System.Drawing.Point(821, 579);
             this.buttonNext.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonNext.Name = "buttonNext";
-            this.buttonNext.Size = new System.Drawing.Size(159, 64);
+            this.buttonNext.Size = new System.Drawing.Size(196, 100);
             this.buttonNext.TabIndex = 3;
             this.buttonNext.Text = "NEXT";
             this.buttonNext.UseVisualStyleBackColor = false;
@@ -87,11 +92,12 @@
             // 
             // buttonRefresh
             // 
+            this.buttonRefresh.AutoSize = true;
             this.buttonRefresh.BackColor = System.Drawing.Color.FloralWhite;
             this.buttonRefresh.Font = new System.Drawing.Font("Showcard Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonRefresh.Location = new System.Drawing.Point(315, 353);
+            this.buttonRefresh.Location = new System.Drawing.Point(529, 579);
             this.buttonRefresh.Name = "buttonRefresh";
-            this.buttonRefresh.Size = new System.Drawing.Size(144, 64);
+            this.buttonRefresh.Size = new System.Drawing.Size(190, 100);
             this.buttonRefresh.TabIndex = 4;
             this.buttonRefresh.Text = "REFRESH";
             this.buttonRefresh.UseVisualStyleBackColor = false;
@@ -101,8 +107,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.BackColor = System.Drawing.Color.LemonChiffon;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1322, 713);
             this.Controls.Add(this.buttonRefresh);
             this.Controls.Add(this.buttonNext);
             this.Controls.Add(this.buttonRoomInfo);
@@ -112,6 +119,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "JoinRoom";
+            this.RightToLeftLayout = true;
             this.Text = "Trivia-join room";
             this.Load += new System.EventHandler(this.JoinRoom_Load);
             this.ResumeLayout(false);
@@ -120,11 +128,10 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.ListView listViewRooms;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonRoomInfo;
         private System.Windows.Forms.Button buttonNext;
         private System.Windows.Forms.Button buttonRefresh;
+        private System.Windows.Forms.ListView listViewRooms;
     }
 }
