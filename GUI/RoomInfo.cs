@@ -31,9 +31,10 @@ namespace GUI
 
         private void RoomInfo_Load(object sender, EventArgs e)
         {
-            if (Connector.sendMSG("getPlayers", (int)Connector.Requests.Get_Players)) // needs to get an id to know what players...
+            string json = Protocol.getPlayersProtocol(this.roomId);
+            if (Connector.sendMSG(json, (int)Connector.Requests.Get_Players))
             {
-
+                string response = Connector.recvMSG();//every player is seperated with ","
             }
             else
             {
