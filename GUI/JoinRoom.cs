@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace GUI
 {
@@ -17,7 +18,49 @@ namespace GUI
         }
 
         private void buttonNext_Click(object sender, EventArgs e)
-        {
+        {         
+            bool error = false;
+            string roomId = this.textBoxRoomId.Text;
+            if(roomId == "")
+            {
+                MessageBox.Show("you have to claim room id", "room id", MessageBoxButtons.OK, MessageBoxIcon.Warning);                
+            }
+            else
+            {
+                for (int i = 0; i < roomId.Length; i++)
+                {
+                    if (!char.IsDigit(roomId, i))
+                    {
+                        MessageBox.Show("room id can only contain numbers","room id", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        error = true;
+                    }
+                }                
+                if(!error)
+                {                    
+                    int id = int.Parse(roomId);
+                    string json = Protocol.joinRoomProtocol(id);
+                    if (Connector.sendMSG(json, (int)Connector.Requests.Join_Room))
+                    {
+                        string joined = Connector.recvMSG();
+                        joined = joined.Substring(joined.IndexOf(':') + 1);
+                        if(joined == "1")
+                        {
+                            RoomInfo roomInfo = new RoomInfo(id);
+                            Hide();
+                            roomInfo.Show();
+                        }
+                        else if(joined == "0")
+                        {
+                            MessageBox.Show("Failed communicating with server", "Server Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        
+                    }
+                    else
+                    {
+                        MessageBox.Show("Failed communicating with server", "Server Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }                
+            }
             
         }
 

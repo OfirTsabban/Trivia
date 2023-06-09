@@ -48,6 +48,7 @@
             this.listViewPlayers.Size = new System.Drawing.Size(658, 189);
             this.listViewPlayers.TabIndex = 0;
             this.listViewPlayers.UseCompatibleStateImageBehavior = false;
+            this.listViewPlayers.View = System.Windows.Forms.View.List;
             this.listViewPlayers.SelectedIndexChanged += new System.EventHandler(this.listViewPlayers_SelectedIndexChanged);
             // 
             // label1
@@ -120,6 +121,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.listViewPlayers);
+            this.ForeColor = System.Drawing.Color.DarkRed;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "RoomInfo";
             this.Text = "Trivia-room info";

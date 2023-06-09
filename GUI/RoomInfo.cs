@@ -34,7 +34,24 @@ namespace GUI
             string json = Protocol.getPlayersProtocol(this.roomId);
             if (Connector.sendMSG(json, (int)Connector.Requests.Get_Players))
             {
-                string response = Connector.recvMSG();//every player is seperated with ","
+                string players = Connector.recvMSG();
+                players = players.Substring(players.IndexOf(':') + 2); 
+                string admin = players.Substring(0, players.IndexOf(','));
+                players = players.Substring(players.IndexOf(',') + 1);
+                string player = "";
+                this.LabelAdminName.Text = admin;
+                for (int i = 0; i < players.Length; i++)
+                {
+                    if (players[i] == ',')
+                    {
+                        this.listViewPlayers.Items.Add(player);
+                        player = "";
+                    }
+                    else
+                    {
+                        player += players[i];
+                    }
+                }
             }
             else
             {
