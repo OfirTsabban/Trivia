@@ -65,6 +65,13 @@ unsigned char* JsonResponsePacketSerializer::serializeResponse(GetPlayersInRoomR
 	return help(jsonMSG, s);
 }
 
+unsigned char* JsonResponsePacketSerializer::serializeResponse(JoinRoomResponse joinRoom)
+{
+	json jsonMSG = { { "status", joinRoom.status } };
+	std::string s = std::to_string(Join_Room);
+	return help(jsonMSG, s);
+}
+
 unsigned char* JsonResponsePacketSerializer::serializeResponse(CreateRoomResponse createRoom)
 {
 	json jsonMSG = { {"status" , createRoom.status} };
@@ -94,10 +101,43 @@ unsigned char* JsonResponsePacketSerializer::serializeResponse(GetPersonalStatsR
 	std::string statistics = "";
 	for (int i = 0; i < personalStatus.statistics.size(); i++)
 	{		
-		statistics += personalStatus.statistics[i];
+		statistics += personalStatus.statistics[i] + ",";
 	}
 	json jsonMSG = { {"personal statistics", statistics} };
 	std::string s = std::to_string(Get_Personal_Stats);
+	return help(jsonMSG, s);
+}
+
+unsigned char* JsonResponsePacketSerializer::serializeResponse(CloseRoomResponse closeRoom)
+{
+	json jsonMSG = { {"status" , closeRoom.status} };
+	std::string s = std::to_string(Close_Room); 
+	return help(jsonMSG, s);
+}
+
+unsigned char* JsonResponsePacketSerializer::serializeResponse(StartGameResponse startGame)
+{
+	json jsonMSG = { {"status" , startGame.status} };
+	std::string s = std::to_string(Start_Game);
+	return help(jsonMSG, s);
+}
+
+unsigned char* JsonResponsePacketSerializer::serializeResponse(GetRoomStateResponse roomState)
+{
+	std::string rState = "status: " + std::to_string(roomState.status) + ", has game begun: " + std::to_string(roomState.hasGameBegun) + ", question count: " + std::to_string(roomState.questionCount) + ", answer time out: " + std::to_string(roomState.answerTimeOut) + ", players: ";
+	for (int i = 0; i < roomState.players.size(); i++)
+	{
+		rState += roomState.players[i] + ", ";
+	}
+	std::string s = std::to_string(Room_State);
+	json jsonMSG = { {"roomState", rState} };
+	return help(jsonMSG, s);
+}
+
+unsigned char* JsonResponsePacketSerializer::serializeResponse(LeaveRoomResponse leaveRoom)
+{
+	json jsonMSG = { {"LeaveRoom", leaveRoom.status} };
+	std::string s = std::to_string(Leave_Room);
 	return help(jsonMSG, s);
 }
 
