@@ -18,9 +18,7 @@ namespace GUI
 
         private void buttonNext_Click(object sender, EventArgs e)
         {
-            RoomInfo roomInfo = new RoomInfo();
-            Hide();
-            roomInfo.Show();
+            
         }
 
         private void JoinRoom_Load(object sender, EventArgs e)
@@ -57,13 +55,22 @@ namespace GUI
 
         private void listViewRooms_SelectedIndexChanged(object sender, EventArgs e)
         {
-            listViewRooms.ColumnClick += ListViewRooms_ColumnClick;
+            this.listViewRooms.ColumnClick += ColumnClick;
+            ColumnClickEventArgs args = new ColumnClickEventArgs(0);
+            ColumnClick(this, args);
         }
 
-        private void ListViewRooms_ColumnClick(object sender, ColumnClickEventArgs e)
+        private void ColumnClick(object sender, ColumnClickEventArgs e)
         {
-            string column = e.ToString();
-            //dont get admin nor players yet...
+            this.SuspendLayout();
+            int index = e.Column;            
+            string column = this.listViewRooms.Items[index].ToString();                        
+            column = column.Substring(column.IndexOf("id: ") + 4);
+            column = column.Substring(0, column.IndexOf(','));             
+            int id = int.Parse(column);            
+            RoomInfo roomInfo = new RoomInfo(id);
+            Hide();
+            roomInfo.Show(); 
         }
 
         private void buttonBack_Click(object sender, EventArgs e)

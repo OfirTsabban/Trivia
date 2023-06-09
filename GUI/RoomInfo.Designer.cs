@@ -100,7 +100,7 @@
             this.buttonStart.BackColor = System.Drawing.Color.FloralWhite;
             this.buttonStart.Font = new System.Drawing.Font("Showcard Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonStart.ForeColor = System.Drawing.Color.DarkRed;
-            this.buttonStart.Location = new System.Drawing.Point(353, 492);
+            this.buttonStart.Location = new System.Drawing.Point(364, 496);
             this.buttonStart.Name = "buttonStart";
             this.buttonStart.Size = new System.Drawing.Size(206, 62);
             this.buttonStart.TabIndex = 5;

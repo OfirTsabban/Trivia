@@ -12,8 +12,10 @@ namespace GUI
 {
     public partial class RoomInfo : Form
     {
-        public RoomInfo()
+        private int roomId;
+        public RoomInfo(int id)
         {
+            this.roomId = id;
             InitializeComponent();
         }
 
@@ -24,12 +26,19 @@ namespace GUI
 
         private void listViewPlayers_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+           
         }
 
         private void RoomInfo_Load(object sender, EventArgs e)
         {
+            if (Connector.sendMSG("getPlayers", (int)Connector.Requests.Get_Players)) // needs to get an id to know what players...
+            {
 
+            }
+            else
+            {
+                MessageBox.Show("Failed communicating with server", "Server Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void buttonStart_Click(object sender, EventArgs e)
@@ -39,7 +48,7 @@ namespace GUI
 
         private void buttonRefresh_Click(object sender, EventArgs e)
         {
-            
+            //ignore
         }
     }
 }

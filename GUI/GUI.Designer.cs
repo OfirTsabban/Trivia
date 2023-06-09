@@ -111,8 +111,8 @@
             // 
             // GUI
             // 
-            resources.ApplyResources(this, "$this");
             this.BackColor = System.Drawing.Color.LemonChiffon;
+            resources.ApplyResources(this, "$this");
             this.Controls.Add(this.linkLabelSignup);
             this.Controls.Add(this.buttonClose);
             this.Controls.Add(this.toSignupLabel);
