@@ -74,7 +74,12 @@ public:
 	static unsigned char* serializeResponse(LogoutResponse logRep);
 	static unsigned char* serializeResponse(GetRoomsResponse getRoom);
 	static unsigned char* serializeResponse(GetPlayersInRoomResponse getPlayers);
-	static unsigned char* serializeResponse(JoinRoomResponse joinRoom);
+	static unsigned char* serializeResponse(JoinRoomResponse joinRoom)
+	{
+		json jsonMSG = { { "status", joinRoom.status } };
+		std::string s = std::to_string(Join_Room);
+		return help(jsonMSG, s);
+	}
 	static unsigned char* serializeResponse(CreateRoomResponse createRoom);
 	static unsigned char* serializeResponse(GetHighScoreResponse highScore);
 	static unsigned char* serializeResponse(GetPersonalStatsResponse personalStatus);

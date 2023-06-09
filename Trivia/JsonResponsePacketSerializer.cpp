@@ -65,13 +65,6 @@ unsigned char* JsonResponsePacketSerializer::serializeResponse(GetPlayersInRoomR
 	return help(jsonMSG, s);
 }
 
-unsigned char* JsonResponsePacketSerializer::serializeResponse(JoinRoomResponse joinRoom)
-{
-	json jsonMSG = { {"status", joinRoom.status} };
-	std::string s = std::to_string(Join_Room);
-	return help(jsonMSG, s);
-}
-
 unsigned char* JsonResponsePacketSerializer::serializeResponse(CreateRoomResponse createRoom)
 {
 	json jsonMSG = { {"status" , createRoom.status} };

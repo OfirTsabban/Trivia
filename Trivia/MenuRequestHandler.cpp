@@ -121,8 +121,7 @@ RequestResult MenuRequestHandler::joinRoom(const RequestInfo reqInfo)
 {
 	JoinRoomRequest joinReq = JsonRequestPacketDeserializer::deserializeJoinRoomRequest((char*)reqInfo.buffer);
 	Room currRoom = m_roomManager.getRoom(joinReq.roomId);
-	currRoom.addUser(m_user);
-
+	currRoom.addUser(m_user);	
 	JoinRoomResponse joinRoomResp = { 1 };
 	unsigned char* response = JsonResponsePacketSerializer::serializeResponse(joinRoomResp);
 

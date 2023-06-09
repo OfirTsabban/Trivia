@@ -42,8 +42,8 @@ namespace GUI
                     if (Connector.sendMSG(json, (int)Connector.Requests.Join_Room))
                     {
                         string joined = Connector.recvMSG();
-                        joined = joined.Substring(joined.IndexOf(':') + 1);
-                        if(joined == "1")
+                        joined = joined.Substring(joined.IndexOf(':') + 1, 1);
+                        if (joined == "1") 
                         {
                             RoomInfo roomInfo = new RoomInfo(id);
                             Hide();
