@@ -31,3 +31,14 @@ RoomManager& RequestHandlerFactory::getRoomManager()
 {
 	return this->m_roomManager;
 }
+
+RoomAdminRequestHandler* RequestHandlerFactory::craeteRoomAdminRequestHandler(LoggedUser user, Room room)
+{
+	RoomAdminRequestHandler* roomAdmin = new RoomAdminRequestHandler(room, user, *this);   
+	return roomAdmin;
+}
+
+RoomMemberRequestHandler* RequestHandlerFactory::craeteRoomMemnberRequestHandler(LoggedUser user, Room room)
+{
+	RoomMemberRequestHandler* roomMember = new RoomMemberRequestHandler(room, user, *this);
+}

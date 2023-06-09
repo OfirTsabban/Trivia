@@ -4,12 +4,16 @@
 #include "RoomManager.h"
 #include "StatisticsManager.h"
 #include "MenuRequestHandler.h"
-
+#include "RoomAdminRequestHandler.h"
+#include "RoomMemberRequestHandler.h"
 
 enum loginDef { succeeded = true, failed = false }; 
 
+class RoomMemberRequestHandler;
+class RoomAdminRequestHandler;
 class MenuRequestHandler;
 class LoginRequestHandler;
+
 
 class RequestHandlerFactory
 {
@@ -21,6 +25,8 @@ public:
 	MenuRequestHandler* createMenuRequestHandler(LoggedUser user);
 	StatisticsManager& getStatisticsManager();
 	RoomManager& getRoomManager();
+	RoomAdminRequestHandler* craeteRoomAdminRequestHandler(LoggedUser, Room);
+	RoomMemberRequestHandler* craeteRoomMemnberRequestHandler(LoggedUser, Room);
 private: 
 	IDatabase* m_database;
 	LoginManager m_loginManager;
