@@ -20,5 +20,6 @@ private:
 	RequestHandlerFactory& m_handleFactory;
 	RequestResult leaveRoom(RequestInfo);
 	RequestResult getRoomState(RequestInfo);
+	RequestResult startGame(RequestInfo);
 };
 

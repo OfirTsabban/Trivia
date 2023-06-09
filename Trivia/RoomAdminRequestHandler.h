@@ -4,7 +4,7 @@
 #include "LoggedUser.h"
 #include "RoomManager.h"
 #include "RequestHandlerFactory.h"
-#include "RoomMemberRequestHandler.h"
+
 class RequestHandlerFactory;
 
 class RoomAdminRequestHandler : public IRequestHandler

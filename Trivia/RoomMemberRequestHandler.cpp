@@ -6,7 +6,7 @@ RoomMemberRequestHandler::RoomMemberRequestHandler(Room room, LoggedUser user, R
 
 bool RoomMemberRequestHandler::isRequestRelevent(RequestInfo reqInfo)
 {
-	return reqInfo.id == Leave_Room || reqInfo.id == Room_State;
+	return reqInfo.id == Leave_Room || reqInfo.id == Room_State || reqInfo.id == Start_Game;
 }
 
 RequestResult RoomMemberRequestHandler::handleRequest(RequestInfo reqInfo) 
@@ -17,5 +17,34 @@ RequestResult RoomMemberRequestHandler::handleRequest(RequestInfo reqInfo)
 		return leaveRoom(reqInfo);		
 	case Room_State:
 		return getRoomState(reqInfo);
+	case Start_Game:
+		return startGame(reqInfo);
 	}
+}
+
+RequestResult RoomMemberRequestHandler::leaveRoom(RequestInfo reqInfo)
+{
+	this->m_room.removeUser(this->m_user);
+	LeaveRoomResponse leaveRoom = { 1 };
+	unsigned char* response = JsonResponsePacketSerializer::serializeResponse(leaveRoom); 
+
+	IRequestHandler* handler = this->m_handleFactory.createRoomMemberRequestHandler(this->m_user, this->m_room);
+	RequestResult reqResult = { response, handler };
+	return reqResult;
+
+}
+
+RequestResult RoomMemberRequestHandler::getRoomState(RequestInfo reqInfo)
+{	
+	return this->m_handleFactory.createRoomAdminRequestHandler(this->m_user, this->m_room)->handleRequest(reqInfo);
+}
+
+RequestResult RoomMemberRequestHandler::startGame(RequestInfo reqInfo)
+{
+	StartGameResponse startGame = { 1 };
+	unsigned char* response = JsonResponsePacketSerializer::serializeResponse(startGame);
+
+	IRequestHandler* handler = this->m_handleFactory.createRoomMemberRequestHandler(this->m_user, this->m_room);
+	RequestResult reqResult = { response, handler };
+	return reqResult;
 }

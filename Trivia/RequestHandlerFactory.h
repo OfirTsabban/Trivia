@@ -25,8 +25,8 @@ public:
 	MenuRequestHandler* createMenuRequestHandler(LoggedUser user);
 	StatisticsManager& getStatisticsManager();
 	RoomManager& getRoomManager();
-	RoomAdminRequestHandler* craeteRoomAdminRequestHandler(LoggedUser, Room);
-	RoomMemberRequestHandler* craeteRoomMemnberRequestHandler(LoggedUser, Room);
+	RoomAdminRequestHandler* createRoomAdminRequestHandler(LoggedUser, Room);
+	RoomMemberRequestHandler* createRoomMemberRequestHandler(LoggedUser, Room);
 private: 
 	IDatabase* m_database;
 	LoginManager m_loginManager;

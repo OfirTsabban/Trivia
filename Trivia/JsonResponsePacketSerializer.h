@@ -65,7 +65,7 @@ struct GetRoomStateResponse
 	bool hasGameBegun;
 	vector<std::string> players;
 	unsigned int questionCount;
-	bool answerTimeOut;
+	unsigned int answerTimeOut;
 };
 struct LeaveRoomResponse
 {
