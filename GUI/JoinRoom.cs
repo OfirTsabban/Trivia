@@ -178,6 +178,7 @@ namespace GUI
                 {
                     MessageBox.Show("Failed communicating with server", "Server Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+                Thread.Sleep(3000);
             }
         }
     }
