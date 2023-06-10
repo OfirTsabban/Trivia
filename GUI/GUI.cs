@@ -58,7 +58,7 @@ namespace GUI
                 {
                     if(Connector.statusFromServer())
                     {
-                        Form1 mainMenu = new Form1();
+                        Form1 mainMenu = new Form1(this.userName.Text);
                         Hide();
                         mainMenu.Show();
                     }

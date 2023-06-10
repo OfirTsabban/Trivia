@@ -14,9 +14,11 @@ namespace GUI
 {
     public partial class CreateRoom : Form
     {
-        public CreateRoom()
+        private string user;
+        public CreateRoom(string user)
         {
             InitializeComponent();
+            this.user = user;
         }
 
         private void CreateRoom_Load(object sender, EventArgs e)
@@ -67,7 +69,7 @@ namespace GUI
                 {
                     if(Connector.statusFromServer())
                     {
-                        Form1 mainMenu = new Form1();//need to change in 3.0.0
+                        Form1 mainMenu = new Form1(this.user);//need to change in 3.0.0
                         Hide();
                         mainMenu.Show();
                     }
@@ -170,7 +172,7 @@ namespace GUI
 
         private void buttonBack_Click(object sender, EventArgs e)
         {
-            Form1 mainMenu = new Form1();
+            Form1 mainMenu = new Form1(this.user);
             Hide();
             mainMenu.Show(); 
         }

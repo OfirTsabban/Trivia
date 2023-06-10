@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -13,9 +14,12 @@ namespace GUI
     public partial class RoomInfo : Form
     {
         private int roomId;
-        public RoomInfo(int id)
+        private string user;
+        private bool hasGameBegun = false;
+        public RoomInfo(int id, string userName)
         {
-            this.roomId = id;
+            this.user = userName;
+            this.roomId = id;           
             InitializeComponent();
         }
 
@@ -44,7 +48,7 @@ namespace GUI
                 {
                     if (players[i] == ',')
                     {
-                        this.listViewPlayers.Items.Add(player);
+                        this.listViewPlayers.Items.Add(player);                        
                         player = "";
                     }
                     else
@@ -61,12 +65,69 @@ namespace GUI
 
         private void buttonStart_Click(object sender, EventArgs e)
         {
-
+            if(this.user == this.LabelAdminName.Text)
+            {
+                if (Connector.sendMSG("Start Game", (int)Connector.Requests.Admin_Start_Game))
+                {
+                    this.hasGameBegun = true;
+                }
+                else
+                {
+                    MessageBox.Show("Failed communicating with server", "Server Error", MessageBoxButtons.OK, MessageBoxIcon.Error);                
+                }
+            }
+            else
+            {
+                MessageBox.Show("Only host may start a game", "Warning", MessageBoxButtons.OKCancel);
+            }
         }
 
         private void buttonRefresh_Click(object sender, EventArgs e)
         {
             //ignore
+        }
+
+        private void buttonLeave_Click(object sender, EventArgs e)
+        {
+            if(this.user == this.LabelAdminName.Text)
+            {
+                if(Connector.sendMSG("CloseRoom", (int)Connector.Requests.Close_Room))
+                {
+                    string msg = Connector.recvMSG();
+                    //need to do more;
+                }
+                else
+                {
+                    MessageBox.Show("Failed communicating with server", "Server Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                if (Connector.sendMSG("LeaveRoom", (int)Connector.Requests.Leave_Room))
+                {
+                    string msg = Connector.recvMSG();
+                    //need to do more;
+                }
+                else
+                {
+                    MessageBox.Show("Failed communicating with server", "Server Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void buttonRoomState_Click(object sender, EventArgs e)
+        {            
+            if (Connector.sendMSG("GetRoomState", (int)Connector.Requests.Room_State))
+            {
+                string msg = Connector.recvMSG();
+                msg = msg.Substring(msg.IndexOf(":") + 1);
+                msg = msg.Substring(0, msg.IndexOf("}"));                
+                MessageBox.Show(msg, "Room State", MessageBoxButtons.OK);                
+            }
+            else
+            {
+                MessageBox.Show("Failed communicating with server", "Server Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

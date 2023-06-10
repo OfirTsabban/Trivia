@@ -12,8 +12,10 @@ namespace GUI
 {
     public partial class Statistics : Form
     {
-        public Statistics()
+        private string user;
+        public Statistics(string user)
         {
+            this.user = user;
             InitializeComponent();
         }
 
@@ -23,6 +25,11 @@ namespace GUI
         }
 
         private void buttonPersonalStatistics_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Statistics_Load(object sender, EventArgs e)
         {
 
         }

@@ -3,14 +3,17 @@ using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using System.Threading;
+using System.Runtime.CompilerServices;
 
 namespace GUI
 {
     public partial class JoinRoom : Form
     {
-        public JoinRoom()
+        private string user;
+        public JoinRoom(string user)
         {
             InitializeComponent();
+            this.user = user;
         }
 
         private void buttonRoomInfo_Click(object sender, EventArgs e)
@@ -46,7 +49,7 @@ namespace GUI
                         joined = joined.Substring(joined.IndexOf(':') + 1, 1);
                         if (joined == "1") 
                         {
-                            RoomInfo roomInfo = new RoomInfo(id);
+                            RoomInfo roomInfo = new RoomInfo(id, this.user);
                             Hide();
                             roomInfo.Show();
                         }
@@ -119,14 +122,14 @@ namespace GUI
             column = column.Substring(column.IndexOf("id: ") + 4);
             column = column.Substring(0, column.IndexOf(','));             
             int id = int.Parse(column);            
-            RoomInfo roomInfo = new RoomInfo(id);
+            RoomInfo roomInfo = new RoomInfo(id, this.user);
             Hide();
             roomInfo.Show(); 
         }
 
         private void buttonBack_Click(object sender, EventArgs e)
         {
-            Form1 mainMenu = new Form1();
+            Form1 mainMenu = new Form1(this.user);
             Hide();
             mainMenu.Show();
         }

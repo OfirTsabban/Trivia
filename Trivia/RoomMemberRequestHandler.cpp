@@ -6,7 +6,7 @@ RoomMemberRequestHandler::RoomMemberRequestHandler(Room room, LoggedUser user, R
 
 bool RoomMemberRequestHandler::isRequestRelevent(RequestInfo reqInfo)
 {
-	return reqInfo.id == Leave_Room || reqInfo.id == Room_State || reqInfo.id == Start_Game;
+	return reqInfo.id == Leave_Room || reqInfo.id == Room_State || reqInfo.id == Member_Start_Game;
 }
 
 RequestResult RoomMemberRequestHandler::handleRequest(RequestInfo reqInfo) 
@@ -17,7 +17,7 @@ RequestResult RoomMemberRequestHandler::handleRequest(RequestInfo reqInfo)
 		return leaveRoom(reqInfo);		
 	case Room_State:
 		return getRoomState(reqInfo);
-	case Start_Game:
+	case Member_Start_Game:
 		return startGame(reqInfo);
 	}
 }

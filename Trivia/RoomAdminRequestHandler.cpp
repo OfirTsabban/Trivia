@@ -7,7 +7,7 @@ RoomAdminRequestHandler::RoomAdminRequestHandler(Room room, LoggedUser user, Req
 
 bool RoomAdminRequestHandler::isRequestRelevent(RequestInfo reqInfo)
 {
-	return reqInfo.id == Close_Room || reqInfo.id == Start_Game || reqInfo.id == Room_State;
+	return reqInfo.id == Close_Room || reqInfo.id == Admin_Start_Game || reqInfo.id == Room_State;
 }
 
 RequestResult RoomAdminRequestHandler::handleRequest(RequestInfo reqInfo)
@@ -16,7 +16,7 @@ RequestResult RoomAdminRequestHandler::handleRequest(RequestInfo reqInfo)
 	{
 	case Close_Room:
 		return closeRoom(reqInfo);
-	case Start_Game:
+	case Admin_Start_Game:
 		return startGame(reqInfo);
 	case Room_State:
 		return getRoomState(reqInfo);
@@ -47,7 +47,7 @@ RequestResult RoomAdminRequestHandler::startGame(RequestInfo reqInfo)
 	for (int i = 0; i < users.size(); i++)
 	{
 		IRequestHandler* memberReq = this->m_handleFactory.createRoomMemberRequestHandler(users[i], this->m_room);
-		RequestInfo info = { Start_Game, std::time(nullptr) , reqInfo.buffer };
+		RequestInfo info = { Member_Start_Game, std::time(nullptr) , reqInfo.buffer };
 		memberReq->handleRequest(info); 
 	}
 	StartGameResponse startGame = { 1 };
@@ -59,7 +59,7 @@ RequestResult RoomAdminRequestHandler::startGame(RequestInfo reqInfo)
 }
 
 RequestResult RoomAdminRequestHandler::getRoomState(RequestInfo reqInfo)
-{		
+{			
 	GetRoomStateResponse  roomState = { this->m_room.getData().id, this->m_room.getData().isActive, this->m_room.getAllUsers(), this->m_room.getData().numOfQuestionsInGame, this->m_room.getData().timePerQuestion};
 	unsigned char* response = JsonResponsePacketSerializer::serializeResponse(roomState);
 	
