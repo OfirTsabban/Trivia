@@ -124,7 +124,7 @@ unsigned char* JsonResponsePacketSerializer::serializeResponse(StartGameResponse
 
 unsigned char* JsonResponsePacketSerializer::serializeResponse(GetRoomStateResponse roomState)
 {
-	std::string rState = "status: " + std::to_string(roomState.status) + ", has game begun: " + std::to_string(roomState.hasGameBegun) + ", question count: " + std::to_string(roomState.questionCount) + ", answer time out: " + std::to_string(roomState.answerTimeOut) + ", players: ";
+	std::string rState = "status: " + std::to_string(roomState.status) + ", has game begun: " + std::to_string(roomState.hasGameBegun) + ", question count: " + std::to_string(roomState.questionCount) + ", answer time out: " + std::to_string(roomState.answerTimeout) + ", players: ";
 	for (int i = 0; i < roomState.players.size(); i++)
 	{
 		rState += roomState.players[i] + ", ";

@@ -63,15 +63,14 @@ struct GetRoomStateResponse
 {
 	unsigned int status;
 	bool hasGameBegun;
-	vector<std::string> players;
+	std::vector<std::string> players;
 	unsigned int questionCount;
-	unsigned int answerTimeOut;
+	unsigned int answerTimeout;
 };
 struct LeaveRoomResponse
 {
 	unsigned int status;
 };
-
 
 static enum Requests {
 	Error = 100,

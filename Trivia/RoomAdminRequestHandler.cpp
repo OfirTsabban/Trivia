@@ -36,7 +36,7 @@ RequestResult RoomAdminRequestHandler::closeRoom(RequestInfo reqInfo)
 	CloseRoomResponse closeRoom = { 1 };
 	unsigned char* response = JsonResponsePacketSerializer::serializeResponse(closeRoom);
 
-	IRequestHandler* handler = this->m_handleFactory.createRoomAdminRequestHandler(this->m_user, this->m_room);
+	IRequestHandler* handler = this->m_handleFactory.createMenuRequestHandler(this->m_user);
 	RequestResult reqResult = { response, handler };
 	return reqResult;
 }

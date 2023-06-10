@@ -2,6 +2,7 @@
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using System.Threading;
 
 namespace GUI
 {
@@ -75,20 +76,27 @@ namespace GUI
             {
                 listViewRooms.Items.Clear();
                 string rooms = Connector.recvMSG();
-                rooms = rooms.Substring(rooms.IndexOf("i"));
-                string room = "";
-                for(int i = 0; i < rooms.Length; i++)
+                if(rooms.Contains("i"))
                 {
-                    if (rooms[i] == '/')
-                    {                        
-                        listViewRooms.Items.Add(room);
-                        room = "";
-                    }
-                    else
+                    rooms = rooms.Substring(rooms.IndexOf("i"));
+                    string room = "";
+                    for (int i = 0; i < rooms.Length; i++)
                     {
-                        room += rooms[i];
+                        if (rooms[i] == '/')
+                        {
+                            listViewRooms.Items.Add(room);
+                            room = "";
+                        }
+                        else
+                        {
+                            room += rooms[i];
+                        }
                     }
-                }                
+                }
+                else
+                {
+                    MessageBox.Show("No rooms have been created yet", "Cant join", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
             else
             {
@@ -121,6 +129,11 @@ namespace GUI
             Form1 mainMenu = new Form1();
             Hide();
             mainMenu.Show();
+        }
+
+        private void textBoxRoomId_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
