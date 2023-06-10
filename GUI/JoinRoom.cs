@@ -10,10 +10,12 @@ namespace GUI
     public partial class JoinRoom : Form
     {
         private string user;
+        private bool refresh;
         public JoinRoom(string user)
         {
             InitializeComponent();
             this.user = user;
+            this.refresh = true;
         }
 
         private void buttonRoomInfo_Click(object sender, EventArgs e)
@@ -70,7 +72,9 @@ namespace GUI
 
         private void JoinRoom_Load(object sender, EventArgs e)
         {
-
+            Thread refreshJoin = new Thread(new ThreadStart(refreshRoomsAuto));
+            refreshJoin.Name = "RoomRefresher";
+            refreshJoin.Start();
         }
 
         private void buttonRefresh_Click(object sender, EventArgs e)
@@ -79,7 +83,7 @@ namespace GUI
             {
                 listViewRooms.Items.Clear();
                 string rooms = Connector.recvMSG();
-                if(rooms.Contains("i"))
+                if (rooms.Contains("i"))
                 {
                     rooms = rooms.Substring(rooms.IndexOf("i"));
                     string room = "";
@@ -137,6 +141,44 @@ namespace GUI
         private void textBoxRoomId_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void refreshRoomsAuto()
+        {
+            while (this.refresh)
+            {
+                if (Connector.sendMSG("getRooms", (int)Connector.Requests.Get_Rooms))
+                {
+                    this.Invoke((MethodInvoker)delegate
+                    {
+                        listViewRooms.Items.Clear();
+                        string rooms = Connector.recvMSG();
+                        if (rooms.Contains("i"))
+                        {
+                            rooms = rooms.Substring(rooms.IndexOf("i"));
+                            string room = "";
+                            for (int i = 0; i < rooms.Length; i++)
+                            {
+                                if (rooms[i] == '/')
+                                {
+
+                                    listViewRooms.Items.Add(room);
+                                    room = "";
+                                }
+                                else
+                                {
+                                    room += rooms[i];
+                                }
+                            }
+                        }
+                    });
+
+                }
+                else
+                {
+                    MessageBox.Show("Failed communicating with server", "Server Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
     }
 }
