@@ -74,15 +74,26 @@ void Communicator::acceptClient()
 
 void Communicator::handleNewClient(SOCKET client_socket)
 {	
-	int id = Helper::getIntPartFromSocket(client_socket, 1);
-	std::string msg = Helper::getStringPartFromSocket(client_socket, 1024);
-	time_t recivalTime = std::time(nullptr);
-	unsigned char* buffer = new unsigned char[(msg.length() + 1)];
-	std::copy(msg.begin(), msg.end(), buffer);
-	buffer[msg.length()] = 0;
-	RequestInfo reqInfo = { id,recivalTime,buffer };
-	IRequestHandler* handle = m_clients[client_socket];//handle will be the specified handler to the socket
-	RequestResult reqRes = handle->handleRequest(reqInfo);	
-	std::string s = reinterpret_cast<char*>(reqRes.response);
-	Helper::sendData(client_socket, s);
+	int id = 0;
+	do
+	{
+		id = Helper::getMessageTypeCode(client_socket);
+		if (id != 200)
+		{
+			std::string msg = Helper::getStringPartFromSocket(client_socket, 1024);
+			time_t recivalTime = std::time(nullptr);
+			unsigned char* buffer = new unsigned char[(msg.length() + 1)];
+			std::copy(msg.begin(), msg.end(), buffer);
+			buffer[msg.length()] = 0;
+			RequestInfo reqInfo = { id,recivalTime,buffer };
+			IRequestHandler* handle = m_clients[client_socket];//handle will be the specified handler to the socket
+			RequestResult reqRes = handle->handleRequest(reqInfo);
+			m_clients[client_socket] = reqRes.newHandler;
+			std::string s = reinterpret_cast<char*>(reqRes.response);
+			Helper::sendData(client_socket, s);
+		}
+	} while (id != 200);//if not exit
+	
+	std::cout << "Client left: " << client_socket << std::endl;
+	closesocket(client_socket);
 }

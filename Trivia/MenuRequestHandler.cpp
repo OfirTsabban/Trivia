@@ -66,10 +66,10 @@ RequestResult MenuRequestHandler::getRooms(const RequestInfo reqInfo)
 {
 	std::vector<RoomData> rooms = m_roomManager.getRooms();
 
-	GetRoomsResponse roomResp = { 1 };
+	GetRoomsResponse roomResp = { 1 , rooms };
 	unsigned char* response = JsonResponsePacketSerializer::serializeResponse(roomResp);
 
-	IRequestHandler* handle = nullptr;//change it when roomHandle is created
+	IRequestHandler* handle = m_handlerFactory.createMenuRequestHandler(this->m_user);//change it when roomHandle is created
 
 	RequestResult reqRes = { response, handle };
 	return reqRes;
@@ -85,7 +85,7 @@ RequestResult MenuRequestHandler::getPlayers(const RequestInfo reqInfo)
 	GetPlayersInRoomResponse playersInRoomResp = { allPlayers };
 	unsigned char* response = JsonResponsePacketSerializer::serializeResponse(playersInRoomResp);
 
-	IRequestHandler* handle = nullptr;//change it when roomHandle is created
+	IRequestHandler* handle = m_handlerFactory.createMenuRequestHandler(this->m_user);//change it when roomHandle is created
 
 	RequestResult reqRes = { response, handle };
 	return reqRes;
@@ -98,7 +98,7 @@ RequestResult MenuRequestHandler::getPersonalStats(const RequestInfo reqInfo)
 	GetPersonalStatsResponse personalStatsResp = { 1, stats };
 	unsigned char* response = JsonResponsePacketSerializer::serializeResponse(personalStatsResp);
 
-	IRequestHandler* handle = nullptr;//change it when roomHandle is created
+	IRequestHandler* handle = m_handlerFactory.createMenuRequestHandler(this->m_user);//change it when roomHandle is created
 
 	RequestResult reqRes = { response, handle };
 	return reqRes;
@@ -111,7 +111,7 @@ RequestResult MenuRequestHandler::getHighScore(const RequestInfo reqInfo)
 	GetHighScoreResponse highScoreResp = { 1, highScore };
 	unsigned char* response = JsonResponsePacketSerializer::serializeResponse(highScoreResp);
 
-	IRequestHandler* handle = nullptr;//change it when roomHandle is created
+	IRequestHandler* handle = m_handlerFactory.createMenuRequestHandler(this->m_user);//change it when roomHandle is created
 
 	RequestResult reqRes = { response, handle };
 	return reqRes;
@@ -120,13 +120,11 @@ RequestResult MenuRequestHandler::getHighScore(const RequestInfo reqInfo)
 RequestResult MenuRequestHandler::joinRoom(const RequestInfo reqInfo)
 {
 	JoinRoomRequest joinReq = JsonRequestPacketDeserializer::deserializeJoinRoomRequest((char*)reqInfo.buffer);
-	Room currRoom = m_roomManager.getRoom(joinReq.roomId);
-	currRoom.addUser(m_user);
-
+	m_roomManager.getRoom(joinReq.roomId).addUser(m_user);	
 	JoinRoomResponse joinRoomResp = { 1 };
 	unsigned char* response = JsonResponsePacketSerializer::serializeResponse(joinRoomResp);
 
-	IRequestHandler* handle = nullptr;//change it when roomHandle is created
+	IRequestHandler* handle = m_handlerFactory.createMenuRequestHandler(this->m_user);//change it when roomHandle is created
 
 	RequestResult reqRes = { response, handle };
 	return reqRes;
@@ -143,7 +141,7 @@ RequestResult MenuRequestHandler::createRoom(const RequestInfo reqInfo)
 	CreateRoomResponse createRoomResp = { roomID };
 	unsigned char* response = JsonResponsePacketSerializer::serializeResponse(createRoomResp);
 
-	IRequestHandler* handle = nullptr;//change it when roomHandle is created
+	IRequestHandler* handle = m_handlerFactory.createMenuRequestHandler(this->m_user);//change it when roomHandle is created
 
 	RequestResult reqRes = { response, handle };
 	return reqRes;

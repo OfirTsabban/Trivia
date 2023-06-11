@@ -44,9 +44,10 @@ unsigned char* JsonResponsePacketSerializer::serializeResponse(GetRoomsResponse 
 	std::string rooms = "";
 	for (int i = 0; i < getRoom.rooms.size(); i++)
 	{
-		rooms += std::to_string(getRoom.rooms[i].id) + std::to_string(getRoom.rooms[i].isActive) + std::to_string(getRoom.rooms[i].maxPlayers) + getRoom.rooms[i].name + std::to_string(getRoom.rooms[i].numOfQuestionsInGame) + std::to_string(getRoom.rooms[i].timePerQuestion);
+		rooms += " id: " + std::to_string(getRoom.rooms[i].id) + ", isActive: " + std::to_string(getRoom.rooms[i].isActive) + ", maxPlayers: " + std::to_string(getRoom.rooms[i].maxPlayers) + ", name: " + getRoom.rooms[i].name + ", numQuestions: " + std::to_string(getRoom.rooms[i].numOfQuestionsInGame) + ", timePerQuestion: " + std::to_string(getRoom.rooms[i].timePerQuestion) + "/";
 	}
-	json jsonMSG = { {"Rooms", rooms} };
+	std::cout << rooms << std::endl;
+	json jsonMSG = { { "Rooms", rooms } };
 	std::string s = std::to_string(Get_Rooms);
 	return help(jsonMSG, s);
 }
@@ -56,8 +57,9 @@ unsigned char* JsonResponsePacketSerializer::serializeResponse(GetPlayersInRoomR
 	std::string players = "";
 	for (int i = 0; i < getPlayers.players.size(); i++)
 	{		
-		players += getPlayers.players[i];
+		players += getPlayers.players[i] + ",";  
 	}
+	std::cout << players << std::endl;
 	json jsonMSG = { {"Players", players} };
 	std::string s = std::to_string(Get_Players);
 	return help(jsonMSG, s);
@@ -65,7 +67,7 @@ unsigned char* JsonResponsePacketSerializer::serializeResponse(GetPlayersInRoomR
 
 unsigned char* JsonResponsePacketSerializer::serializeResponse(JoinRoomResponse joinRoom)
 {
-	json jsonMSG = { {"Players", joinRoom.status} };
+	json jsonMSG = { { "status", joinRoom.status } };
 	std::string s = std::to_string(Join_Room);
 	return help(jsonMSG, s);
 }
@@ -99,10 +101,43 @@ unsigned char* JsonResponsePacketSerializer::serializeResponse(GetPersonalStatsR
 	std::string statistics = "";
 	for (int i = 0; i < personalStatus.statistics.size(); i++)
 	{		
-		statistics += personalStatus.statistics[i];
+		statistics += personalStatus.statistics[i] + ",";
 	}
 	json jsonMSG = { {"personal statistics", statistics} };
 	std::string s = std::to_string(Get_Personal_Stats);
+	return help(jsonMSG, s);
+}
+
+unsigned char* JsonResponsePacketSerializer::serializeResponse(CloseRoomResponse closeRoom)
+{
+	json jsonMSG = { {"status" , closeRoom.status} };
+	std::string s = std::to_string(Close_Room); 
+	return help(jsonMSG, s);
+}
+
+unsigned char* JsonResponsePacketSerializer::serializeResponse(StartGameResponse startGame)
+{
+	json jsonMSG = { {"status" , startGame.status} };
+	std::string s = std::to_string(Start_Game);
+	return help(jsonMSG, s);
+}
+
+unsigned char* JsonResponsePacketSerializer::serializeResponse(GetRoomStateResponse roomState)
+{
+	std::string rState = "status: " + std::to_string(roomState.status) + ", has game begun: " + std::to_string(roomState.hasGameBegun) + ", question count: " + std::to_string(roomState.questionCount) + ", answer time out: " + std::to_string(roomState.answerTimeOut) + ", players: ";
+	for (int i = 0; i < roomState.players.size(); i++)
+	{
+		rState += roomState.players[i] + ", ";
+	}
+	std::string s = std::to_string(Room_State);
+	json jsonMSG = { {"roomState", rState} };
+	return help(jsonMSG, s);
+}
+
+unsigned char* JsonResponsePacketSerializer::serializeResponse(LeaveRoomResponse leaveRoom)
+{
+	json jsonMSG = { {"LeaveRoom", leaveRoom.status} };
+	std::string s = std::to_string(Leave_Room);
 	return help(jsonMSG, s);
 }
 
@@ -127,6 +162,5 @@ unsigned char* JsonResponsePacketSerializer::help(json jsonMSG , std::string mod
 	unsigned char* buffer = new unsigned char[(mode.length() + 1)];
 	std::copy(mode.begin(), mode.end(), buffer);
 	buffer[mode.length()] = 0;
-	std::cout << std::endl << buffer << std::endl;
 	return buffer;
 }

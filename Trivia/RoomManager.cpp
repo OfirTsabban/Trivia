@@ -10,6 +10,7 @@ void RoomManager::createRoom(const LoggedUser host, RoomData newRoomData)
 	{
 		newRoomData.isActive = 1;//when room is created it's automaticly activates
 		Room newRoom(newRoomData);
+		newRoom.addUser(host);
 		this->m_rooms.insert(std::pair<int, Room>(newRoomData.id, newRoom));
 	}
 }

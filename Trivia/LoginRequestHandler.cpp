@@ -40,12 +40,12 @@ RequestResult LoginRequestHandler::login(RequestInfo reqInfo)
     {
         this->m_handleFactory.getLoginManager().login(newSignUser.username, newSignUser.password);
         LoggedUser newLogUser(newSignUser.username);
-        req = this->m_handleFactory.createLoginRequestHandler();        
+        req = this->m_handleFactory.createMenuRequestHandler(newLogUser);
     }
     catch (ExceptionHandler& exception)
     {
         std::cout << exception.what() << std::endl;
-        req = nullptr;
+        req = this->m_handleFactory.createLoginRequestHandler();
         logResp = { 0 };
         buffer = JsonResponsePacketSerializer::serializeLoginResponse(logResp);
     }
@@ -67,12 +67,12 @@ RequestResult LoginRequestHandler::signup(RequestInfo reqInfo)
         this->m_handleFactory.getLoginManager().signup(newSignUser.username, newSignUser.password, newSignUser.email, newSignUser.street, newSignUser.apt, newSignUser.city, newSignUser.prefix, newSignUser.number, newSignUser.yearBorn);
         
         LoggedUser newLogUser(newSignUser.username);
-        req = this->m_handleFactory.createLoginRequestHandler();
+        req = this->m_handleFactory.createMenuRequestHandler(newLogUser);
     }
     catch (ExceptionHandler& exception)
     {
         std::cout << exception.what() << std::endl;
-        req = nullptr;
+        req = this->m_handleFactory.createLoginRequestHandler();
         signResp = { 0 };
         buffer = JsonResponsePacketSerializer::serializeSignupResponse(signResp);
     }
