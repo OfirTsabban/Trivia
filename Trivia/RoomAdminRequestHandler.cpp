@@ -64,7 +64,7 @@ RequestResult RoomAdminRequestHandler::getRoomState(RequestInfo reqInfo)
 	GetRoomStateResponse  roomState = { this->m_room.getData().id, this->m_room.getData().isActive, this->m_room.getAllUsers(), this->m_room.getData().numOfQuestionsInGame, this->m_room.getData().timePerQuestion};
 	unsigned char* response = JsonResponsePacketSerializer::serializeResponse(roomState);
 	
-	IRequestHandler* handler = this->m_handleFactory.createRoomAdminRequestHandler(this->m_user, this->m_room);
-	RequestResult reqResult = { response, handler };
+	//IRequestHandler* handler = this->m_handleFactory.createRoomAdminRequestHandler(this->m_user, this->m_room);
+	RequestResult reqResult = { response, this };
 	return reqResult;
 }
