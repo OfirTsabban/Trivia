@@ -36,9 +36,6 @@ namespace GUI
 
         private void RoomInfo_Load(object sender, EventArgs e)
         {
-            Thread waitAction = new Thread(new ThreadStart(getAction));
-            waitAction.Name = "waitForAction";
-            waitAction.Start();
             this.labelName.Text = this.user;
             string json = Protocol.getPlayersProtocol(this.roomId);
             if (Connector.sendMSG(json, (int)Connector.Requests.Get_Players))
@@ -74,7 +71,10 @@ namespace GUI
 
         private void buttonStart_Click(object sender, EventArgs e)
         {
-            if(this.user == this.LabelAdminName.Text)
+            Thread waitAction = new Thread(new ThreadStart(getAction));
+            waitAction.Name = "waitForAction";
+            waitAction.Start();
+            if (this.user == this.LabelAdminName.Text)
             {
                 if (Connector.sendMSG("Start Game", (int)Connector.Requests.Admin_Start_Game))
                 {
