@@ -16,7 +16,7 @@ bool MenuRequestHandler::isRequestRelevent(RequestInfo reqInfo)
 		reqInfo.id == Create_Room;
 }
 
-RequestResult MenuRequestHandler::handleRequest(RequestInfo reqInfo)
+RequestResult MenuRequestHandler::handleRequest(RequestInfo reqInfo, SOCKET user_socket)
 {
 	if (reqInfo.id == Log_Out)
 	{
@@ -80,7 +80,12 @@ RequestResult MenuRequestHandler::getPlayers(const RequestInfo reqInfo)
 	GetPlayersInRoomRequest getPlayersRequest = JsonRequestPacketDeserializer::deserializeGetPlayersRequest((char*)reqInfo.buffer);
 
 	Room currRoom = m_roomManager.getRoom(getPlayersRequest.roomId);
-	std::vector<std::string> allPlayers = currRoom.getAllUsers();
+	std::vector<std::string> allPlayers;
+	std::vector<LoggedUser> users;
+	for (auto& user : currRoom.getAllUsers())
+	{
+		allPlayers.push_back(user.getUsername());
+	}
 
 	GetPlayersInRoomResponse playersInRoomResp = { allPlayers };
 	unsigned char* response = JsonResponsePacketSerializer::serializeResponse(playersInRoomResp);
@@ -120,7 +125,7 @@ RequestResult MenuRequestHandler::getHighScore(const RequestInfo reqInfo)
 RequestResult MenuRequestHandler::joinRoom(const RequestInfo reqInfo)
 {
 	JoinRoomRequest joinReq = JsonRequestPacketDeserializer::deserializeJoinRoomRequest((char*)reqInfo.buffer);
-	m_roomManager.getRoom(joinReq.roomId).addUser(m_user);	
+	m_roomManager.getRoom(joinReq.roomId).addUser(m_user);
 	JoinRoomResponse joinRoomResp = { 1 };
 	unsigned char* response = JsonResponsePacketSerializer::serializeResponse(joinRoomResp);
 

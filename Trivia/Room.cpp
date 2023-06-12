@@ -35,15 +35,9 @@ void Room::removeUser(const LoggedUser user)
 	throw ExceptionHandler("Error - User doesn't exist in room");
 }
 
-std::vector<std::string> Room::getAllUsers() 
+std::vector<LoggedUser> Room::getAllUsers() 
 {
-	std::vector<std::string> allUsers;
-	for (auto iter = this->m_users.begin(); iter != this->m_users.end(); iter++)
-	{
-		allUsers.push_back(iter->getUsername());
-	}
-
-	return allUsers;
+	return m_users;
 }
 
 RoomData Room::getData() const

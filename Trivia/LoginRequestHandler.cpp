@@ -13,23 +13,23 @@ bool LoginRequestHandler::isRequestRelevent(RequestInfo reqInfo)
     return reqInfo.id == 1 || reqInfo.id == 2;
 }
 
-RequestResult LoginRequestHandler::handleRequest(RequestInfo reqInfo)
+RequestResult LoginRequestHandler::handleRequest(RequestInfo reqInfo, SOCKET user_socket)
 {
     if (reqInfo.id == Log_In)
     {
         
-        return this->login(reqInfo);
+        return this->login(reqInfo, user_socket);
 
 
     }
     else if (reqInfo.id == Sign_Up)
     {
         
-        return this->signup(reqInfo);
+        return this->signup(reqInfo, user_socket);
     }
 }
 
-RequestResult LoginRequestHandler::login(RequestInfo reqInfo)
+RequestResult LoginRequestHandler::login(RequestInfo reqInfo, SOCKET socket)
 {
     LoginRequest newSignUser = JsonRequestPacketDeserializer::deserializeLoginRequest((char*)reqInfo.buffer);
     LoginResponse logResp = { 1 };
@@ -38,8 +38,8 @@ RequestResult LoginRequestHandler::login(RequestInfo reqInfo)
     IRequestHandler* req;
     try
     {
-        this->m_handleFactory.getLoginManager().login(newSignUser.username, newSignUser.password);
-        LoggedUser newLogUser(newSignUser.username);
+        this->m_handleFactory.getLoginManager().login(newSignUser.username, newSignUser.password, socket);
+        LoggedUser newLogUser(newSignUser.username, socket);
         req = this->m_handleFactory.createMenuRequestHandler(newLogUser);
     }
     catch (ExceptionHandler& exception)
@@ -53,7 +53,7 @@ RequestResult LoginRequestHandler::login(RequestInfo reqInfo)
     return reqRes;
 }
 
-RequestResult LoginRequestHandler::signup(RequestInfo reqInfo)
+RequestResult LoginRequestHandler::signup(RequestInfo reqInfo, SOCKET socket)
 {
     
     SignupRequest newSignUser = JsonRequestPacketDeserializer::deserializeSignupRequest((char*)reqInfo.buffer);
@@ -64,9 +64,9 @@ RequestResult LoginRequestHandler::signup(RequestInfo reqInfo)
     try
     {
         
-        this->m_handleFactory.getLoginManager().signup(newSignUser.username, newSignUser.password, newSignUser.email, newSignUser.street, newSignUser.apt, newSignUser.city, newSignUser.prefix, newSignUser.number, newSignUser.yearBorn);
+        this->m_handleFactory.getLoginManager().signup(newSignUser.username, newSignUser.password, newSignUser.email, newSignUser.street, newSignUser.apt, newSignUser.city, newSignUser.prefix, newSignUser.number, newSignUser.yearBorn, socket);
         
-        LoggedUser newLogUser(newSignUser.username);
+        LoggedUser newLogUser(newSignUser.username, socket);
         req = this->m_handleFactory.createMenuRequestHandler(newLogUser);
     }
     catch (ExceptionHandler& exception)

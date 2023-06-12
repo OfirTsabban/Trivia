@@ -12,14 +12,14 @@ class RoomMemberRequestHandler: public IRequestHandler
 public:
 	RoomMemberRequestHandler(Room, LoggedUser, RequestHandlerFactory);
 	bool isRequestRelevent(RequestInfo) override;
-	RequestResult handleRequest(RequestInfo) override;
+	RequestResult handleRequest(RequestInfo, SOCKET) override;
 private:	
 	Room m_room;
 	LoggedUser m_user;
 	RoomManager& m_roomManager;
 	RequestHandlerFactory& m_handleFactory;
 	RequestResult leaveRoom(RequestInfo);
-	RequestResult getRoomState(RequestInfo);
-	RequestResult startGame(RequestInfo);
+	RequestResult getRoomState(RequestInfo, SOCKET);
+	RequestResult startGame(RequestInfo, SOCKET);
 };
 

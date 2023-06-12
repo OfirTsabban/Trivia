@@ -15,7 +15,7 @@ public:
 	MenuRequestHandler(RequestHandlerFactory& handleFactory, LoggedUser& user);
 	~MenuRequestHandler() = default;
 	bool isRequestRelevent(RequestInfo reqInfo) override;
-	RequestResult handleRequest(RequestInfo reqInfo) override;
+	RequestResult handleRequest(RequestInfo reqInfo, SOCKET user_socket) override;
 private:
 	RequestResult signout(const RequestInfo reqInfo);
 	RequestResult getRooms(const RequestInfo reqInfo);

@@ -87,7 +87,7 @@ void Communicator::handleNewClient(SOCKET client_socket)
 			buffer[msg.length()] = 0;
 			RequestInfo reqInfo = { id,recivalTime,buffer };
 			IRequestHandler* handle = m_clients[client_socket];//handle will be the specified handler to the socket
-			RequestResult reqRes = handle->handleRequest(reqInfo);
+			RequestResult reqRes = handle->handleRequest(reqInfo, client_socket);
 			m_clients[client_socket] = reqRes.newHandler;
 			std::string s = reinterpret_cast<char*>(reqRes.response);
 			Helper::sendData(client_socket, s);

@@ -11,10 +11,10 @@ class LoginRequestHandler : public IRequestHandler
 public:	
 	LoginRequestHandler(RequestHandlerFactory& handleFactory);
 	bool isRequestRelevent(RequestInfo reqInfo) override;
-	RequestResult handleRequest(RequestInfo reqInfo) override;
+	RequestResult handleRequest(RequestInfo reqInfo, SOCKET user_socket) override;
 private:
-	RequestResult login(RequestInfo reqInfo);
-	RequestResult signup(RequestInfo reqInfo);
+	RequestResult login(RequestInfo reqInfo, SOCKET socket);
+	RequestResult signup(RequestInfo reqInfo, SOCKET socket);
 	
 	RequestHandlerFactory& m_handleFactory;
 };

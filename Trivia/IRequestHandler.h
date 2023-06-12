@@ -2,6 +2,7 @@
 #include <ctime>
 #include <iostream>
 #include <vector>
+#include "Helper.h"
 
 class IRequestHandler;
 
@@ -25,5 +26,5 @@ public:
 	~IRequestHandler();
 
 	virtual bool isRequestRelevent(RequestInfo reqInfo) = 0;
-	virtual RequestResult handleRequest(RequestInfo reqInfo) = 0;
+	virtual RequestResult handleRequest(RequestInfo reqInfo, SOCKET user_socket) = 0;
 };
