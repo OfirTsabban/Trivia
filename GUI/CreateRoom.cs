@@ -67,12 +67,13 @@ namespace GUI
 
                 if (Connector.sendMSG(json, (int)Connector.Requests.Create_Room))
                 {
-                    if(Connector.statusFromServer())
-                    {
-                        Form1 mainMenu = new Form1(this.user);//need to change in 3.0.0
-                        Hide();
-                        mainMenu.Show();
-                    }
+                    string response = Connector.recvMSG();
+                    response = response.Substring(response.IndexOf(":") + 1);
+                    response = response.Substring(0, response.IndexOf("}"));
+                    int id = int.Parse(response);
+                    RoomInfo roomInfo = new RoomInfo(id, this.user);
+                    Hide();
+                    roomInfo.Show();
                 }
                 else
                 {
