@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -35,6 +36,9 @@ namespace GUI
 
         private void RoomInfo_Load(object sender, EventArgs e)
         {
+            Thread waitAction = new Thread(new ThreadStart(getAction));
+            waitAction.Name = "waitForAction";
+            waitAction.Start();
             this.labelName.Text = this.user;
             string json = Protocol.getPlayersProtocol(this.roomId);
             if (Connector.sendMSG(json, (int)Connector.Requests.Get_Players))
@@ -144,6 +148,22 @@ namespace GUI
             else
             {
                 MessageBox.Show("Failed communicating with server", "Server Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void getAction()
+        {
+            while(true)
+            {
+                string msg = Connector.recvMSG();
+                if(msg.Contains("LeaveRoom"))
+                {
+                    MessageBox.Show("Leave room", "Update", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else if (msg.Contains("StartGame"))
+                {
+                    MessageBox.Show("Start room", "Update", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
         }
     }
