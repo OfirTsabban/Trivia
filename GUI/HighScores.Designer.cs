@@ -32,6 +32,7 @@
             this.listViewHighScores = new System.Windows.Forms.ListView();
             this.label1 = new System.Windows.Forms.Label();
             this.buttonBack = new System.Windows.Forms.Button();
+            this.labelName = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // listViewHighScores
@@ -67,12 +68,24 @@
             this.buttonBack.Text = "BACK";
             this.buttonBack.UseVisualStyleBackColor = false;
             // 
+            // labelName
+            // 
+            this.labelName.AutoSize = true;
+            this.labelName.Font = new System.Drawing.Font("Showcard Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelName.Location = new System.Drawing.Point(41, 32);
+            this.labelName.Name = "labelName";
+            this.labelName.Size = new System.Drawing.Size(73, 29);
+            this.labelName.TabIndex = 3;
+            this.labelName.Text = "name";
+            this.labelName.Click += new System.EventHandler(this.labelName_Click);
+            // 
             // HighScores
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LemonChiffon;
             this.ClientSize = new System.Drawing.Size(1046, 648);
+            this.Controls.Add(this.labelName);
             this.Controls.Add(this.buttonBack);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.listViewHighScores);
@@ -91,5 +104,6 @@
         private System.Windows.Forms.ListView listViewHighScores;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonBack;
+        private System.Windows.Forms.Label labelName;
     }
 }

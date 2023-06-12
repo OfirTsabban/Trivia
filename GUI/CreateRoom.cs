@@ -23,7 +23,7 @@ namespace GUI
 
         private void CreateRoom_Load(object sender, EventArgs e)
         {
-
+            this.labelName.Text = this.user;
         }
 
         private void buttonRoomInfo_Click(object sender, EventArgs e)
@@ -176,6 +176,11 @@ namespace GUI
             Form1 mainMenu = new Form1(this.user);
             Hide();
             mainMenu.Show(); 
+        }
+
+        private void labelName_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

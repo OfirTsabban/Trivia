@@ -127,7 +127,7 @@ unsigned char* JsonResponsePacketSerializer::serializeResponse(GetRoomStateRespo
 	std::string rState = "status: " + std::to_string(roomState.status) + ", has game begun: " + std::to_string(roomState.hasGameBegun) + ", question count: " + std::to_string(roomState.questionCount) + ", answer time out: " + std::to_string(roomState.answerTimeout) + ", players: ";
 	for (int i = 0; i < roomState.players.size(); i++)
 	{
-		rState += roomState.players[i] + "\n";
+		rState += roomState.players[i] + ", ";
 	}
 	std::string s = std::to_string(Room_State);
 	json jsonMSG = { {"roomState", rState} };

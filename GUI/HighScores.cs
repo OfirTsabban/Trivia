@@ -12,12 +12,19 @@ namespace GUI
 {
     public partial class HighScores : Form
     {
-        public HighScores()
+        private string user;
+        public HighScores(string user)
         {
+            this.user = user;
             InitializeComponent();
         }
 
         private void HighScores_Load(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void labelName_Click(object sender, EventArgs e)
         {
 
         }

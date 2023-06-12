@@ -21,7 +21,7 @@ namespace GUI
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+            this.labelName.Text = this.user;
         }
 
         private void buttonJoinRoom_Click(object sender, EventArgs e)

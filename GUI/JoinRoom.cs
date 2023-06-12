@@ -72,6 +72,7 @@ namespace GUI
 
         private void JoinRoom_Load(object sender, EventArgs e)
         {
+            this.labelName.Text = this.user;
             Thread refreshJoin = new Thread(new ThreadStart(refreshRoomsAuto));
             refreshJoin.Name = "RoomRefresher";
             refreshJoin.Start();
@@ -180,6 +181,11 @@ namespace GUI
                 }
                 Thread.Sleep(3000);
             }
+        }
+
+        private void labelName_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
