@@ -19,6 +19,8 @@ RequestResult RoomMemberRequestHandler::handleRequest(RequestInfo reqInfo, SOCKE
 		return getRoomState(reqInfo, user_socket);
 	case Member_Start_Game:
 		return startGame(reqInfo, user_socket);
+	case Get_Players:
+		return getPlayers(reqInfo);
 	}
 }
 
@@ -47,4 +49,20 @@ RequestResult RoomMemberRequestHandler::startGame(RequestInfo reqInfo, SOCKET us
 	IRequestHandler* handler = this->m_handleFactory.createRoomMemberRequestHandler(this->m_user, this->m_room);
 	RequestResult reqResult = { response, handler };
 	return reqResult;
+}
+
+RequestResult RoomMemberRequestHandler::getPlayers(const RequestInfo reqInfo)
+{
+	GetPlayersInRoomRequest getPlayersRequest = JsonRequestPacketDeserializer::deserializeGetPlayersRequest((char*)reqInfo.buffer);
+
+	Room currRoom = m_roomManager.getRoom(getPlayersRequest.roomId);
+	std::vector<std::string> allPlayers = currRoom.getAllUsersNames();
+
+	GetPlayersInRoomResponse playersInRoomResp = { allPlayers };
+	unsigned char* response = JsonResponsePacketSerializer::serializeResponse(playersInRoomResp);
+
+	IRequestHandler* handle = this;
+
+	RequestResult reqRes = { response, handle };
+	return reqRes;
 }

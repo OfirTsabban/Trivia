@@ -80,12 +80,7 @@ RequestResult MenuRequestHandler::getPlayers(const RequestInfo reqInfo)
 	GetPlayersInRoomRequest getPlayersRequest = JsonRequestPacketDeserializer::deserializeGetPlayersRequest((char*)reqInfo.buffer);
 
 	Room currRoom = m_roomManager.getRoom(getPlayersRequest.roomId);
-	std::vector<std::string> allPlayers;
-	std::vector<LoggedUser> users;
-	for (auto& user : currRoom.getAllUsers())
-	{
-		allPlayers.push_back(user.getUsername());
-	}
+	std::vector<std::string> allPlayers = currRoom.getAllUsersNames();
 
 	GetPlayersInRoomResponse playersInRoomResp = { allPlayers };
 	unsigned char* response = JsonResponsePacketSerializer::serializeResponse(playersInRoomResp);

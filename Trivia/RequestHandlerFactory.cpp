@@ -1,7 +1,7 @@
 #include "RequestHandlerFactory.h"
 #include "LoginRequestHandler.h"
 
-RequestHandlerFactory::RequestHandlerFactory(IDatabase* db) : m_database(db), m_loginManager(db), m_roomManager(), m_StatisticsManager()
+RequestHandlerFactory::RequestHandlerFactory(IDatabase* db) : m_database(db), m_loginManager(db), m_roomManager(this->m_roomManager), m_StatisticsManager()
 {
 }
 
@@ -34,7 +34,7 @@ RoomManager& RequestHandlerFactory::getRoomManager()
 
 RoomAdminRequestHandler* RequestHandlerFactory::createRoomAdminRequestHandler(LoggedUser user, Room room)
 {
-	RoomAdminRequestHandler* roomAdmin = new RoomAdminRequestHandler(room, user, *this);   
+	RoomAdminRequestHandler* roomAdmin = new RoomAdminRequestHandler(room, user, *this);
 	return roomAdmin;
 }
 

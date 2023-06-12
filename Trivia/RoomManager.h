@@ -10,8 +10,8 @@
 class RoomManager
 {
 public:
-	RoomManager() = default;
-	~RoomManager() = default;
+	RoomManager();
+	~RoomManager();
 	void createRoom(const LoggedUser host, RoomData newRoomData);
 	void deleteRoom(const int ID);
 	unsigned int getRoomState(const int ID) const;

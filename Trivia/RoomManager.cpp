@@ -1,5 +1,14 @@
 #include "RoomManager.h"
 
+RoomManager::RoomManager()
+{
+}
+
+RoomManager::~RoomManager()
+{
+	this->m_rooms.clear();
+}
+
 void RoomManager::createRoom(const LoggedUser host, RoomData newRoomData)
 {
 	if (m_rooms.find(newRoomData.id) != m_rooms.end())
@@ -52,5 +61,13 @@ std::vector<RoomData> RoomManager::getRooms()
 
 Room& RoomManager::getRoom(int ID)
 {
-	return m_rooms.at(ID);
+	std::map<int, Room>::iterator it;
+	for (it = m_rooms.begin(); it != m_rooms.end(); it++)
+	{
+		if (it->first == ID)
+		{
+			return it->second;
+		}
+	}
+
 }
