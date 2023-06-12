@@ -30,7 +30,7 @@ RequestResult RoomAdminRequestHandler::closeRoom(RequestInfo reqInfo)
 	{
 		IRequestHandler* memberReq = this->m_handleFactory.createRoomMemberRequestHandler(users[i], this->m_room);		
 		RequestInfo info = { Leave_Room, std::time(nullptr) , reqInfo.buffer };
-		memberReq->handleRequest(info); 
+		memberReq->handleRequest(info);
 	}	
 	this->m_room.removeUser(this->m_user);
 	CloseRoomResponse closeRoom = { 1 };

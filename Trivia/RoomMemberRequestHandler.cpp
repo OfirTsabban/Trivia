@@ -28,7 +28,7 @@ RequestResult RoomMemberRequestHandler::leaveRoom(RequestInfo reqInfo)
 	LeaveRoomResponse leaveRoom = { 1 };
 	unsigned char* response = JsonResponsePacketSerializer::serializeResponse(leaveRoom); 
 
-	IRequestHandler* handler = this->m_handleFactory.createRoomMemberRequestHandler(this->m_user, this->m_room);
+	IRequestHandler* handler = this->m_handleFactory.createMenuRequestHandler(this->m_user);
 	RequestResult reqResult = { response, handler };
 	return reqResult;
 

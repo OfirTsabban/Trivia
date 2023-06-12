@@ -74,7 +74,7 @@ unsigned char* JsonResponsePacketSerializer::serializeResponse(JoinRoomResponse 
 
 unsigned char* JsonResponsePacketSerializer::serializeResponse(CreateRoomResponse createRoom)
 {
-	json jsonMSG = { {"status" , createRoom.status} };
+	json jsonMSG = { {"status" , createRoom.status} };//status = roomID
 	std::string s = std::to_string(Create_Room);
 	return help(jsonMSG, s);
 }
