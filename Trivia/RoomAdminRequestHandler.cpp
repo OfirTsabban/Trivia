@@ -43,6 +43,8 @@ RequestResult RoomAdminRequestHandler::closeRoom(RequestInfo reqInfo)
 
 RequestResult RoomAdminRequestHandler::startGame(RequestInfo reqInfo)
 {
+	StartGameResponse startGame = { 1 };
+	unsigned char* response = JsonResponsePacketSerializer::serializeResponse(startGame);
 	std::vector<std::string> users = this->m_room.getAllUsers();
 	for (int i = 0; i < users.size(); i++)
 	{
@@ -50,8 +52,7 @@ RequestResult RoomAdminRequestHandler::startGame(RequestInfo reqInfo)
 		RequestInfo info = { Member_Start_Game, std::time(nullptr) , reqInfo.buffer };
 		memberReq->handleRequest(info); 
 	}
-	StartGameResponse startGame = { 1 };
-	unsigned char* response = JsonResponsePacketSerializer::serializeResponse(startGame);
+	
 
 	IRequestHandler* handler = this->m_handleFactory.createRoomAdminRequestHandler(this->m_user, this->m_room);
 	RequestResult reqResult = { response, handler };

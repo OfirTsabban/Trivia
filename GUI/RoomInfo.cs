@@ -39,21 +39,25 @@ namespace GUI
             if (Connector.sendMSG(json, (int)Connector.Requests.Get_Players))
             {
                 string players = Connector.recvMSG();
-                players = players.Substring(players.IndexOf(':') + 2); 
-                string admin = players.Substring(0, players.IndexOf(','));
-                players = players.Substring(players.IndexOf(',') + 1);
-                string player = "";
-                this.LabelAdminName.Text = admin;
-                for (int i = 0; i < players.Length; i++)
+                players = players.Substring(players.IndexOf(':') + 2);
+                if (players.Contains(","))
                 {
-                    if (players[i] == ',')
+                    string admin = players.Substring(0, players.IndexOf(','));
+
+                    players = players.Substring(players.IndexOf(',') + 1);
+                    string player = "";
+                    this.LabelAdminName.Text = admin;
+                    for (int i = 0; i < players.Length; i++)
                     {
-                        this.listViewPlayers.Items.Add(player);                        
-                        player = "";
-                    }
-                    else
-                    {
-                        player += players[i];
+                        if (players[i] == ',')
+                        {
+                            this.listViewPlayers.Items.Add(player);
+                            player = "";
+                        }
+                        else
+                        {
+                            player += players[i];
+                        }
                     }
                 }
             }

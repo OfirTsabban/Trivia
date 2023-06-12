@@ -124,7 +124,7 @@ RequestResult MenuRequestHandler::joinRoom(const RequestInfo reqInfo)
 	JoinRoomResponse joinRoomResp = { 1 };
 	unsigned char* response = JsonResponsePacketSerializer::serializeResponse(joinRoomResp);
 
-	IRequestHandler* handle = m_handlerFactory.createMenuRequestHandler(this->m_user);//change it when roomHandle is created
+	IRequestHandler* handle = m_handlerFactory.createRoomMemberRequestHandler(this->m_user,this->m_roomManager.getRoom(joinReq.roomId));//change it when roomHandle is created
 
 	RequestResult reqRes = { response, handle };
 	return reqRes;
@@ -141,7 +141,7 @@ RequestResult MenuRequestHandler::createRoom(const RequestInfo reqInfo)
 	CreateRoomResponse createRoomResp = { roomID };
 	unsigned char* response = JsonResponsePacketSerializer::serializeResponse(createRoomResp);
 
-	IRequestHandler* handle = m_handlerFactory.createMenuRequestHandler(this->m_user);//change it when roomHandle is created
+	IRequestHandler* handle = m_handlerFactory.createRoomAdminRequestHandler(this->m_user, this->m_roomManager.getRoom(roomID));//change it when roomHandle is created
 
 	RequestResult reqRes = { response, handle };
 	return reqRes;
