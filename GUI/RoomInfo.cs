@@ -35,12 +35,13 @@ namespace GUI
 
         private void RoomInfo_Load(object sender, EventArgs e)
         {
+            this.labelName.Text = this.user;
             string json = Protocol.getPlayersProtocol(this.roomId);
             if (Connector.sendMSG(json, (int)Connector.Requests.Get_Players))
             {
                 string players = Connector.recvMSG();
                 players = players.Substring(players.IndexOf(':') + 2);
-                if (players.Contains(","))
+                if (players.Contains(','))
                 {
                     string admin = players.Substring(0, players.IndexOf(','));
 
@@ -124,9 +125,21 @@ namespace GUI
             if (Connector.sendMSG("GetRoomState", (int)Connector.Requests.Room_State))
             {
                 string msg = Connector.recvMSG();
-                msg = msg.Substring(msg.IndexOf(":") + 1);
-                msg = msg.Substring(0, msg.IndexOf("}"));                
-                MessageBox.Show(msg, "Room State", MessageBoxButtons.OK);                
+                msg = msg.Substring(msg.IndexOf(":") + 2);
+                msg = msg.Substring(0, msg.IndexOf('"')); 
+                string message = "";
+                for (int i = 0; i < msg.Length; i++)
+                {
+                    if (msg[i] == '/')
+                    {
+                        message += "\n";
+                    }
+                    else
+                    {
+                        message += msg[i];
+                    }
+                }
+                MessageBox.Show(message, "Room State", MessageBoxButtons.OK);                
             }
             else
             {

@@ -37,6 +37,7 @@
             this.buttonStart = new System.Windows.Forms.Button();
             this.buttonLeave = new System.Windows.Forms.Button();
             this.buttonRoomState = new System.Windows.Forms.Button();
+            this.labelName = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // listViewPlayers
@@ -135,12 +136,23 @@
             this.buttonRoomState.UseVisualStyleBackColor = false;
             this.buttonRoomState.Click += new System.EventHandler(this.buttonRoomState_Click);
             // 
+            // labelName
+            // 
+            this.labelName.AutoSize = true;
+            this.labelName.Font = new System.Drawing.Font("Showcard Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelName.Location = new System.Drawing.Point(44, 35);
+            this.labelName.Name = "labelName";
+            this.labelName.Size = new System.Drawing.Size(73, 29);
+            this.labelName.TabIndex = 8;
+            this.labelName.Text = "name";
+            // 
             // RoomInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LemonChiffon;
             this.ClientSize = new System.Drawing.Size(953, 582);
+            this.Controls.Add(this.labelName);
             this.Controls.Add(this.buttonRoomState);
             this.Controls.Add(this.buttonLeave);
             this.Controls.Add(this.buttonStart);
@@ -169,5 +181,6 @@
         private System.Windows.Forms.Button buttonStart;
         private System.Windows.Forms.Button buttonLeave;
         private System.Windows.Forms.Button buttonRoomState;
+        private System.Windows.Forms.Label labelName;
     }
 }
