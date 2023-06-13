@@ -45,14 +45,14 @@ namespace GUI
                     if (Connector.sendMSG(json, (int)Connector.Requests.Join_Room))
                     {
                         string joined = Connector.recvMSG();
-                        joined = joined.Substring(joined.IndexOf(':') + 1, 1);
-                        if (joined == "1")
+                      
+                        if (joined.Contains("1"))
                         {
                             RoomInfo roomInfo = new RoomInfo(id, this.user);
                             Hide();
                             roomInfo.Show();
                         }
-                        else if (joined == "0")
+                        else if (joined.Contains("0"))
                         {
                             MessageBox.Show("Failed communicating with server", "Server Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
