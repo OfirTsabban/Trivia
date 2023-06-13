@@ -2,10 +2,12 @@
 #include <iostream>
 #include <map>
 #include <vector>
+#include <mutex>
 #include "ExceptionHandler.h"
 #include "LoggedUser.h"
 #include "Room.h"
 
+using std::mutex;
 
 class RoomManager
 {
@@ -20,4 +22,5 @@ public:
 
 private:
 	std::map<int, Room> m_rooms;
+	mutex roomMutex;
 };

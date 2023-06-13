@@ -1,11 +1,13 @@
 #pragma once
 #include <iostream>
 #include <vector>
+#include <mutex>
 #include "LoggedUser.h"
 #include "SqliteDatabase.h"
 #include "ExceptionHandler.h"
 
 using std::vector;
+using std::mutex;
 
 class LoginManager
 {
@@ -21,4 +23,5 @@ private:
 
 	IDatabase* m_database;
 	vector<LoggedUser> m_loggedUsers;
+	mutex usersMutex;
 };

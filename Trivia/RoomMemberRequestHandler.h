@@ -23,5 +23,3 @@ private:
 	RequestResult startGame(RequestInfo, SOCKET);
 	RequestResult getPlayers(const RequestInfo reqInfo);
 };
-
-//mutexes: db, roomManager, comminicator, loginManager...
