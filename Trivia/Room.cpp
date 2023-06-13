@@ -7,6 +7,7 @@ Room::Room(RoomData metadata)
 
 void Room::addUser(const LoggedUser user)
 {
+	std::unique_lock<std::mutex> lock(this->roomMutex);
 	if (this->m_users.size() == this->m_metadata.maxPlayers)
 	{
 		throw ExceptionHandler("Error - Room is full");
@@ -23,6 +24,7 @@ void Room::addUser(const LoggedUser user)
 
 void Room::removeUser(const LoggedUser user)
 {
+	std::unique_lock<std::mutex> lock(this->roomMutex);
 	for (auto iter = this->m_users.begin(); iter != this->m_users.end(); iter++)
 	{
 		if (*iter == user)
@@ -39,6 +41,7 @@ std::vector<std::string> Room::getAllUsersNames()
 {
 	std::vector<std::string> usernames;
 
+	std::unique_lock<std::mutex> lock(this->roomMutex);
 	for (int i = 0; i < this->m_users.size(); i++)
 	{
 		usernames.push_back(m_users[i].getUsername());

@@ -55,7 +55,7 @@ RequestResult RoomMemberRequestHandler::getPlayers(const RequestInfo reqInfo)
 {
 	GetPlayersInRoomRequest getPlayersRequest = JsonRequestPacketDeserializer::deserializeGetPlayersRequest((char*)reqInfo.buffer);
 
-	Room currRoom = m_roomManager.getRoom(getPlayersRequest.roomId);
+	Room& currRoom = m_roomManager.getRoom(getPlayersRequest.roomId);
 	std::vector<std::string> allPlayers = currRoom.getAllUsersNames();
 
 	GetPlayersInRoomResponse playersInRoomResp = { allPlayers };

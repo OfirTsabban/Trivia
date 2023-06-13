@@ -79,7 +79,7 @@ RequestResult MenuRequestHandler::getPlayers(const RequestInfo reqInfo)
 {
 	GetPlayersInRoomRequest getPlayersRequest = JsonRequestPacketDeserializer::deserializeGetPlayersRequest((char*)reqInfo.buffer);
 
-	Room currRoom = m_roomManager.getRoom(getPlayersRequest.roomId);
+	Room& currRoom = m_roomManager.getRoom(getPlayersRequest.roomId);
 	std::vector<std::string> allPlayers = currRoom.getAllUsersNames();
 
 	GetPlayersInRoomResponse playersInRoomResp = { allPlayers };
@@ -133,30 +133,30 @@ RequestResult MenuRequestHandler::joinRoom(const RequestInfo reqInfo)
 RequestResult MenuRequestHandler::createRoom(const RequestInfo reqInfo)
 {
 	CreateRoomRequest createRoomReq = JsonRequestPacketDeserializer::deserializeCreateRoomRequest((char*)reqInfo.buffer);
-	int roomID = createRoomID();
-	RoomData newRoomData = { roomID, createRoomReq.roomName, createRoomReq.maxUsers, createRoomReq.questionCount, createRoomReq.answerTimeout, 1/*dont know what to put in here*/ };//will change ID to random nuber later...
+	/*unsigned int roomID = 0;*/
+	RoomData newRoomData = { 0, createRoomReq.roomName, createRoomReq.maxUsers, createRoomReq.questionCount, createRoomReq.answerTimeout, 1/*dont know what to put in here*/ };//will change ID to random nuber later...
 	
 	m_roomManager.createRoom(m_user, newRoomData);
 
-	CreateRoomResponse createRoomResp = { roomID };
+	CreateRoomResponse createRoomResp = { 0 };
 	unsigned char* response = JsonResponsePacketSerializer::serializeResponse(createRoomResp);
 
-	IRequestHandler* handle = m_handlerFactory.createRoomAdminRequestHandler(this->m_user, this->m_roomManager.getRoom(roomID));//change it when roomHandle is created
+	IRequestHandler* handle = m_handlerFactory.createRoomAdminRequestHandler(this->m_user, this->m_roomManager.getRoom(0));//change it when roomHandle is created
 
 	RequestResult reqRes = { response, handle };
 	return reqRes;
 }
 
-int MenuRequestHandler::createRoomID()
-{
-	int id = 0;
-	do 
-	{
-		id = 100 + (rand() % 101);//id will be between 100 - 200
-
-	} while (std::find(m_roomsID.begin(), m_roomsID.end(), id) != m_roomsID.end());
-
-	m_roomsID.push_back(id);
-	return id;
-}
+//int MenuRequestHandler::createRoomID()
+//{
+//	int id = 0;
+//	do 
+//	{
+//		id = 100 + (rand() % 101);//id will be between 100 - 200
+//
+//	} while (std::find(m_roomsID.begin(), m_roomsID.end(), id) != m_roomsID.end());
+//
+//	m_roomsID.push_back(id);
+//	return id;
+//}
 

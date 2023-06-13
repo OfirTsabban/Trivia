@@ -67,8 +67,7 @@ void Communicator::acceptClient()
 	std::thread tr(&Communicator::handleNewClient, this, client_socket);
 	tr.detach();
 
-	LoginRequestHandler* clientHandler = m_handleFactory.createLoginRequestHandler();//smth wrong here idk why...
-	
+	LoginRequestHandler* clientHandler = m_handleFactory.createLoginRequestHandler();
 	m_clients.insert(std::pair<SOCKET, IRequestHandler*>(client_socket, clientHandler));
 }
 
@@ -78,6 +77,7 @@ void Communicator::handleNewClient(SOCKET client_socket)
 	int deletelater;
 	do
 	{
+		std::unique_lock<std::mutex> lock(this->commMutex);
 		id = Helper::getMessageTypeCode(client_socket);
 		if (id != 200)
 		{

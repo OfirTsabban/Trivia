@@ -16,7 +16,7 @@ public:
 private:	
 	RequestHandlerFactory& m_handleFactory;
 	RoomManager& m_roomManager;
-	Room m_room;
+	Room& m_room;
 	LoggedUser m_user;
 	RequestResult leaveRoom(RequestInfo);
 	RequestResult getRoomState(RequestInfo, SOCKET);

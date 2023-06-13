@@ -1,8 +1,11 @@
 #pragma once
 #include <vector>
 #include <iostream>
+#include <mutex>
 #include "LoggedUser.h"
 #include "ExceptionHandler.h"
+
+using std::mutex;
 
 typedef struct RoomData
 {
@@ -27,4 +30,5 @@ public:
 private:
 	RoomData m_metadata;
 	std::vector<LoggedUser> m_users;
+	mutex roomMutex;
 };

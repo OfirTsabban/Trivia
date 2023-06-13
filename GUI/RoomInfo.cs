@@ -34,11 +34,12 @@ namespace GUI
             this.labelName.Text = this.user;
             Thread refreshPlayers = new Thread(new ThreadStart(getPlayers));
             refreshPlayers.Name = "RoomInfoRefresher";
-            refreshPlayers.Start();           
+            refreshPlayers.Start();
         }
 
         private void buttonStart_Click(object sender, EventArgs e)
         {
+            this.refresh = false;
             Thread waitAction = new Thread(new ThreadStart(getAction));
             waitAction.Name = "waitForAction";
             waitAction.Start();
@@ -66,6 +67,7 @@ namespace GUI
 
         private void buttonLeave_Click(object sender, EventArgs e)
         {
+            this.refresh = false;
             if (this.user == this.LabelAdminName.Text)
             {
                 if (Connector.sendMSG("CloseRoom", (int)Connector.Requests.Close_Room))
@@ -145,7 +147,7 @@ namespace GUI
         private void getPlayers()
         {
             while (this.refresh)
-            {                
+            {
                 string json = Protocol.getPlayersProtocol(this.roomId);
                 if (Connector.sendMSG(json, (int)Connector.Requests.Get_Players))
                 {

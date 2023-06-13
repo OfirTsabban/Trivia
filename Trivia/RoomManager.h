@@ -14,13 +14,14 @@ class RoomManager
 public:
 	RoomManager();
 	~RoomManager();
-	void createRoom(const LoggedUser host, RoomData newRoomData);
+	uint32_t createRoom(const LoggedUser host, RoomData newRoomData);
 	void deleteRoom(const int ID);
 	unsigned int getRoomState(const int ID) const;
 	std::vector<RoomData> getRooms();
 	Room& getRoom(int ID);
 
 private:
-	std::map<int, Room> m_rooms;
+	std::map<unsigned int, Room*> m_rooms;
 	mutex roomMutex;
+	uint32_t roomCounter;
 };
