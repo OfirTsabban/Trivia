@@ -4,6 +4,7 @@ RoomManager::RoomManager()
 {
 }
 
+
 RoomManager::~RoomManager()
 {
 	m_rooms.clear();

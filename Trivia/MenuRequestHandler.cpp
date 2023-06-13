@@ -50,7 +50,7 @@ RequestResult MenuRequestHandler::handleRequest(RequestInfo reqInfo, SOCKET user
 
 RequestResult MenuRequestHandler::signout(const RequestInfo reqInfo)
 {
-	LoginManager manager = m_handlerFactory.getLoginManager();
+	LoginManager& manager = m_handlerFactory.getLoginManager();
 	manager.logout(m_user.getUsername());
 
 	LogoutResponse logOutResp = { 1 };

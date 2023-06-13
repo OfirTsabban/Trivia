@@ -7,7 +7,7 @@
 #include "RoomAdminRequestHandler.h"
 #include "RoomMemberRequestHandler.h"
 
-enum loginDef { succeeded = true, failed = false }; 
+enum loginDef { succeeded = true, failed = false };
 
 class RoomMemberRequestHandler;
 class RoomAdminRequestHandler;
@@ -20,16 +20,16 @@ class RequestHandlerFactory
 public:
 	RequestHandlerFactory(IDatabase* db);
 	~RequestHandlerFactory();
-	LoginRequestHandler* createLoginRequestHandler(); 
+	LoginRequestHandler* createLoginRequestHandler();
 	LoginManager& getLoginManager();
 	MenuRequestHandler* createMenuRequestHandler(LoggedUser user);
 	StatisticsManager& getStatisticsManager();
 	RoomManager& getRoomManager();
 	RoomAdminRequestHandler* createRoomAdminRequestHandler(LoggedUser user, Room room);
 	RoomMemberRequestHandler* createRoomMemberRequestHandler(LoggedUser user, Room room);
-private: 
+private:
+	RoomManager& m_roomManager;
 	IDatabase* m_database;
 	LoginManager m_loginManager;
-	RoomManager m_roomManager;
 	StatisticsManager m_StatisticsManager;
 };
