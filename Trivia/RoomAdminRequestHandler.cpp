@@ -35,7 +35,6 @@ RequestResult RoomAdminRequestHandler::closeRoom(RequestInfo reqInfo, SOCKET use
 		RequestResult reqRes = memberReq->handleRequest(info, users[i].getUserSocket());
 		Helper::sendData(users[i].getUserSocket(), reinterpret_cast<char*>(reqRes.response));
 	}	
-	this->m_room.removeUser(this->m_user);
 	CloseRoomResponse closeRoom = { 1 };
 	unsigned char* response = JsonResponsePacketSerializer::serializeResponse(closeRoom);
 

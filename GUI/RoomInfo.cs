@@ -35,14 +35,14 @@ namespace GUI
             Thread refreshPlayers = new Thread(new ThreadStart(getPlayers));
             refreshPlayers.Name = "RoomInfoRefresher";
             refreshPlayers.Start();
+            Thread waitAction = new Thread(new ThreadStart(getAction));
+            waitAction.Name = "waitForAction";
+            waitAction.Start();
         }
 
         private void buttonStart_Click(object sender, EventArgs e)
         {
             this.refresh = false;
-            Thread waitAction = new Thread(new ThreadStart(getAction));
-            waitAction.Name = "waitForAction";
-            waitAction.Start();
             if (this.user == this.LabelAdminName.Text)
             {
                 if (Connector.sendMSG("Start Game", (int)Connector.Requests.Admin_Start_Game))
@@ -73,7 +73,7 @@ namespace GUI
                 if (Connector.sendMSG("CloseRoom", (int)Connector.Requests.Close_Room))
                 {
                     string msg = Connector.recvMSG();
-                    if (msg.Contains("CloseRoom"))
+                    if (msg.Contains("CloseRoom") || msg.Contains("LeaveRoom"))
                     {
                         MessageBox.Show("Host closed room", "Update", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         Form1 mainMenu = new Form1(this.user);
@@ -132,15 +132,28 @@ namespace GUI
 
         private void getAction()
         {
-            bool msgRecived = false;
-            while (!msgRecived)
+            Thread.Sleep(1000);
+            if(this.user != this.LabelAdminName.Text)
             {
-                string msg = Connector.recvMSG();
-                if (msg.Contains("StartGame"))
+                bool msgRecived = false;
+                while (!msgRecived)
                 {
-                    string show = "Start Room " + this.user;
-                    MessageBox.Show(show, "Update", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    msgRecived = true;
+                    string msg = Connector.recvMSG();
+                    if (msg.Contains("StartGame"))
+                    {
+                        string show = "Start Room " + this.user;
+                        MessageBox.Show(show, "Update", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        msgRecived = true;
+                    }
+                    else if (msg.Contains("LeaveRoom"))
+                    {
+                        string show = "Host closed the room";
+                        MessageBox.Show(show, "Update", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        msgRecived = true;
+                        Form1 mainMenu = new Form1(this.user);
+                        Hide();
+                        mainMenu.Show();
+                    }
                 }
             }
         }

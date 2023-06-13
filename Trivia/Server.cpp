@@ -10,7 +10,7 @@ void Server::run()
 	std::string input = "";
 
 	try {
-		std::thread t_connector(&Communicator::startHandleRequests, m_communicator);
+		std::thread t_connector(&Communicator::startHandleRequests, &m_communicator);
 		t_connector.detach();
 
 		while (true)
