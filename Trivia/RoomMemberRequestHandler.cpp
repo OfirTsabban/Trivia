@@ -1,6 +1,6 @@
 #include "RoomMemberRequestHandler.h"
 
-RoomMemberRequestHandler::RoomMemberRequestHandler(Room& room, LoggedUser& user, RequestHandlerFactory& factory) : m_room(room), m_user(user), m_handleFactory(factory), m_roomManager(this->m_handleFactory.getRoomManager())
+RoomMemberRequestHandler::RoomMemberRequestHandler(Room& room, LoggedUser& user, RequestHandlerFactory& factory) : m_user(user), m_roomManager(this->m_handleFactory.getRoomManager()), m_handleFactory(factory), m_room(room)
 {
 }
 

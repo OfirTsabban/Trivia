@@ -120,7 +120,7 @@ RequestResult MenuRequestHandler::getHighScore(const RequestInfo reqInfo)
 RequestResult MenuRequestHandler::joinRoom(const RequestInfo reqInfo)
 {
 	JoinRoomRequest joinReq = JsonRequestPacketDeserializer::deserializeJoinRoomRequest((char*)reqInfo.buffer);
-	m_roomManager.getRoom(joinReq.roomId).addUser(m_user);
+	this->m_roomManager.getRoom(joinReq.roomId).addUser(m_user);
 	JoinRoomResponse joinRoomResp = { 1 };
 	unsigned char* response = JsonResponsePacketSerializer::serializeResponse(joinRoomResp);
 

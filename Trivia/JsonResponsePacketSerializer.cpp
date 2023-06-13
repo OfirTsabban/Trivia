@@ -110,7 +110,7 @@ unsigned char* JsonResponsePacketSerializer::serializeResponse(GetPersonalStatsR
 
 unsigned char* JsonResponsePacketSerializer::serializeResponse(CloseRoomResponse closeRoom)
 {
-	json jsonMSG = { {"status" , closeRoom.status} };
+	json jsonMSG = { {"CloseRoom" , closeRoom.status} };
 	std::string s = std::to_string(Close_Room); 
 	return help(jsonMSG, s);
 }

@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Runtime.Remoting.Messaging;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GUI
@@ -20,18 +13,18 @@ namespace GUI
         public RoomInfo(int id, string userName)
         {
             this.user = userName;
-            this.roomId = id;           
+            this.roomId = id;
             InitializeComponent();
         }
 
         private void LabelAdminName_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void listViewPlayers_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
+
         }
 
         private void RoomInfo_Load(object sender, EventArgs e)
@@ -82,7 +75,7 @@ namespace GUI
                 }
                 else
                 {
-                    MessageBox.Show("Failed communicating with server", "Server Error", MessageBoxButtons.OK, MessageBoxIcon.Error);                
+                    MessageBox.Show("Failed communicating with server", "Server Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
@@ -98,12 +91,18 @@ namespace GUI
 
         private void buttonLeave_Click(object sender, EventArgs e)
         {
-            if(this.user == this.LabelAdminName.Text)
+            if (this.user == this.LabelAdminName.Text)
             {
-                if(Connector.sendMSG("CloseRoom", (int)Connector.Requests.Close_Room))
+                if (Connector.sendMSG("CloseRoom", (int)Connector.Requests.Close_Room))
                 {
                     string msg = Connector.recvMSG();
-                    //need to do more;
+                    if(msg.Contains("CloseRoom"))
+                    {
+                        MessageBox.Show("Host closed room", "Update", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Form1 mainMenu = new Form1(this.user);
+                        Hide();
+                        mainMenu.Show();
+                    }
                 }
                 else
                 {
@@ -115,7 +114,10 @@ namespace GUI
                 if (Connector.sendMSG("LeaveRoom", (int)Connector.Requests.Leave_Room))
                 {
                     string msg = Connector.recvMSG();
-                    //need to do more;
+                    MessageBox.Show(this.user + " has left the room", "Update", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Form1 mainMenu = new Form1(this.user);
+                    Hide();
+                    mainMenu.Show();
                 }
                 else
                 {
@@ -125,12 +127,12 @@ namespace GUI
         }
 
         private void buttonRoomState_Click(object sender, EventArgs e)
-        {            
+        {
             if (Connector.sendMSG("GetRoomState", (int)Connector.Requests.Room_State))
             {
                 string msg = Connector.recvMSG();
                 msg = msg.Substring(msg.IndexOf(":") + 2);
-                msg = msg.Substring(0, msg.IndexOf('"')); 
+                msg = msg.Substring(0, msg.IndexOf('"'));
                 string message = "";
                 for (int i = 0; i < msg.Length; i++)
                 {
@@ -143,7 +145,7 @@ namespace GUI
                         message += msg[i];
                     }
                 }
-                MessageBox.Show(message, "Room State", MessageBoxButtons.OK);                
+                MessageBox.Show(message, "Room State", MessageBoxButtons.OK);
             }
             else
             {
@@ -153,16 +155,15 @@ namespace GUI
 
         private void getAction()
         {
-            while(true)
+            bool msgRecived = false;
+            while (!msgRecived)
             {
                 string msg = Connector.recvMSG();
-                if(msg.Contains("LeaveRoom"))
+                if (msg.Contains("StartGame"))
                 {
-                    MessageBox.Show("Leave room", "Update", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else if (msg.Contains("StartGame"))
-                {
-                    MessageBox.Show("Start room", "Update", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    string show = "Start Room " + this.user;
+                    MessageBox.Show(show, "Update", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    msgRecived = true;
                 }
             }
         }

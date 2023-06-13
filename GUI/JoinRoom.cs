@@ -126,10 +126,20 @@ namespace GUI
             string column = this.listViewRooms.Items[index].ToString();                        
             column = column.Substring(column.IndexOf("id: ") + 4);
             column = column.Substring(0, column.IndexOf(','));             
-            int id = int.Parse(column);            
-            RoomInfo roomInfo = new RoomInfo(id, this.user);
-            Hide();
-            roomInfo.Show(); 
+            int id = int.Parse(column);
+            string json = Protocol.joinRoomProtocol(id);
+            if (Connector.sendMSG(json, (int)Connector.Requests.Join_Room))
+            {
+                string joined = Connector.recvMSG();
+                RoomInfo roomInfo = new RoomInfo(id, this.user);
+                Hide();
+                roomInfo.Show();
+
+            }
+            else
+            {
+                MessageBox.Show("Failed communicating with server", "Server Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void buttonBack_Click(object sender, EventArgs e)
