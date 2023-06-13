@@ -10,7 +10,7 @@ class RequestHandlerFactory;
 class RoomAdminRequestHandler : public IRequestHandler
 {
 public:
-	RoomAdminRequestHandler(Room room, LoggedUser user, RequestHandlerFactory handleFactory);
+	RoomAdminRequestHandler(Room& room, LoggedUser& user, RequestHandlerFactory& handleFactory);
 	bool isRequestRelevent(RequestInfo)override;
 	RequestResult handleRequest(RequestInfo, SOCKET)override;
 private:

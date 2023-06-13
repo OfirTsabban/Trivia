@@ -5,6 +5,11 @@ RequestHandlerFactory::RequestHandlerFactory(IDatabase* db) : m_database(db), m_
 {
 }
 
+RequestHandlerFactory::~RequestHandlerFactory()
+{
+	this->m_database = nullptr;
+}
+
 LoginRequestHandler* RequestHandlerFactory::createLoginRequestHandler()
 {
 	LoginRequestHandler* login = new LoginRequestHandler(*this);

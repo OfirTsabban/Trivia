@@ -6,7 +6,7 @@ RoomManager::RoomManager()
 
 RoomManager::~RoomManager()
 {
-	this->m_rooms.clear();
+	m_rooms.clear();//problem here!!!!!!!!!!
 }
 
 void RoomManager::createRoom(const LoggedUser host, RoomData newRoomData)
