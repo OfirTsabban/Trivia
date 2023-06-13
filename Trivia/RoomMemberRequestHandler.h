@@ -14,13 +14,14 @@ public:
 	bool isRequestRelevent(RequestInfo) override;
 	RequestResult handleRequest(RequestInfo, SOCKET) override;
 private:	
+	RequestHandlerFactory& m_handleFactory;
+	RoomManager& m_roomManager;
 	Room m_room;
 	LoggedUser m_user;
-	RoomManager& m_roomManager;
-	RequestHandlerFactory& m_handleFactory;
 	RequestResult leaveRoom(RequestInfo);
 	RequestResult getRoomState(RequestInfo, SOCKET);
 	RequestResult startGame(RequestInfo, SOCKET);
 	RequestResult getPlayers(const RequestInfo reqInfo);
 };
 
+//mutexes: db, roomManager, comminicator, loginManager...

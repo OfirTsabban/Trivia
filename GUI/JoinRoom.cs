@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Runtime.InteropServices;
-using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using System.Threading;
-using System.Runtime.CompilerServices;
+using System.Windows.Forms;
 
 namespace GUI
 {
@@ -24,12 +21,12 @@ namespace GUI
         }
 
         private void buttonNext_Click(object sender, EventArgs e)
-        {         
+        {
             bool error = false;
             string roomId = this.textBoxRoomId.Text;
-            if(roomId == "")
+            if (roomId == "")
             {
-                MessageBox.Show("you have to claim room id", "room id", MessageBoxButtons.OK, MessageBoxIcon.Warning);                
+                MessageBox.Show("you have to claim room id", "room id", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
@@ -37,37 +34,37 @@ namespace GUI
                 {
                     if (!char.IsDigit(roomId, i))
                     {
-                        MessageBox.Show("room id can only contain numbers","room id", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("room id can only contain numbers", "room id", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         error = true;
                     }
-                }                
-                if(!error)
-                {                    
+                }
+                if (!error)
+                {
                     int id = int.Parse(roomId);
                     string json = Protocol.joinRoomProtocol(id);
                     if (Connector.sendMSG(json, (int)Connector.Requests.Join_Room))
                     {
                         string joined = Connector.recvMSG();
                         joined = joined.Substring(joined.IndexOf(':') + 1, 1);
-                        if (joined == "1") 
+                        if (joined == "1")
                         {
                             RoomInfo roomInfo = new RoomInfo(id, this.user);
                             Hide();
                             roomInfo.Show();
                         }
-                        else if(joined == "0")
+                        else if (joined == "0")
                         {
                             MessageBox.Show("Failed communicating with server", "Server Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
-                        
+
                     }
                     else
                     {
                         MessageBox.Show("Failed communicating with server", "Server Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                }                
+                }
             }
-            
+
         }
 
         private void JoinRoom_Load(object sender, EventArgs e)
@@ -122,10 +119,10 @@ namespace GUI
         private void ColumnClick(object sender, ColumnClickEventArgs e)
         {
             this.SuspendLayout();
-            int index = e.Column;            
-            string column = this.listViewRooms.Items[index].ToString();                        
+            int index = e.Column;
+            string column = this.listViewRooms.Items[index].ToString();
             column = column.Substring(column.IndexOf("id: ") + 4);
-            column = column.Substring(0, column.IndexOf(','));             
+            column = column.Substring(0, column.IndexOf(','));
             int id = int.Parse(column);
             string json = Protocol.joinRoomProtocol(id);
             if (Connector.sendMSG(json, (int)Connector.Requests.Join_Room))
