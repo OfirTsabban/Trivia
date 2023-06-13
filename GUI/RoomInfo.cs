@@ -8,12 +8,14 @@ namespace GUI
     public partial class RoomInfo : Form
     {
         private int roomId;
+        private bool refresh;
         private string user;
         private bool hasGameBegun = false;
         public RoomInfo(int id, string userName)
         {
             this.user = userName;
             this.roomId = id;
+            this.refresh = true;
             InitializeComponent();
         }
 
@@ -30,36 +32,9 @@ namespace GUI
         private void RoomInfo_Load(object sender, EventArgs e)
         {
             this.labelName.Text = this.user;
-            string json = Protocol.getPlayersProtocol(this.roomId);
-            if (Connector.sendMSG(json, (int)Connector.Requests.Get_Players))
-            {
-                string players = Connector.recvMSG();
-                players = players.Substring(players.IndexOf(':') + 2);
-                if (players.Contains(','))
-                {
-                    string admin = players.Substring(0, players.IndexOf(','));
-
-                    players = players.Substring(players.IndexOf(',') + 1);
-                    string player = "";
-                    this.LabelAdminName.Text = admin;
-                    for (int i = 0; i < players.Length; i++)
-                    {
-                        if (players[i] == ',')
-                        {
-                            this.listViewPlayers.Items.Add(player);
-                            player = "";
-                        }
-                        else
-                        {
-                            player += players[i];
-                        }
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("Failed communicating with server", "Server Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            Thread refreshPlayers = new Thread(new ThreadStart(getPlayers));
+            refreshPlayers.Name = "RoomInfoRefresher";
+            refreshPlayers.Start();           
         }
 
         private void buttonStart_Click(object sender, EventArgs e)
@@ -96,7 +71,7 @@ namespace GUI
                 if (Connector.sendMSG("CloseRoom", (int)Connector.Requests.Close_Room))
                 {
                     string msg = Connector.recvMSG();
-                    if(msg.Contains("CloseRoom"))
+                    if (msg.Contains("CloseRoom"))
                     {
                         MessageBox.Show("Host closed room", "Update", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         Form1 mainMenu = new Form1(this.user);
@@ -165,6 +140,47 @@ namespace GUI
                     MessageBox.Show(show, "Update", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     msgRecived = true;
                 }
+            }
+        }
+        private void getPlayers()
+        {
+            while (this.refresh)
+            {                
+                string json = Protocol.getPlayersProtocol(this.roomId);
+                if (Connector.sendMSG(json, (int)Connector.Requests.Get_Players))
+                {
+                    this.Invoke((MethodInvoker)delegate
+                    {
+                        this.listViewPlayers.Items.Clear();
+                        string players = Connector.recvMSG();
+                        players = players.Substring(players.IndexOf(':') + 2);
+                        if (players.Contains(','))
+                        {
+                            string admin = players.Substring(0, players.IndexOf(','));
+
+                            players = players.Substring(players.IndexOf(',') + 1);
+                            string player = "";
+                            this.LabelAdminName.Text = admin;
+                            for (int i = 0; i < players.Length; i++)
+                            {
+                                if (players[i] == ',')
+                                {
+                                    this.listViewPlayers.Items.Add(player);
+                                    player = "";
+                                }
+                                else
+                                {
+                                    player += players[i];
+                                }
+                            }
+                        }
+                    });
+                }
+                else
+                {
+                    MessageBox.Show("Failed communicating with server", "Server Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                Thread.Sleep(3000);
             }
         }
     }
