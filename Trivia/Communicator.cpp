@@ -75,6 +75,7 @@ void Communicator::acceptClient()
 void Communicator::handleNewClient(SOCKET client_socket)
 {	
 	int id = 0;
+	int deletelater;
 	do
 	{
 		id = Helper::getMessageTypeCode(client_socket);
