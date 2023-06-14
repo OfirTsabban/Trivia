@@ -74,9 +74,9 @@ void Communicator::acceptClient()
 void Communicator::handleNewClient(SOCKET client_socket)
 {	
 	int id = 0;
-	int deletelater;
 	do
 	{
+		/*std::unique_lock<std::mutex> lock(this->commMutex);*/
 		id = Helper::getMessageTypeCode(client_socket);
 		if (id != 200)
 		{

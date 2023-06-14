@@ -12,12 +12,17 @@ namespace GUI
         private string user;
         private bool hasGameBegun = false;
         private static Mutex mutex;
+        Thread refreshPlayers;
+        Thread waitAction;
+
         public RoomInfo(int id, string userName)
         {
             this.user = userName;
             this.roomId = id;
             this.refresh = true;
             mutex = new Mutex();
+            refreshPlayers = new Thread(new ThreadStart(getPlayers));
+            waitAction = new Thread(new ThreadStart(getAction));
             InitializeComponent();
         }
 
@@ -34,10 +39,10 @@ namespace GUI
         private void RoomInfo_Load(object sender, EventArgs e)
         {
             this.labelName.Text = this.user;
-            Thread refreshPlayers = new Thread(new ThreadStart(getPlayers));
+            
             refreshPlayers.Name = "RoomInfoRefresher";
             refreshPlayers.Start();
-            Thread waitAction = new Thread(new ThreadStart(getAction));
+           
             waitAction.Name = "waitForAction";
             waitAction.Start();
         }
@@ -70,6 +75,8 @@ namespace GUI
 
         private void buttonLeave_Click(object sender, EventArgs e)
         {
+            this.refreshPlayers.Abort();
+            this.waitAction.Abort();
             if (this.user == this.LabelAdminName.Text)
             {
                 if (Connector.sendMSG("CloseRoom", (int)Connector.Requests.Close_Room))
@@ -77,8 +84,8 @@ namespace GUI
                     string msg = Connector.recvMSG();
                     if (msg.Contains("CloseRoom") || msg.Contains("LeaveRoom"))
                     {
-                        MessageBox.Show("Host closed room", "Update", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         this.refresh = false;
+                        MessageBox.Show("Host closed room", "Update", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         Form1 mainMenu = new Form1(this.user);
                         Hide();
                         mainMenu.Show();
@@ -93,9 +100,9 @@ namespace GUI
             {
                 if (Connector.sendMSG("LeaveRoom", (int)Connector.Requests.Leave_Room))
                 {
+                    this.refresh = false;
                     string msg = Connector.recvMSG();
                     MessageBox.Show(this.user + " has left the room", "Update", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.refresh = false;
                     Form1 mainMenu = new Form1(this.user);
                     Hide();
                     mainMenu.Show();
