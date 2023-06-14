@@ -26,7 +26,7 @@ uint32_t RoomManager::createRoom(const LoggedUser host, RoomData newRoomData)
 		std::unique_lock<std::mutex> lock(this->roomMutex);
 		id = roomCounter;
 		newRoomData.id = id;
-		Room* newRoom = new Room(newRoomData);
+		std::shared_ptr<Room> newRoom = std::shared_ptr<Room>(new Room(newRoomData));
 		newRoom->addUser(host);
 		this->m_rooms.emplace(std::make_pair(roomCounter, newRoom));
 
@@ -46,7 +46,7 @@ void RoomManager::deleteRoom(int ID)
 	}
 	else
 	{
-		delete this->m_rooms.at(ID);
+		this->m_rooms.at(ID)->setStatus(3);
 		this->m_rooms.erase(ID);
 	}
 }
@@ -88,16 +88,14 @@ std::vector<RoomData> RoomManager::getRooms()
 	return rooms;
 }
 
-Room& RoomManager::getRoom(int ID)
+std::shared_ptr<Room> RoomManager::getRoom(int ID)
 {
-	std::map<unsigned int, Room*>::iterator it;
-
 	std::unique_lock<std::mutex> lock(this->roomMutex);
-	for (it = m_rooms.begin(); it != m_rooms.end(); it++)
+	for (auto&& it = m_rooms.begin(); it != m_rooms.end(); it++)
 	{
 		if (it->first == ID)
 		{
-			return *it->second;
+			return it->second;
 		}
 	}
 }

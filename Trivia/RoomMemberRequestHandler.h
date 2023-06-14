@@ -10,13 +10,13 @@ class RequestHandlerFactory;
 class RoomMemberRequestHandler: public IRequestHandler
 {
 public:
-	RoomMemberRequestHandler(Room&, LoggedUser&, RequestHandlerFactory&);
+	RoomMemberRequestHandler(std::shared_ptr<Room>, LoggedUser&, RequestHandlerFactory&);
 	bool isRequestRelevent(RequestInfo) override;
 	RequestResult handleRequest(RequestInfo, SOCKET) override;
 private:	
 	RequestHandlerFactory& m_handleFactory;
 	RoomManager& m_roomManager;
-	Room& m_room;
+	std::shared_ptr<Room> m_room;
 	LoggedUser m_user;
 	RequestResult leaveRoom(RequestInfo);
 	RequestResult getRoomState(RequestInfo, SOCKET);

@@ -79,8 +79,8 @@ RequestResult MenuRequestHandler::getPlayers(const RequestInfo reqInfo)
 {
 	GetPlayersInRoomRequest getPlayersRequest = JsonRequestPacketDeserializer::deserializeGetPlayersRequest((char*)reqInfo.buffer);
 
-	Room& currRoom = m_roomManager.getRoom(getPlayersRequest.roomId);
-	std::vector<std::string> allPlayers = currRoom.getAllUsersNames();
+	std::shared_ptr<Room> currRoom = m_roomManager.getRoom(getPlayersRequest.roomId);
+	std::vector<std::string> allPlayers = currRoom->getAllUsersNames();
 
 	GetPlayersInRoomResponse playersInRoomResp = { allPlayers };
 	unsigned char* response = JsonResponsePacketSerializer::serializeResponse(playersInRoomResp);
@@ -120,7 +120,7 @@ RequestResult MenuRequestHandler::getHighScore(const RequestInfo reqInfo)
 RequestResult MenuRequestHandler::joinRoom(const RequestInfo reqInfo)
 {
 	JoinRoomRequest joinReq = JsonRequestPacketDeserializer::deserializeJoinRoomRequest((char*)reqInfo.buffer);
-	this->m_roomManager.getRoom(joinReq.roomId).addUser(m_user);
+	this->m_roomManager.getRoom(joinReq.roomId)->addUser(m_user);
 	JoinRoomResponse joinRoomResp = { 1 };
 	unsigned char* response = JsonResponsePacketSerializer::serializeResponse(joinRoomResp);
 

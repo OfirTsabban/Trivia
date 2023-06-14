@@ -1,7 +1,7 @@
 #include "RoomAdminRequestHandler.h"
 
 
-RoomAdminRequestHandler::RoomAdminRequestHandler(Room& room, LoggedUser& user, RequestHandlerFactory& handleFactory) : m_user(user), m_roomManager(handleFactory.getRoomManager()), m_handleFactory(handleFactory), m_room(room)
+RoomAdminRequestHandler::RoomAdminRequestHandler(std::shared_ptr<Room> room, LoggedUser& user, RequestHandlerFactory& handleFactory) : m_user(user), m_roomManager(handleFactory.getRoomManager()), m_handleFactory(handleFactory), m_room(room)
 {
 }
 
@@ -26,19 +26,11 @@ RequestResult RoomAdminRequestHandler::handleRequest(RequestInfo reqInfo, SOCKET
 }
 
 RequestResult RoomAdminRequestHandler::closeRoom(RequestInfo reqInfo, SOCKET userSocket)
-{
-	std::vector<LoggedUser> users = this->m_room.getAllUsers();
-	for (int i = 0; i < users.size(); i++)
-	{
-		IRequestHandler* memberReq = this->m_handleFactory.createRoomMemberRequestHandler(users[i], this->m_room);		
-		RequestInfo info = { Leave_Room, std::time(nullptr) , reqInfo.buffer };
-		RequestResult reqRes = memberReq->handleRequest(info, users[i].getUserSocket());
-		Helper::sendData(users[i].getUserSocket(), reinterpret_cast<char*>(reqRes.response));
-	}	
+{	
 	CloseRoomResponse closeRoom = { 1 };
 	unsigned char* response = JsonResponsePacketSerializer::serializeResponse(closeRoom);
 
-	this->m_roomManager.deleteRoom(this->m_room.getData().id);
+	this->m_roomManager.deleteRoom(this->m_room->getData().id);
 
 	IRequestHandler* handler = this->m_handleFactory.createMenuRequestHandler(this->m_user);
 	RequestResult reqResult = { response, handler };
@@ -49,7 +41,7 @@ RequestResult RoomAdminRequestHandler::startGame(RequestInfo reqInfo, SOCKET use
 {
 	StartGameResponse startGame = { 1 };
 	unsigned char* response = JsonResponsePacketSerializer::serializeResponse(startGame);
-	std::vector<LoggedUser> users = this->m_room.getAllUsers();
+	std::vector<LoggedUser> users = this->m_room->getAllUsers();
 	for (int i = 0; i < users.size(); i++)
 	{
 		IRequestHandler* memberReq = this->m_handleFactory.createRoomMemberRequestHandler(users[i], this->m_room);
@@ -58,7 +50,7 @@ RequestResult RoomAdminRequestHandler::startGame(RequestInfo reqInfo, SOCKET use
 		Helper::sendData(users[i].getUserSocket(), reinterpret_cast<char*>(reqRes.response));
 	}
 	
-	this->m_room.setStatus(1);
+	this->m_room->setStatus(1);
 
 	IRequestHandler* handler = nullptr;//need game handler
 	RequestResult reqResult = { response, handler };
@@ -67,7 +59,7 @@ RequestResult RoomAdminRequestHandler::startGame(RequestInfo reqInfo, SOCKET use
 
 RequestResult RoomAdminRequestHandler::getRoomState(RequestInfo reqInfo)
 {			
-	GetRoomStateResponse  roomState = { this->m_room.getData().id, this->m_room.getData().isActive, this->m_room.getAllUsersNames(), this->m_room.getData().numOfQuestionsInGame, this->m_room.getData().timePerQuestion};
+	GetRoomStateResponse  roomState = { this->m_room->getData().id, this->m_room->getData().isActive, this->m_room->getAllUsersNames(), this->m_room->getData().numOfQuestionsInGame, this->m_room->getData().timePerQuestion};
 	unsigned char* response = JsonResponsePacketSerializer::serializeResponse(roomState);
 	
 	//IRequestHandler* handler = this->m_handleFactory.createRoomAdminRequestHandler(this->m_user, this->m_room);
@@ -77,7 +69,7 @@ RequestResult RoomAdminRequestHandler::getRoomState(RequestInfo reqInfo)
 
 RequestResult RoomAdminRequestHandler::getPlayers(const RequestInfo reqInfo)
 {
-	std::vector<std::string> allPlayers = m_roomManager.getRoom(this->m_room.getData().id).getAllUsersNames();
+	std::vector<std::string> allPlayers = m_roomManager.getRoom(this->m_room->getData().id)->getAllUsersNames();
 
 	GetPlayersInRoomResponse playersInRoomResp = { allPlayers };
 	unsigned char* response = JsonResponsePacketSerializer::serializeResponse(playersInRoomResp);

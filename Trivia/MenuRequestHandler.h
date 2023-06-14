@@ -24,7 +24,6 @@ private:
 	RequestResult getHighScore(const RequestInfo reqInfo);
 	RequestResult joinRoom(const RequestInfo reqInfo);
 	RequestResult createRoom(const RequestInfo reqInfo);
-	int createRoomID();
 
 	LoggedUser m_user;
 	RoomManager& m_roomManager;

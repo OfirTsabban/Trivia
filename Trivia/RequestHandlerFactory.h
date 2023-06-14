@@ -25,8 +25,8 @@ public:
 	MenuRequestHandler* createMenuRequestHandler(LoggedUser user);
 	StatisticsManager& getStatisticsManager();
 	RoomManager& getRoomManager();
-	RoomAdminRequestHandler* createRoomAdminRequestHandler(LoggedUser user, Room& room);
-	RoomMemberRequestHandler* createRoomMemberRequestHandler(LoggedUser user, Room& room);
+	RoomAdminRequestHandler* createRoomAdminRequestHandler(LoggedUser user, std::shared_ptr<Room> room);
+	RoomMemberRequestHandler* createRoomMemberRequestHandler(LoggedUser user, std::shared_ptr<Room> room);
 private:
 	IDatabase* m_database;
 	LoginManager m_loginManager;

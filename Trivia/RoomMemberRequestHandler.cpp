@@ -1,6 +1,6 @@
 #include "RoomMemberRequestHandler.h"
 
-RoomMemberRequestHandler::RoomMemberRequestHandler(Room& room, LoggedUser& user, RequestHandlerFactory& factory) : m_user(user), m_roomManager(factory.getRoomManager()), m_handleFactory(factory), m_room(room)
+RoomMemberRequestHandler::RoomMemberRequestHandler(std::shared_ptr<Room> room, LoggedUser& user, RequestHandlerFactory& factory) : m_user(user), m_roomManager(factory.getRoomManager()), m_handleFactory(factory), m_room(room)
 {
 }
 
@@ -26,7 +26,7 @@ RequestResult RoomMemberRequestHandler::handleRequest(RequestInfo reqInfo, SOCKE
 
 RequestResult RoomMemberRequestHandler::leaveRoom(RequestInfo reqInfo)
 {
-	this->m_room.removeUser(this->m_user);
+	this->m_room->removeUser(this->m_user);
 	LeaveRoomResponse leaveRoom = { 1 };
 	unsigned char* response = JsonResponsePacketSerializer::serializeResponse(leaveRoom); 
 
@@ -55,8 +55,8 @@ RequestResult RoomMemberRequestHandler::getPlayers(const RequestInfo reqInfo)
 {
 	GetPlayersInRoomRequest getPlayersRequest = JsonRequestPacketDeserializer::deserializeGetPlayersRequest((char*)reqInfo.buffer);
 
-	Room& currRoom = m_roomManager.getRoom(getPlayersRequest.roomId);
-	std::vector<std::string> allPlayers = currRoom.getAllUsersNames();
+	std::shared_ptr<Room> currRoom = m_roomManager.getRoom(getPlayersRequest.roomId);
+	std::vector<std::string> allPlayers = currRoom->getAllUsersNames();
 
 	GetPlayersInRoomResponse playersInRoomResp = { allPlayers };
 	unsigned char* response = JsonResponsePacketSerializer::serializeResponse(playersInRoomResp);

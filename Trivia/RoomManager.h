@@ -19,10 +19,10 @@ public:
 	unsigned int getRoomState(const int ID) const;
 	void setRoomState(const int ID, int state) const;
 	std::vector<RoomData> getRooms();
-	Room& getRoom(int ID);
+	std::shared_ptr<Room> getRoom(int ID);
 
 private:
-	std::map<unsigned int, Room*> m_rooms;
+	std::map<unsigned int, std::shared_ptr<Room>> m_rooms;
 	mutex roomMutex;
 	uint32_t roomCounter;
 };
