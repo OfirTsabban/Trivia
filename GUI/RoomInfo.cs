@@ -11,11 +11,13 @@ namespace GUI
         private bool refresh;
         private string user;
         private bool hasGameBegun = false;
+        private static Mutex mutex;
         public RoomInfo(int id, string userName)
         {
             this.user = userName;
             this.roomId = id;
             this.refresh = true;
+            mutex = new Mutex();
             InitializeComponent();
         }
 
@@ -42,12 +44,13 @@ namespace GUI
 
         private void buttonStart_Click(object sender, EventArgs e)
         {
-            this.refresh = false;
             if (this.user == this.LabelAdminName.Text)
             {
                 if (Connector.sendMSG("Start Game", (int)Connector.Requests.Admin_Start_Game))
                 {
                     this.hasGameBegun = true;
+                    this.refresh = false;
+                    MessageBox.Show("Host started game", "success", MessageBoxButtons.OK);
                 }
                 else
                 {
@@ -67,7 +70,6 @@ namespace GUI
 
         private void buttonLeave_Click(object sender, EventArgs e)
         {
-            this.refresh = false;
             if (this.user == this.LabelAdminName.Text)
             {
                 if (Connector.sendMSG("CloseRoom", (int)Connector.Requests.Close_Room))
@@ -76,6 +78,7 @@ namespace GUI
                     if (msg.Contains("CloseRoom") || msg.Contains("LeaveRoom"))
                     {
                         MessageBox.Show("Host closed room", "Update", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.refresh = false;
                         Form1 mainMenu = new Form1(this.user);
                         Hide();
                         mainMenu.Show();
@@ -92,6 +95,7 @@ namespace GUI
                 {
                     string msg = Connector.recvMSG();
                     MessageBox.Show(this.user + " has left the room", "Update", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.refresh = false;
                     Form1 mainMenu = new Form1(this.user);
                     Hide();
                     mainMenu.Show();
@@ -132,41 +136,35 @@ namespace GUI
 
         private void getAction()
         {
-            Thread.Sleep(1000);
-            if(this.user != this.LabelAdminName.Text)
+            string msg = "";
+
+            while (this.refresh)
             {
-                bool msgRecived = false;
-                while (!msgRecived)
+                mutex.WaitOne();
+                Connector.sendMSG("GetRoomState", (int)Connector.Requests.Room_State);
+                Thread.Sleep(200);
+                msg = Connector.recvMSG();
+                mutex.ReleaseMutex();
+                if(msg.Contains("has game begun: 1"))
                 {
-                    string msg = Connector.recvMSG();
-                    if (msg.Contains("StartGame"))
-                    {
-                        string show = "Start Room " + this.user;
-                        MessageBox.Show(show, "Update", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        msgRecived = true;
-                    }
-                    else if (msg.Contains("LeaveRoom"))
-                    {
-                        string show = "Host closed the room";
-                        MessageBox.Show(show, "Update", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        msgRecived = true;
-                        Form1 mainMenu = new Form1(this.user);
-                        Hide();
-                        mainMenu.Show();
-                    }
+                    this.refresh = false;
+                    MessageBox.Show("Host started game", "success", MessageBoxButtons.OK);
                 }
             }
+            
         }
         private void getPlayers()
         {
             while (this.refresh)
             {
                 string json = Protocol.getPlayersProtocol(this.roomId);
+                mutex.WaitOne();
                 if (Connector.sendMSG(json, (int)Connector.Requests.Get_Players))
                 {
                     this.Invoke((MethodInvoker)delegate
                     {
                         this.listViewPlayers.Items.Clear();
+                        Thread.Sleep(200);
                         string players = Connector.recvMSG();
                         players = players.Substring(players.IndexOf(':') + 2);
                         if (players.Contains(','))
@@ -195,6 +193,7 @@ namespace GUI
                 {
                     MessageBox.Show("Failed communicating with server", "Server Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+                mutex.ReleaseMutex();
                 Thread.Sleep(3000);
             }
         }

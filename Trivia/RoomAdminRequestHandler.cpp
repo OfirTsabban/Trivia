@@ -38,6 +38,8 @@ RequestResult RoomAdminRequestHandler::closeRoom(RequestInfo reqInfo, SOCKET use
 	CloseRoomResponse closeRoom = { 1 };
 	unsigned char* response = JsonResponsePacketSerializer::serializeResponse(closeRoom);
 
+	this->m_roomManager.deleteRoom(this->m_room.getData().id);
+
 	IRequestHandler* handler = this->m_handleFactory.createMenuRequestHandler(this->m_user);
 	RequestResult reqResult = { response, handler };
 	return reqResult;
@@ -56,6 +58,7 @@ RequestResult RoomAdminRequestHandler::startGame(RequestInfo reqInfo, SOCKET use
 		Helper::sendData(users[i].getUserSocket(), reinterpret_cast<char*>(reqRes.response));
 	}
 	
+	this->m_room.setStatus(1);
 
 	IRequestHandler* handler = nullptr;//need game handler
 	RequestResult reqResult = { response, handler };

@@ -60,3 +60,8 @@ RoomData Room::getData() const
 	return this->m_metadata;
 }
 
+void Room::setStatus(int status)
+{
+	this->m_metadata.isActive = status;
+}
+

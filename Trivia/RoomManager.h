@@ -17,6 +17,7 @@ public:
 	uint32_t createRoom(const LoggedUser host, RoomData newRoomData);
 	void deleteRoom(const int ID);
 	unsigned int getRoomState(const int ID) const;
+	void setRoomState(const int ID, int state) const;
 	std::vector<RoomData> getRooms();
 	Room& getRoom(int ID);
 

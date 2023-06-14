@@ -13,22 +13,27 @@ RoomManager::~RoomManager()
 
 uint32_t RoomManager::createRoom(const LoggedUser host, RoomData newRoomData)
 {
+	int id = 0;
+
 	if (m_rooms.find(newRoomData.id) != m_rooms.end())
 	{
 		throw ExceptionHandler("Error - room already exists");
 	}
 	else
 	{
-		newRoomData.isActive = 1;//when room is created it's automaticly activates
+		newRoomData.isActive = 0;
 
 		std::unique_lock<std::mutex> lock(this->roomMutex);
-		newRoomData.id = roomCounter;
+		id = roomCounter;
+		newRoomData.id = id;
 		Room* newRoom = new Room(newRoomData);
 		newRoom->addUser(host);
 		this->m_rooms.emplace(std::make_pair(roomCounter, newRoom));
 
 		roomCounter++;
 	}
+
+	return id;
 }
 
 void RoomManager::deleteRoom(int ID)
@@ -55,6 +60,18 @@ unsigned int RoomManager::getRoomState(const int ID) const
 	else
 	{
 		return this->m_rooms.find(ID)->second->getData().isActive;
+	}
+}
+
+void RoomManager::setRoomState(const int ID, int state) const
+{
+	if (m_rooms.find(ID) == m_rooms.end())
+	{
+		throw ExceptionHandler("Error - room doesn't already exists");
+	}
+	else
+	{
+		this->m_rooms.find(ID)->second->setStatus(state);
 	}
 }
 
