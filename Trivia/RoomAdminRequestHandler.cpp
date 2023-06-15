@@ -69,10 +69,18 @@ RequestResult RoomAdminRequestHandler::getRoomState(RequestInfo reqInfo)
 
 RequestResult RoomAdminRequestHandler::getPlayers(const RequestInfo reqInfo)
 {
-	std::vector<std::string> allPlayers = m_roomManager.getRoom(this->m_room->getData().id)->getAllUsersNames();
-
-	GetPlayersInRoomResponse playersInRoomResp = { allPlayers };
-	unsigned char* response = JsonResponsePacketSerializer::serializeResponse(playersInRoomResp);
+	unsigned char* response;
+	try
+	{
+		std::vector<std::string> allPlayers = this->m_room->getAllUsersNames();
+		GetPlayersInRoomResponse playersInRoomResp = { allPlayers };
+		response = JsonResponsePacketSerializer::serializeResponse(playersInRoomResp);
+	}
+	catch (std::bad_alloc& error)
+	{
+		LeaveRoomResponse leaveRoom = { 1 };
+		response = JsonResponsePacketSerializer::serializeResponse(leaveRoom);
+	}
 
 	IRequestHandler* handle = this;
 
