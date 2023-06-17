@@ -22,6 +22,7 @@ public:
 	Question getQuestionForUser(LoggedUser);
 	void submitAnswer(LoggedUser, std::string answer);
 	void removePlayer(LoggedUser);
+	unsigned int getGameId();
 
 private:
 	std::vector<Question> m_questions;

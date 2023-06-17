@@ -51,3 +51,8 @@ void Game::removePlayer(LoggedUser user)
 	auto it = m_players.find(user);
 	m_players.erase(it);
 }
+
+unsigned int Game::getGameId()
+{
+	return this->m_gameId;
+}
