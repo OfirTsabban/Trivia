@@ -68,3 +68,13 @@ CreateRoomRequest JsonRequestPacketDeserializer::deserializeCreateRoomRequest(ch
 	CreateRoomRequest roomReq = { json.at("roomName"), json.at("maxUsers"), json.at("questionCount"), json.at("answerTimeout") };
 	return roomReq;
 }
+
+SubmitAnswerRequest JsonRequestPacketDeserializer::deserializeSubmitAnswerRequest(char* buffer)
+{
+	std::string bufferString = buffer;
+	bufferString = bufferString.substr(bufferString.find("{"));
+	auto json = nlohmann::json::parse(bufferString);
+
+	SubmitAnswerRequest answer = { json.at("answerID") };
+	return answer;
+}

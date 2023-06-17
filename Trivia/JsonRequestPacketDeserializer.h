@@ -39,6 +39,11 @@ struct JoinRoomRequest
 	unsigned int roomId;
 };
 
+struct SubmitAnswerRequest
+{
+	unsigned int answerId;
+};
+
 class JsonRequestPacketDeserializer
 {
 public:
@@ -47,5 +52,6 @@ public:
 	static GetPlayersInRoomRequest deserializeGetPlayersRequest(char* buffer);
 	static JoinRoomRequest deserializeJoinRoomRequest(char* buffer);
 	static CreateRoomRequest deserializeCreateRoomRequest(char* buffer);
+	static SubmitAnswerRequest deserializeSubmitAnswerRequest(char* buffer);
 
 };
