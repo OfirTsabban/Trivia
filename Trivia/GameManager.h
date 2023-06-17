@@ -11,7 +11,7 @@ class GameManager
 {
 public:
 	GameManager(IDatabase* db);
-	Game createGame(Room);
+	Game createGame(std::shared_ptr<Room>);
 	void deleteGame(unsigned int gameId);
 
 private:

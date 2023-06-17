@@ -56,8 +56,7 @@ RequestResult RoomAdminRequestHandler::startGame(RequestInfo reqInfo, SOCKET use
 	}
 	
 	this->m_room->setStatus(1);
-
-	IRequestHandler* handler = nullptr;//need game handler
+	IRequestHandler* handler = m_handleFactory.createGameRequestHandler(m_user, m_handleFactory.getGameManager().createGame(m_room));
 	RequestResult reqResult = { response, handler };
 	return reqResult;
 }

@@ -4,15 +4,15 @@ GameManager::GameManager(IDatabase* db) :m_database(db)
 {
 }
 
-Game GameManager::createGame(Room room)
+Game GameManager::createGame(std::shared_ptr<Room> room)
 {
-	std::list<Question> questionsList = this->m_database->getQuestions(room.getData().numOfQuestionsInGame);
+	std::list<Question> questionsList = this->m_database->getQuestions(room->getData().numOfQuestionsInGame);
 	std::vector<Question> questions;
 	for (Question const& q : questionsList) {
 		questions.push_back(q);
 	}
-	std::vector<LoggedUser> players = room.getAllUsers();
-	unsigned int roomID = room.getData().id;
+	std::vector<LoggedUser> players = room->getAllUsers();
+	unsigned int roomID = room->getData().id;
 	this->m_games.push_back(Game(questions, players, roomID));
 	return Game(questions, players, roomID);
 }

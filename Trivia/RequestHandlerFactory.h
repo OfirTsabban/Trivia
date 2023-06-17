@@ -7,10 +7,11 @@
 #include "RoomAdminRequestHandler.h"
 #include "RoomMemberRequestHandler.h"
 #include "GameManager.h"
+#include "GameRequestHandler.h"
 
 enum loginDef { succeeded = true, failed = false };
 
-class GameManager;
+class GameRequestHandler;
 class RoomMemberRequestHandler;
 class RoomAdminRequestHandler;
 class MenuRequestHandler;
@@ -29,6 +30,7 @@ public:
 	RoomManager& getRoomManager();
 	RoomAdminRequestHandler* createRoomAdminRequestHandler(LoggedUser user, std::shared_ptr<Room> room);
 	RoomMemberRequestHandler* createRoomMemberRequestHandler(LoggedUser user, std::shared_ptr<Room> room);
+	GameRequestHandler* createGameRequestHandler(LoggedUser user, Game game);
 	GameManager& getGameManager();
 	
 private:
