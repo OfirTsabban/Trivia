@@ -29,6 +29,11 @@ RequestResult RoomAdminRequestHandler::closeRoom(RequestInfo reqInfo, SOCKET use
 {	
 	CloseRoomResponse closeRoom = { 1 };
 	unsigned char* response = JsonResponsePacketSerializer::serializeResponse(closeRoom);
+	std::vector<LoggedUser> users = this->m_room->getAllUsers();
+	for (int i = 1; i < users.size(); i++)
+	{
+		Helper::sendData(users[i].getUserSocket(), "get out");
+	}
 
 	this->m_roomManager.deleteRoom(this->m_room->getData().id);
 

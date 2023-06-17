@@ -157,6 +157,14 @@ namespace GUI
                     this.refresh = false;
                     MessageBox.Show("Host started game", "success", MessageBoxButtons.OK);
                 }
+                if (msg.Contains("get out"))
+                {
+                    this.refresh = false;
+                    MessageBox.Show("Host started game", "success", MessageBoxButtons.OK);
+                    Form1 mainMenu = new Form1(this.user);
+                    Hide();
+                    mainMenu.Show();
+                }
             }
             
         }
