@@ -2,22 +2,27 @@
 #include <iostream>
 #include <map>
 #include <vector>
+#include <mutex>
 #include "ExceptionHandler.h"
 #include "LoggedUser.h"
 #include "Room.h"
 
+using std::mutex;
 
 class RoomManager
 {
 public:
-	RoomManager() = default;
-	~RoomManager() = default;
-	void createRoom(const LoggedUser host, RoomData newRoomData);
+	RoomManager();
+	~RoomManager();
+	uint32_t createRoom(const LoggedUser host, RoomData newRoomData);
 	void deleteRoom(const int ID);
 	unsigned int getRoomState(const int ID) const;
+	void setRoomState(const int ID, int state) const;
 	std::vector<RoomData> getRooms();
-	Room& getRoom(int ID);
+	std::shared_ptr<Room> getRoom(int ID);
 
 private:
-	std::map<int, Room> m_rooms;
+	std::map<unsigned int, std::shared_ptr<Room>> m_rooms;
+	mutex roomMutex;
+	uint32_t roomCounter;
 };

@@ -24,7 +24,12 @@ namespace GUI
             Get_High_Score = 107,
             Join_Room = 108,
             Create_Room = 109,
-            Exit = 200
+            Exit = 200,
+            Close_Room = 201,
+            Admin_Start_Game = 202,
+            Member_Start_Game = 203,
+            Room_State = 204,
+            Leave_Room = 205
         };
 
         private static TcpClient client = new TcpClient();

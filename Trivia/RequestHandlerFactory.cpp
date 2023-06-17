@@ -5,6 +5,11 @@ RequestHandlerFactory::RequestHandlerFactory(IDatabase* db) : m_database(db), m_
 {
 }
 
+RequestHandlerFactory::~RequestHandlerFactory()
+{
+	this->m_database = nullptr;
+}
+
 LoginRequestHandler* RequestHandlerFactory::createLoginRequestHandler()
 {
 	LoginRequestHandler* login = new LoginRequestHandler(*this);
@@ -30,4 +35,16 @@ StatisticsManager& RequestHandlerFactory::getStatisticsManager()
 RoomManager& RequestHandlerFactory::getRoomManager()
 {
 	return this->m_roomManager;
+}
+
+RoomAdminRequestHandler* RequestHandlerFactory::createRoomAdminRequestHandler(LoggedUser user, std::shared_ptr<Room> room)
+{
+	RoomAdminRequestHandler* roomAdmin = new RoomAdminRequestHandler(room, user, *this);
+	return roomAdmin;
+}
+
+RoomMemberRequestHandler* RequestHandlerFactory::createRoomMemberRequestHandler(LoggedUser user, std::shared_ptr<Room> room)
+{
+	RoomMemberRequestHandler* roomMember = new RoomMemberRequestHandler(room, user, *this);
+	return roomMember;
 }

@@ -47,4 +47,5 @@ public:
 	static GetPlayersInRoomRequest deserializeGetPlayersRequest(char* buffer);
 	static JoinRoomRequest deserializeJoinRoomRequest(char* buffer);
 	static CreateRoomRequest deserializeCreateRoomRequest(char* buffer);
+
 };

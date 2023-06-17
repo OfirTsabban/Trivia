@@ -62,16 +62,15 @@ struct StartGameResponse
 struct GetRoomStateResponse
 {
 	unsigned int status;
-	bool hasGameBegun;
-	vector<std::string> players;
+	unsigned int hasGameBegun;
+	std::vector<std::string> players;
 	unsigned int questionCount;
-	bool answerTimeOut;
+	unsigned int answerTimeout;
 };
 struct LeaveRoomResponse
 {
 	unsigned int status;
 };
-
 
 static enum Requests {
 	Error = 100,
@@ -86,9 +85,10 @@ static enum Requests {
 	Create_Room = 109,
 	Exit = 200,
 	Close_Room = 201,
-	Start_Game = 202,
-	Room_State = 203,
-	Leave_Room = 204
+	Admin_Start_Game = 202,
+	Member_Start_Game = 203,
+	Room_State = 204,
+	Leave_Room = 205
 };
 class JsonResponsePacketSerializer
 {

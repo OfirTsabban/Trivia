@@ -34,6 +34,7 @@
             this.buttonCreateRoom = new System.Windows.Forms.Button();
             this.buttonJoinRoom = new System.Windows.Forms.Button();
             this.buttonStatistics = new System.Windows.Forms.Button();
+            this.labelName = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // buttonClose
@@ -99,12 +100,24 @@
             this.buttonStatistics.UseVisualStyleBackColor = false;
             this.buttonStatistics.Click += new System.EventHandler(this.buttonStatistics_Click);
             // 
+            // labelName
+            // 
+            this.labelName.AutoSize = true;
+            this.labelName.Font = new System.Drawing.Font("Showcard Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelName.ForeColor = System.Drawing.Color.DarkRed;
+            this.labelName.Location = new System.Drawing.Point(55, 33);
+            this.labelName.Name = "labelName";
+            this.labelName.Size = new System.Drawing.Size(73, 29);
+            this.labelName.TabIndex = 5;
+            this.labelName.Text = "name";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LemonChiffon;
             this.ClientSize = new System.Drawing.Size(1109, 655);
+            this.Controls.Add(this.labelName);
             this.Controls.Add(this.buttonStatistics);
             this.Controls.Add(this.buttonJoinRoom);
             this.Controls.Add(this.buttonCreateRoom);
@@ -126,5 +139,6 @@
         private System.Windows.Forms.Button buttonCreateRoom;
         private System.Windows.Forms.Button buttonJoinRoom;
         private System.Windows.Forms.Button buttonStatistics;
+        private System.Windows.Forms.Label labelName;
     }
 }

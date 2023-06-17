@@ -9,7 +9,7 @@ LoginRequest JsonRequestPacketDeserializer::deserializeLoginRequest(char* buffer
 	std::string username = json.at("username");
 	std::string password = json.at("password");
 
-	std::cout << "Username: " << username << "pw: "<< password << std::endl;
+	std::cout << "Username: " << username << ", pw: "<< password << std::endl;
 
 	LoginRequest loginReq = { username, password };
 
@@ -32,7 +32,7 @@ SignupRequest JsonRequestPacketDeserializer::deserializeSignupRequest(char* buff
 	std::string number = json.at("number");
 	std::string yearBorn = json.at("year");
 
-	std::cout << "Username: " << username << " pw: " << password << " Email: " << email << std::endl;
+	std::cout << "Username: " << username << ", pw: " << password << ", Email: " << email << std::endl;
 
 	SignupRequest signupReq = { username, password, email, street, apt, city, prefix, number, yearBorn };
 

@@ -16,7 +16,7 @@ bool MenuRequestHandler::isRequestRelevent(RequestInfo reqInfo)
 		reqInfo.id == Create_Room;
 }
 
-RequestResult MenuRequestHandler::handleRequest(RequestInfo reqInfo)
+RequestResult MenuRequestHandler::handleRequest(RequestInfo reqInfo, SOCKET user_socket)
 {
 	if (reqInfo.id == Log_Out)
 	{
@@ -50,7 +50,7 @@ RequestResult MenuRequestHandler::handleRequest(RequestInfo reqInfo)
 
 RequestResult MenuRequestHandler::signout(const RequestInfo reqInfo)
 {
-	LoginManager manager = m_handlerFactory.getLoginManager();
+	LoginManager& manager = m_handlerFactory.getLoginManager();
 	manager.logout(m_user.getUsername());
 
 	LogoutResponse logOutResp = { 1 };
@@ -69,7 +69,7 @@ RequestResult MenuRequestHandler::getRooms(const RequestInfo reqInfo)
 	GetRoomsResponse roomResp = { 1 , rooms };
 	unsigned char* response = JsonResponsePacketSerializer::serializeResponse(roomResp);
 
-	IRequestHandler* handle = m_handlerFactory.createMenuRequestHandler(this->m_user);//change it when roomHandle is created
+	IRequestHandler* handle = m_handlerFactory.createMenuRequestHandler(this->m_user);
 
 	RequestResult reqRes = { response, handle };
 	return reqRes;
@@ -79,13 +79,13 @@ RequestResult MenuRequestHandler::getPlayers(const RequestInfo reqInfo)
 {
 	GetPlayersInRoomRequest getPlayersRequest = JsonRequestPacketDeserializer::deserializeGetPlayersRequest((char*)reqInfo.buffer);
 
-	Room currRoom = m_roomManager.getRoom(getPlayersRequest.roomId);
-	std::vector<std::string> allPlayers = currRoom.getAllUsers();
+	std::shared_ptr<Room> currRoom = m_roomManager.getRoom(getPlayersRequest.roomId);
+	std::vector<std::string> allPlayers = currRoom->getAllUsersNames();
 
 	GetPlayersInRoomResponse playersInRoomResp = { allPlayers };
 	unsigned char* response = JsonResponsePacketSerializer::serializeResponse(playersInRoomResp);
 
-	IRequestHandler* handle = m_handlerFactory.createMenuRequestHandler(this->m_user);//change it when roomHandle is created
+	IRequestHandler* handle = m_handlerFactory.createMenuRequestHandler(this->m_user);
 
 	RequestResult reqRes = { response, handle };
 	return reqRes;
@@ -98,7 +98,7 @@ RequestResult MenuRequestHandler::getPersonalStats(const RequestInfo reqInfo)
 	GetPersonalStatsResponse personalStatsResp = { 1, stats };
 	unsigned char* response = JsonResponsePacketSerializer::serializeResponse(personalStatsResp);
 
-	IRequestHandler* handle = m_handlerFactory.createMenuRequestHandler(this->m_user);//change it when roomHandle is created
+	IRequestHandler* handle = m_handlerFactory.createMenuRequestHandler(this->m_user);
 
 	RequestResult reqRes = { response, handle };
 	return reqRes;
@@ -111,7 +111,7 @@ RequestResult MenuRequestHandler::getHighScore(const RequestInfo reqInfo)
 	GetHighScoreResponse highScoreResp = { 1, highScore };
 	unsigned char* response = JsonResponsePacketSerializer::serializeResponse(highScoreResp);
 
-	IRequestHandler* handle = m_handlerFactory.createMenuRequestHandler(this->m_user);//change it when roomHandle is created
+	IRequestHandler* handle = m_handlerFactory.createMenuRequestHandler(this->m_user);
 
 	RequestResult reqRes = { response, handle };
 	return reqRes;
@@ -120,11 +120,11 @@ RequestResult MenuRequestHandler::getHighScore(const RequestInfo reqInfo)
 RequestResult MenuRequestHandler::joinRoom(const RequestInfo reqInfo)
 {
 	JoinRoomRequest joinReq = JsonRequestPacketDeserializer::deserializeJoinRoomRequest((char*)reqInfo.buffer);
-	m_roomManager.getRoom(joinReq.roomId).addUser(m_user);	
+	this->m_roomManager.getRoom(joinReq.roomId)->addUser(m_user);
 	JoinRoomResponse joinRoomResp = { 1 };
 	unsigned char* response = JsonResponsePacketSerializer::serializeResponse(joinRoomResp);
 
-	IRequestHandler* handle = m_handlerFactory.createMenuRequestHandler(this->m_user);//change it when roomHandle is created
+	IRequestHandler* handle = m_handlerFactory.createRoomMemberRequestHandler(this->m_user,this->m_roomManager.getRoom(joinReq.roomId));
 
 	RequestResult reqRes = { response, handle };
 	return reqRes;
@@ -133,30 +133,15 @@ RequestResult MenuRequestHandler::joinRoom(const RequestInfo reqInfo)
 RequestResult MenuRequestHandler::createRoom(const RequestInfo reqInfo)
 {
 	CreateRoomRequest createRoomReq = JsonRequestPacketDeserializer::deserializeCreateRoomRequest((char*)reqInfo.buffer);
-	int roomID = createRoomID();
-	RoomData newRoomData = { roomID, createRoomReq.roomName, createRoomReq.maxUsers, createRoomReq.questionCount, createRoomReq.answerTimeout, 1/*dont know what to put in here*/ };//will change ID to random nuber later...
+	RoomData newRoomData = { 0, createRoomReq.roomName, createRoomReq.maxUsers, createRoomReq.questionCount, createRoomReq.answerTimeout, 0};
 	
-	m_roomManager.createRoom(m_user, newRoomData);
+	uint32_t roomID = m_roomManager.createRoom(m_user, newRoomData);
 
 	CreateRoomResponse createRoomResp = { roomID };
 	unsigned char* response = JsonResponsePacketSerializer::serializeResponse(createRoomResp);
 
-	IRequestHandler* handle = m_handlerFactory.createMenuRequestHandler(this->m_user);//change it when roomHandle is created
+	IRequestHandler* handle = m_handlerFactory.createRoomAdminRequestHandler(this->m_user, this->m_roomManager.getRoom(roomID));
 
 	RequestResult reqRes = { response, handle };
 	return reqRes;
 }
-
-int MenuRequestHandler::createRoomID()
-{
-	int id = 0;
-	do 
-	{
-		id = 100 + (rand() % 101);//id will be between 100 - 200
-
-	} while (std::find(m_roomsID.begin(), m_roomsID.end(), id) != m_roomsID.end());
-
-	m_roomsID.push_back(id);
-	return id;
-}
-

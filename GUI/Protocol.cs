@@ -54,5 +54,18 @@ namespace GUI
 
             return json;
         }
+        public static string createGetRoomStateProtocol(byte status, bool hasGameBegun, string[] players, byte questionCount, byte answerTimeout)
+        {
+            string json = "{\"status\": \"" + status + "\", " +
+                "\"has game begun\": \"" + hasGameBegun.ToString() +
+                "\"players\": \"";
+            for (int i = 0; i < players.Length; i++)
+            {
+                json += players[i] + ", ";
+            }
+            json += "\"question count\": \"" + questionCount.ToString() + 
+                "\"answer time out\": \"" + answerTimeout.ToString() + "}";
+            return json;
+        }
     }
 }

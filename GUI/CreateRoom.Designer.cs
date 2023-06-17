@@ -41,6 +41,7 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.cboNumberQuestions = new System.Windows.Forms.ComboBox();
             this.buttonBack = new System.Windows.Forms.Button();
+            this.labelName = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -128,7 +129,7 @@
             "45",
             "5"});
             this.cboTime.Location = new System.Drawing.Point(555, 231);
-            this.cboTime.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboTime.Margin = new System.Windows.Forms.Padding(4);
             this.cboTime.Name = "cboTime";
             this.cboTime.Size = new System.Drawing.Size(211, 24);
             this.cboTime.TabIndex = 9;
@@ -151,7 +152,7 @@
             "9",
             "10"});
             this.cboPlayersNum.Location = new System.Drawing.Point(555, 279);
-            this.cboPlayersNum.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboPlayersNum.Margin = new System.Windows.Forms.Padding(4);
             this.cboPlayersNum.Name = "cboPlayersNum";
             this.cboPlayersNum.Size = new System.Drawing.Size(211, 24);
             this.cboPlayersNum.TabIndex = 10;
@@ -184,7 +185,7 @@
             "9",
             "10"});
             this.cboNumberQuestions.Location = new System.Drawing.Point(555, 326);
-            this.cboNumberQuestions.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboNumberQuestions.Margin = new System.Windows.Forms.Padding(4);
             this.cboNumberQuestions.Name = "cboNumberQuestions";
             this.cboNumberQuestions.Size = new System.Drawing.Size(211, 24);
             this.cboNumberQuestions.TabIndex = 12;
@@ -201,12 +202,24 @@
             this.buttonBack.UseVisualStyleBackColor = false;
             this.buttonBack.Click += new System.EventHandler(this.buttonBack_Click);
             // 
+            // labelName
+            // 
+            this.labelName.AutoSize = true;
+            this.labelName.Font = new System.Drawing.Font("Showcard Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelName.Location = new System.Drawing.Point(13, 21);
+            this.labelName.Name = "labelName";
+            this.labelName.Size = new System.Drawing.Size(65, 26);
+            this.labelName.TabIndex = 14;
+            this.labelName.Text = "name";
+            this.labelName.Click += new System.EventHandler(this.labelName_Click);
+            // 
             // CreateRoom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LemonChiffon;
             this.ClientSize = new System.Drawing.Size(930, 531);
+            this.Controls.Add(this.labelName);
             this.Controls.Add(this.buttonBack);
             this.Controls.Add(this.cboNumberQuestions);
             this.Controls.Add(this.label5);
@@ -243,5 +256,6 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.ComboBox cboNumberQuestions;
         private System.Windows.Forms.Button buttonBack;
+        private System.Windows.Forms.Label labelName;
     }
 }

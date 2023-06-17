@@ -67,8 +67,7 @@ void Communicator::acceptClient()
 	std::thread tr(&Communicator::handleNewClient, this, client_socket);
 	tr.detach();
 
-	LoginRequestHandler* clientHandler = m_handleFactory.createLoginRequestHandler();//smth wrong here idk why...
-	
+	LoginRequestHandler* clientHandler = m_handleFactory.createLoginRequestHandler();
 	m_clients.insert(std::pair<SOCKET, IRequestHandler*>(client_socket, clientHandler));
 }
 
@@ -77,6 +76,7 @@ void Communicator::handleNewClient(SOCKET client_socket)
 	int id = 0;
 	do
 	{
+		/*std::unique_lock<std::mutex> lock(this->commMutex);*/
 		id = Helper::getMessageTypeCode(client_socket);
 		if (id != 200)
 		{
@@ -87,7 +87,7 @@ void Communicator::handleNewClient(SOCKET client_socket)
 			buffer[msg.length()] = 0;
 			RequestInfo reqInfo = { id,recivalTime,buffer };
 			IRequestHandler* handle = m_clients[client_socket];//handle will be the specified handler to the socket
-			RequestResult reqRes = handle->handleRequest(reqInfo);
+			RequestResult reqRes = handle->handleRequest(reqInfo, client_socket);
 			m_clients[client_socket] = reqRes.newHandler;
 			std::string s = reinterpret_cast<char*>(reqRes.response);
 			Helper::sendData(client_socket, s);

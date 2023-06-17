@@ -12,19 +12,21 @@ namespace GUI
 {
     public partial class Form1 : Form
     {
-        public Form1()
+        private string user;
+        public Form1(string user)
         {
             InitializeComponent();
+            this.user = user;
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+            this.labelName.Text = this.user;
         }
 
         private void buttonJoinRoom_Click(object sender, EventArgs e)
         {
-            JoinRoom joinRoom = new JoinRoom();
+            JoinRoom joinRoom = new JoinRoom(this.user);
             Hide();
             joinRoom.Show();
         }
@@ -36,14 +38,14 @@ namespace GUI
 
         private void buttonStatistics_Click(object sender, EventArgs e)
         {
-            Statistics statistics = new Statistics();
+            Statistics statistics = new Statistics(this.user);
             Hide();
             statistics.Show();
         }
 
         private void buttonCreateRoom_Click(object sender, EventArgs e)
         {
-            CreateRoom createRoom = new CreateRoom();
+            CreateRoom createRoom = new CreateRoom(this.user);
             Hide();
             createRoom.Show();
         }

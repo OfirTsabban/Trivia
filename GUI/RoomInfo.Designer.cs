@@ -35,6 +35,9 @@
             this.LabelAdminName = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.buttonStart = new System.Windows.Forms.Button();
+            this.buttonLeave = new System.Windows.Forms.Button();
+            this.buttonRoomState = new System.Windows.Forms.Button();
+            this.labelName = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // listViewPlayers
@@ -101,7 +104,7 @@
             this.buttonStart.BackColor = System.Drawing.Color.FloralWhite;
             this.buttonStart.Font = new System.Drawing.Font("Showcard Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonStart.ForeColor = System.Drawing.Color.DarkRed;
-            this.buttonStart.Location = new System.Drawing.Point(364, 496);
+            this.buttonStart.Location = new System.Drawing.Point(120, 496);
             this.buttonStart.Name = "buttonStart";
             this.buttonStart.Size = new System.Drawing.Size(206, 62);
             this.buttonStart.TabIndex = 5;
@@ -109,12 +112,49 @@
             this.buttonStart.UseVisualStyleBackColor = false;
             this.buttonStart.Click += new System.EventHandler(this.buttonStart_Click);
             // 
+            // buttonLeave
+            // 
+            this.buttonLeave.BackColor = System.Drawing.Color.FloralWhite;
+            this.buttonLeave.Font = new System.Drawing.Font("Showcard Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonLeave.Location = new System.Drawing.Point(646, 496);
+            this.buttonLeave.Name = "buttonLeave";
+            this.buttonLeave.Size = new System.Drawing.Size(206, 62);
+            this.buttonLeave.TabIndex = 6;
+            this.buttonLeave.Text = "LEAVE";
+            this.buttonLeave.UseVisualStyleBackColor = false;
+            this.buttonLeave.Click += new System.EventHandler(this.buttonLeave_Click);
+            // 
+            // buttonRoomState
+            // 
+            this.buttonRoomState.BackColor = System.Drawing.Color.FloralWhite;
+            this.buttonRoomState.Font = new System.Drawing.Font("Showcard Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonRoomState.Location = new System.Drawing.Point(385, 496);
+            this.buttonRoomState.Name = "buttonRoomState";
+            this.buttonRoomState.Size = new System.Drawing.Size(206, 62);
+            this.buttonRoomState.TabIndex = 7;
+            this.buttonRoomState.Text = "ROOM STATE";
+            this.buttonRoomState.UseVisualStyleBackColor = false;
+            this.buttonRoomState.Click += new System.EventHandler(this.buttonRoomState_Click);
+            // 
+            // labelName
+            // 
+            this.labelName.AutoSize = true;
+            this.labelName.Font = new System.Drawing.Font("Showcard Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelName.Location = new System.Drawing.Point(44, 35);
+            this.labelName.Name = "labelName";
+            this.labelName.Size = new System.Drawing.Size(73, 29);
+            this.labelName.TabIndex = 8;
+            this.labelName.Text = "name";
+            // 
             // RoomInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LemonChiffon;
             this.ClientSize = new System.Drawing.Size(953, 582);
+            this.Controls.Add(this.labelName);
+            this.Controls.Add(this.buttonRoomState);
+            this.Controls.Add(this.buttonLeave);
             this.Controls.Add(this.buttonStart);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.LabelAdminName);
@@ -139,5 +179,8 @@
         private System.Windows.Forms.Label LabelAdminName;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button buttonStart;
+        private System.Windows.Forms.Button buttonLeave;
+        private System.Windows.Forms.Button buttonRoomState;
+        private System.Windows.Forms.Label labelName;
     }
 }

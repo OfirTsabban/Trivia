@@ -36,6 +36,7 @@
             this.buttonBack = new System.Windows.Forms.Button();
             this.textBoxRoomId = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.labelName = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // listViewRooms
@@ -69,7 +70,7 @@
             this.buttonNext.AutoSize = true;
             this.buttonNext.BackColor = System.Drawing.Color.FloralWhite;
             this.buttonNext.Font = new System.Drawing.Font("Showcard Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonNext.Location = new System.Drawing.Point(868, 579);
+            this.buttonNext.Location = new System.Drawing.Point(868, 578);
             this.buttonNext.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonNext.Name = "buttonNext";
             this.buttonNext.Size = new System.Drawing.Size(196, 100);
@@ -83,9 +84,10 @@
             this.buttonRefresh.AutoSize = true;
             this.buttonRefresh.BackColor = System.Drawing.Color.FloralWhite;
             this.buttonRefresh.Font = new System.Drawing.Font("Showcard Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonRefresh.Location = new System.Drawing.Point(551, 579);
+            this.buttonRefresh.Location = new System.Drawing.Point(551, 578);
+            this.buttonRefresh.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonRefresh.Name = "buttonRefresh";
-            this.buttonRefresh.Size = new System.Drawing.Size(190, 100);
+            this.buttonRefresh.Size = new System.Drawing.Size(189, 100);
             this.buttonRefresh.TabIndex = 4;
             this.buttonRefresh.Text = "REFRESH";
             this.buttonRefresh.UseVisualStyleBackColor = false;
@@ -95,9 +97,10 @@
             // 
             this.buttonBack.BackColor = System.Drawing.Color.FloralWhite;
             this.buttonBack.Font = new System.Drawing.Font("Showcard Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonBack.Location = new System.Drawing.Point(229, 579);
+            this.buttonBack.Location = new System.Drawing.Point(229, 578);
+            this.buttonBack.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonBack.Name = "buttonBack";
-            this.buttonBack.Size = new System.Drawing.Size(190, 100);
+            this.buttonBack.Size = new System.Drawing.Size(189, 100);
             this.buttonBack.TabIndex = 5;
             this.buttonBack.Text = "BACK";
             this.buttonBack.UseVisualStyleBackColor = false;
@@ -109,10 +112,12 @@
             this.textBoxRoomId.Font = new System.Drawing.Font("Showcard Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxRoomId.ForeColor = System.Drawing.Color.DarkRed;
             this.textBoxRoomId.Location = new System.Drawing.Point(631, 485);
+            this.textBoxRoomId.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxRoomId.Name = "textBoxRoomId";
-            this.textBoxRoomId.Size = new System.Drawing.Size(234, 36);
+            this.textBoxRoomId.Size = new System.Drawing.Size(233, 36);
             this.textBoxRoomId.TabIndex = 6;
             this.textBoxRoomId.Text = "ENTER ROOM ID...";
+            this.textBoxRoomId.TextChanged += new System.EventHandler(this.textBoxRoomId_TextChanged);
             // 
             // label2
             // 
@@ -124,13 +129,25 @@
             this.label2.TabIndex = 7;
             this.label2.Text = "ROOM ID";
             // 
+            // labelName
+            // 
+            this.labelName.AutoSize = true;
+            this.labelName.Font = new System.Drawing.Font("Showcard Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelName.Location = new System.Drawing.Point(41, 44);
+            this.labelName.Name = "labelName";
+            this.labelName.Size = new System.Drawing.Size(73, 29);
+            this.labelName.TabIndex = 8;
+            this.labelName.Text = "name";
+            this.labelName.Click += new System.EventHandler(this.labelName_Click);
+            // 
             // JoinRoom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.LemonChiffon;
-            this.ClientSize = new System.Drawing.Size(1322, 713);
+            this.ClientSize = new System.Drawing.Size(1323, 713);
+            this.Controls.Add(this.labelName);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBoxRoomId);
             this.Controls.Add(this.buttonBack);
@@ -158,5 +175,6 @@
         private System.Windows.Forms.Button buttonBack;
         private System.Windows.Forms.TextBox textBoxRoomId;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label labelName;
     }
 }

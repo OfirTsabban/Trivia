@@ -15,7 +15,7 @@ public:
 	MenuRequestHandler(RequestHandlerFactory& handleFactory, LoggedUser& user);
 	~MenuRequestHandler() = default;
 	bool isRequestRelevent(RequestInfo reqInfo) override;
-	RequestResult handleRequest(RequestInfo reqInfo) override;
+	RequestResult handleRequest(RequestInfo reqInfo, SOCKET user_socket) override;
 private:
 	RequestResult signout(const RequestInfo reqInfo);
 	RequestResult getRooms(const RequestInfo reqInfo);
@@ -24,7 +24,6 @@ private:
 	RequestResult getHighScore(const RequestInfo reqInfo);
 	RequestResult joinRoom(const RequestInfo reqInfo);
 	RequestResult createRoom(const RequestInfo reqInfo);
-	int createRoomID();
 
 	LoggedUser m_user;
 	RoomManager& m_roomManager;

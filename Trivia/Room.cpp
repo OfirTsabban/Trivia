@@ -7,6 +7,7 @@ Room::Room(RoomData metadata)
 
 void Room::addUser(const LoggedUser user)
 {
+	std::unique_lock<std::mutex> lock(this->roomMutex);
 	if (this->m_users.size() == this->m_metadata.maxPlayers)
 	{
 		throw ExceptionHandler("Error - Room is full");
@@ -23,6 +24,7 @@ void Room::addUser(const LoggedUser user)
 
 void Room::removeUser(const LoggedUser user)
 {
+	std::unique_lock<std::mutex> lock(this->roomMutex);
 	for (auto iter = this->m_users.begin(); iter != this->m_users.end(); iter++)
 	{
 		if (*iter == user)
@@ -35,19 +37,31 @@ void Room::removeUser(const LoggedUser user)
 	throw ExceptionHandler("Error - User doesn't exist in room");
 }
 
-std::vector<std::string> Room::getAllUsers() 
+std::vector<std::string> Room::getAllUsersNames()
 {
-	std::vector<std::string> allUsers;
-	for (auto iter = this->m_users.begin(); iter != this->m_users.end(); iter++)
+	std::vector<std::string> usernames;
+
+	std::unique_lock<std::mutex> lock(this->roomMutex);
+	for (int i = 0; i < this->m_users.size(); i++)
 	{
-		allUsers.push_back(iter->getUsername());
+		usernames.push_back(m_users[i].getUsername());
 	}
 
-	return allUsers;
+	return usernames;
+}
+
+std::vector<LoggedUser> Room::getAllUsers()
+{
+	return this->m_users;
 }
 
 RoomData Room::getData() const
 {
 	return this->m_metadata;
+}
+
+void Room::setStatus(int status)
+{
+	this->m_metadata.isActive = status;
 }
 
