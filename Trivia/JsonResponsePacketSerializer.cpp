@@ -141,6 +141,11 @@ unsigned char* JsonResponsePacketSerializer::serializeResponse(LeaveRoomResponse
 	return help(jsonMSG, s);
 }
 
+unsigned char* JsonResponsePacketSerializer::serializeResponse(GetGameResultsResponse gameResults)
+{
+	return nullptr;
+}
+
 
 unsigned char* JsonResponsePacketSerializer::help(json jsonMSG , std::string mode)
 {

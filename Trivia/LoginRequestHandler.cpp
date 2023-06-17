@@ -10,7 +10,7 @@ LoginRequestHandler::LoginRequestHandler(RequestHandlerFactory& handleFactory) :
 }
 bool LoginRequestHandler::isRequestRelevent(RequestInfo reqInfo)
 {
-    return reqInfo.id == 1 || reqInfo.id == 2;
+    return reqInfo.id == 101 || reqInfo.id == 102;
 }
 
 RequestResult LoginRequestHandler::handleRequest(RequestInfo reqInfo, SOCKET user_socket)

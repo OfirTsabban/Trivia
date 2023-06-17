@@ -48,3 +48,8 @@ RoomMemberRequestHandler* RequestHandlerFactory::createRoomMemberRequestHandler(
 	RoomMemberRequestHandler* roomMember = new RoomMemberRequestHandler(room, user, *this);
 	return roomMember;
 }
+
+GameManager& RequestHandlerFactory::getGameManager()
+{
+	return this->m_gameManager;
+}

@@ -72,6 +72,38 @@ struct LeaveRoomResponse
 	unsigned int status;
 };
 
+struct LeaveGameResponse
+{
+	unsigned int status;
+};
+
+struct GetQuestionResponse
+{
+	unsigned int status;
+	std::string question;
+	std::map<unsigned int, std::string> answers;
+};
+
+struct SubmitAnswerResponse
+{
+	unsigned int status;
+	unsigned int correctAnswerId;
+};
+
+struct PlayerResults
+{
+	std::string username;
+	unsigned int correctAnswerCount;
+	unsigned int wrongAnswerCount;
+	unsigned int averageAnswerTime;
+};
+
+struct GetGameResultsResponse
+{
+	unsigned int status;
+	std::vector<PlayerResults> results;
+};
+
 static enum Requests {
 	Error = 100,
 	Log_In = 101,
@@ -88,7 +120,11 @@ static enum Requests {
 	Admin_Start_Game = 202,
 	Member_Start_Game = 203,
 	Room_State = 204,
-	Leave_Room = 205
+	Leave_Room = 205,
+	Leave_Game = 301,
+	Get_Question = 302,
+	Submit_Answer = 303,
+	Get_Game_Result = 304
 };
 class JsonResponsePacketSerializer
 {
@@ -107,6 +143,11 @@ public:
 	static unsigned char* serializeResponse(StartGameResponse startGame);
 	static unsigned char* serializeResponse(GetRoomStateResponse roomState);
 	static unsigned char* serializeResponse(LeaveRoomResponse leaveRoom);
+	static unsigned char* serializeResponse(GetGameResultsResponse gameResults);
+	static unsigned char* serializeResponse(SubmitAnswerResponse submitAnswer);
+	static unsigned char* serializeResponse(GetQuestionResponse getQuestion);
+	static unsigned char* serializeResponse(LeaveGameResponse leaveGame);
+
 	static unsigned char* help(json jsonMSG, std::string mode);
 };
 
