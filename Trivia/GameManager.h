@@ -8,6 +8,8 @@
 
 using std::mutex;
 
+struct PlayerResults;
+
 class GameManager
 {
 public:
