@@ -29,7 +29,11 @@ namespace GUI
             Admin_Start_Game = 202,
             Member_Start_Game = 203,
             Room_State = 204,
-            Leave_Room = 205
+            Leave_Room = 205,
+            Leave_Game = 301,
+            Get_Question = 302,
+            Submit_Answer = 303,
+            Get_Game_Result = 304
         };
 
         private static TcpClient client = new TcpClient();

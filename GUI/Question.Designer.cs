@@ -126,6 +126,7 @@
             this.labelCorresctAnswer.Size = new System.Drawing.Size(27, 29);
             this.labelCorresctAnswer.TabIndex = 8;
             this.labelCorresctAnswer.Text = "0";
+            this.labelCorresctAnswer.Click += new System.EventHandler(this.labelCorresctAnswer_Click);
             // 
             // labelTime
             // 
@@ -177,6 +178,7 @@
             this.ForeColor = System.Drawing.Color.DarkRed;
             this.Name = "Question";
             this.Text = "Trivia-question";
+            this.Load += new System.EventHandler(this.Question_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

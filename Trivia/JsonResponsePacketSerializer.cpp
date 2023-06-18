@@ -171,13 +171,13 @@ unsigned char* JsonResponsePacketSerializer::serializeResponse(SubmitAnswerRespo
 
 unsigned char* JsonResponsePacketSerializer::serializeResponse(GetQuestionResponse getQuestion)
 {
-	std::string question = std::to_string(getQuestion.status) + ", question: " + getQuestion.question + ", answers: ";
+	std::string question = "status: " + std::to_string(getQuestion.status) + ", question: " + getQuestion.question;
 	std::string answers = "";
 	for (int i = 0; i < getQuestion.answers.size(); i++)
 	{
 		answers += std::to_string(i)+ ": " + getQuestion.answers[i];
 	}
-	json jsonAnswers = { {"answers: ", answers}};
+	json jsonAnswers = { {"answers", answers}};
 	question += jsonAnswers.dump();
 	std::string s = std::to_string(Get_Question);
 	json jsonMSG = { {"getQuestions", question} };
