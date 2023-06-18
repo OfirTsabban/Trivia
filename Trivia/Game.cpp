@@ -16,6 +16,18 @@ Game::Game(std::vector<Question> questions, std::vector<LoggedUser> players, uns
 	this->m_gameId = gameId;
 }
 
+Game::Game(const Game& game)
+{
+	this->m_gameId = game.m_gameId;
+	this->m_players = game.m_players;
+	this->m_questions = game.m_questions;
+}
+
+void Game::operator=(const Game& game)
+{
+	*this = Game(game);
+}
+
 Question Game::getQuestionForUser(LoggedUser user)
 {
 	std::unique_lock<std::mutex> lock(this->gameMutex);
@@ -32,7 +44,7 @@ Question Game::getQuestionForUser(LoggedUser user)
 	throw("User wasn't found");
 }
 
-void Game::submitAnswer(LoggedUser user, std::string answer)
+void Game::submitAnswer(LoggedUser user, unsigned int answer)
 {
 	auto it = m_players.find(user);
 	
@@ -55,4 +67,9 @@ void Game::removePlayer(LoggedUser user)
 unsigned int Game::getGameId()
 {
 	return this->m_gameId;
+}
+
+std::map<LoggedUser, GameData>& Game::getGameResults()
+{
+	return m_players;
 }
