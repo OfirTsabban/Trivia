@@ -20,6 +20,7 @@ public:
 	}
 	GameManager(GameManager const&) = delete;
 	void operator=(GameManager const&) = delete;
+	GameManager(IDatabase* db);
 
 	Game createGame(std::shared_ptr<Room>);
 	void deleteGame(unsigned int gameId);
@@ -27,7 +28,6 @@ public:
 	std::vector<PlayerResults> getPlayersResults(Game);
 
 private:
-	GameManager(IDatabase* db);
 
 	IDatabase* m_database;
 	std::vector<Game> m_games;

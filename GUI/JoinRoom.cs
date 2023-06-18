@@ -22,14 +22,14 @@ namespace GUI
             for (int i = 0; i < this.listViewRooms.Items.Count; i++)
             {
                 string room = this.listViewRooms.Items[i].Text;
-                string id = room.Substring(room.IndexOf("id: " + 4));
-                id = id.Substring(id.IndexOf(","));
+                string id = room.Substring(room.IndexOf("id: ") + 3);
+                id = id.Substring(0, id.IndexOf(","));
                 if (int.Parse(id) == this.id)
                 {
                     room = room.Substring(room.IndexOf("name: ") + 6);
-                    room = room.Substring(room.IndexOf(","));
+                    room = room.Substring(0, room.IndexOf(","));
                     return room;
-                } 
+                }
             }
             return "";
         }
