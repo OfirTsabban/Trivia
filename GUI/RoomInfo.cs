@@ -7,16 +7,22 @@ namespace GUI
 {
     public partial class RoomInfo : Form
     {
+        private int timePerQuestion;
+        private int totalQuestions;
         private int roomId;
         private bool refresh;
         private string user;
+        private string room;
         private bool hasGameBegun = false;
         private static Mutex mutex;
         Thread refreshPlayers;
         Thread waitAction;
 
-        public RoomInfo(int id, string userName)
+        public RoomInfo(int id, string userName, string room)
         {
+            this.timePerQuestion = 0;
+            this.totalQuestions = 0;
+            this.room = room;
             this.user = userName;
             this.roomId = id;
             this.refresh = true;
@@ -56,6 +62,21 @@ namespace GUI
                     this.hasGameBegun = true;
                     this.refresh = false;
                     MessageBox.Show("Host started game", "success", MessageBoxButtons.OK);
+                    if (Connector.sendMSG("GetRoomState", (int)Connector.Requests.Room_State))
+                    {
+                        string msg = Connector.recvMSG();
+                        msg = msg.Substring(msg.IndexOf("question count: ") + 16);                        
+                        this.totalQuestions = int.Parse(msg.Substring(0, msg.IndexOf("/")));
+                        msg = msg.Substring(msg.IndexOf("answer time out: ") + 17);
+                        this.timePerQuestion = int.Parse(msg.Substring(0, msg.IndexOf("/")));
+                        Question question = new Question(this.timePerQuestion, this.totalQuestions, room);
+                        Hide();
+                        question.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Failed communicating with server", "Server Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }                    
                 }
                 else
                 {
