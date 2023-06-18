@@ -41,6 +41,7 @@
             this.labelTime = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.labelQuestionsLeft = new System.Windows.Forms.Label();
+            this.labelRoomName = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -85,6 +86,7 @@
             this.buttonAnswer2.TabIndex = 3;
             this.buttonAnswer2.Text = "ANSWER2";
             this.buttonAnswer2.UseVisualStyleBackColor = false;
+            this.buttonAnswer2.Click += new System.EventHandler(this.buttonAnswer2_Click);
             // 
             // buttonAnswer3
             // 
@@ -96,6 +98,7 @@
             this.buttonAnswer3.TabIndex = 4;
             this.buttonAnswer3.Text = "ANSWER3";
             this.buttonAnswer3.UseVisualStyleBackColor = false;
+            this.buttonAnswer3.Click += new System.EventHandler(this.buttonAnswer3_Click);
             // 
             // buttonAnswer4
             // 
@@ -107,6 +110,7 @@
             this.buttonAnswer4.TabIndex = 5;
             this.buttonAnswer4.Text = "ANSWER4";
             this.buttonAnswer4.UseVisualStyleBackColor = false;
+            this.buttonAnswer4.Click += new System.EventHandler(this.buttonAnswer4_Click);
             // 
             // timer1
             // 
@@ -163,12 +167,23 @@
             this.labelQuestionsLeft.TabIndex = 11;
             this.labelQuestionsLeft.Text = "0";
             // 
+            // labelRoomName
+            // 
+            this.labelRoomName.AutoSize = true;
+            this.labelRoomName.Font = new System.Drawing.Font("Showcard Gothic", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelRoomName.Location = new System.Drawing.Point(560, 144);
+            this.labelRoomName.Name = "labelRoomName";
+            this.labelRoomName.Size = new System.Drawing.Size(178, 35);
+            this.labelRoomName.TabIndex = 12;
+            this.labelRoomName.Text = "room name";
+            // 
             // Question
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LemonChiffon;
             this.ClientSize = new System.Drawing.Size(1303, 809);
+            this.Controls.Add(this.labelRoomName);
             this.Controls.Add(this.labelQuestionsLeft);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.labelTime);
@@ -203,5 +218,6 @@
         private System.Windows.Forms.Label labelTime;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label labelQuestionsLeft;
+        private System.Windows.Forms.Label labelRoomName;
     }
 }

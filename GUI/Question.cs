@@ -16,11 +16,15 @@ namespace GUI
         private int totalQuestions;
         private int questionCount;
         private int timeLeft;
-        public Question(int timePerQuestions, int totalQuestions)
+        private int rightQuestionsNum;
+        private string room;
+        public Question(int timePerQuestions, int totalQuestions, string room)
         {
+            this.room = room;
+            this.rightQuestionsNum = 0;
             this.timePerQuestion = timePerQuestions;
             this.totalQuestions = totalQuestions;
-            InitializeComponent();
+            InitializeComponent();            
         }
 
         private void labelCorresctAnswer_Click(object sender, EventArgs e)
@@ -30,6 +34,12 @@ namespace GUI
 
         private void Question_Load(object sender, EventArgs e)
         {
+            this.labelRoomName.Text = this.room;
+            this.labelCorresctAnswer.Text = this.rightQuestionsNum.ToString();
+            this.labelQuestionsLeft.Text = (this.totalQuestions - this.questionCount).ToString();
+            this.timeLeft = Convert.ToInt32(this.timePerQuestion);
+            this.labelTime.Enabled = false;
+            this.timer1.Start();
             if (Connector.sendMSG("GetQuestion", (int)Connector.Requests.Get_Question))
             {
                 string msg = Connector.recvMSG();
@@ -47,10 +57,7 @@ namespace GUI
             {
                 MessageBox.Show("Failed communicating with server", "Server Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }            
-            this.labelQuestionsLeft.Text = (this.totalQuestions - this.questionCount).ToString();
-            this.timeLeft = Convert.ToInt32(this.timePerQuestion);
-            this.labelTime.Enabled = false;
-            this.timer1.Start();                   
+                              
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -60,7 +67,45 @@ namespace GUI
 
         private void buttonAnswer1_Click(object sender, EventArgs e)
         {
-            
+            AnswerSubmited(1, sender, e);
+        }
+        
+        private void buttonAnswer2_Click(object sender, EventArgs e)
+        {
+            AnswerSubmited(2, sender, e);
+        }        
+
+        private void buttonAnswer3_Click(object sender, EventArgs e)
+        {
+            AnswerSubmited(3, sender, e);
+        }
+
+        private void buttonAnswer4_Click(object sender, EventArgs e)
+        {
+            AnswerSubmited(4, sender, e);
+        }
+
+        private void AnswerSubmited(int id, object sender, EventArgs e)
+        {
+            this.timer1.Stop();
+            this.timeLeft = this.timePerQuestion;
+            if (Connector.sendMSG("submitAnswer", (int)Connector.Requests.Submit_Answer))
+            {
+                string msg = Connector.recvMSG();
+                if (msg.Contains("correctAnswerId: "))
+                {
+                    string correctId = msg.Substring(msg.IndexOf("correctAnswerId: ") + 17);
+                    if (id == int.Parse(correctId))
+                    {
+                        this.rightQuestionsNum++;
+                    }
+                    Question_Load(sender, e);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Failed communicating with server", "Server Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
