@@ -2,7 +2,7 @@
 #include "LoginRequestHandler.h"
 #include "GameRequestHandler.h"
 
-RequestHandlerFactory::RequestHandlerFactory(IDatabase* db) : m_database(db), m_loginManager(db), m_gameManager(db), m_roomManager(), m_StatisticsManager()
+RequestHandlerFactory::RequestHandlerFactory(IDatabase* db) : m_database(db), m_loginManager(db), m_roomManager(), m_StatisticsManager()
 {
 }
 
@@ -58,5 +58,5 @@ GameRequestHandler* RequestHandlerFactory::createGameRequestHandler(LoggedUser u
 
 GameManager& RequestHandlerFactory::getGameManager()
 {
-	return this->m_gameManager;
+	return GameManager::getInstance(this->m_database);
 }

@@ -1,21 +1,20 @@
 #pragma once
 #include "LoginManager.h"
-#include "IDatabase.h" 
+#include "GameRequestHandler.h"
 #include "RoomManager.h"
 #include "StatisticsManager.h"
 #include "MenuRequestHandler.h"
 #include "RoomAdminRequestHandler.h"
 #include "RoomMemberRequestHandler.h"
-#include "GameManager.h"
 
 enum loginDef { succeeded = true, failed = false };
 
-class GameRequestHandler;
-class RoomMemberRequestHandler;
-class RoomAdminRequestHandler;
-class MenuRequestHandler;
 class LoginRequestHandler;
-
+class MenuRequestHandler;
+class RoomAdminRequestHandler;
+class RoomMemberRequestHandler;
+class GameRequestHandler;
+class GameManager;
 
 class RequestHandlerFactory
 {
@@ -37,5 +36,4 @@ private:
 	LoginManager m_loginManager;
 	RoomManager m_roomManager;
 	StatisticsManager m_StatisticsManager;
-	GameManager m_gameManager;
 };
