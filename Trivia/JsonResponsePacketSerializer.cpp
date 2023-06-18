@@ -163,7 +163,7 @@ unsigned char* JsonResponsePacketSerializer::serializeResponse(GetGameResultsRes
 
 unsigned char* JsonResponsePacketSerializer::serializeResponse(SubmitAnswerResponse submitAnswer)
 {
-	std::string submitAns = "status: " + std::to_string(submitAnswer.status);
+	std::string submitAns = "status: " + std::to_string(submitAnswer.status) + ", correctAnswerId: " + std::to_string(submitAnswer.correctAnswerId); 
 	std::string s = std::to_string(Submit_Answer);
 	json jsonMSG = { {"submitAnswer" , submitAns} };
 	return help(jsonMSG, s);

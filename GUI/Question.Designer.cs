@@ -73,6 +73,7 @@
             this.buttonAnswer1.TabIndex = 2;
             this.buttonAnswer1.Text = "answer1";
             this.buttonAnswer1.UseVisualStyleBackColor = false;
+            this.buttonAnswer1.Click += new System.EventHandler(this.buttonAnswer1_Click);
             // 
             // buttonAnswer2
             // 
@@ -106,6 +107,10 @@
             this.buttonAnswer4.TabIndex = 5;
             this.buttonAnswer4.Text = "ANSWER4";
             this.buttonAnswer4.UseVisualStyleBackColor = false;
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // label3
             // 
