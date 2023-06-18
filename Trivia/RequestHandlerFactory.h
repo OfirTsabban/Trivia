@@ -7,7 +7,6 @@
 #include "RoomAdminRequestHandler.h"
 #include "RoomMemberRequestHandler.h"
 #include "GameManager.h"
-#include "GameRequestHandler.h"
 
 enum loginDef { succeeded = true, failed = false };
 
