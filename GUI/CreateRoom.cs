@@ -71,7 +71,7 @@ namespace GUI
                     response = response.Substring(response.IndexOf(":") + 1);
                     response = response.Substring(0, response.IndexOf("}"));
                     int id = int.Parse(response);
-                    RoomInfo roomInfo = new RoomInfo(id, this.user);
+                    RoomInfo roomInfo = new RoomInfo(id, this.user, this.textBoxRoomName.Text);
                     Hide();
                     roomInfo.Show();
                 }

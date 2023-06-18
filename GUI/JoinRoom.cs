@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -7,12 +8,30 @@ namespace GUI
     public partial class JoinRoom : Form
     {
         private string user;
+        private int id;
+        private string room;
         private bool refresh;
         public JoinRoom(string user)
         {
             InitializeComponent();
             this.user = user;
             this.refresh = true;
+        }
+        private string getRoom()
+        {
+            for (int i = 0; i < this.listViewRooms.Items.Count; i++)
+            {
+                string room = this.listViewRooms.Items[i].Text;
+                string id = room.Substring(room.IndexOf("id: " + 4));
+                id = id.Substring(id.IndexOf(","));
+                if (int.Parse(id) == this.id)
+                {
+                    room = room.Substring(room.IndexOf("name: ") + 6);
+                    room = room.Substring(room.IndexOf(","));
+                    return room;
+                } 
+            }
+            return "";
         }
 
         private void buttonRoomInfo_Click(object sender, EventArgs e)
@@ -40,7 +59,7 @@ namespace GUI
                 }
                 if (!error)
                 {
-                    int id = int.Parse(roomId);
+                    this.id = int.Parse(roomId);
                     string json = Protocol.joinRoomProtocol(id);
                     if (Connector.sendMSG(json, (int)Connector.Requests.Join_Room))
                     {
@@ -48,7 +67,8 @@ namespace GUI
                       
                         if (joined.Contains("1"))
                         {
-                            RoomInfo roomInfo = new RoomInfo(id, this.user);
+                            this.room = getRoom();
+                            RoomInfo roomInfo = new RoomInfo(this.id, this.user, this.room);
                             Hide();
                             roomInfo.Show();
                         }
@@ -128,7 +148,8 @@ namespace GUI
             if (Connector.sendMSG(json, (int)Connector.Requests.Join_Room))
             {
                 string joined = Connector.recvMSG();
-                RoomInfo roomInfo = new RoomInfo(id, this.user);
+                this.room = getRoom();
+                RoomInfo roomInfo = new RoomInfo(id, this.user, this.room);
                 Hide();
                 roomInfo.Show();
 
