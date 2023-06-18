@@ -143,7 +143,42 @@ unsigned char* JsonResponsePacketSerializer::serializeResponse(LeaveRoomResponse
 
 unsigned char* JsonResponsePacketSerializer::serializeResponse(GetGameResultsResponse gameResults)
 {
-	return nullptr;
+	std::string gameRes = "status: " + std::to_string(gameResults.status);
+	for (int i = 0; i < gameResults.results.size(); i++)
+	{
+		gameRes += "\nuser name: " + gameResults.results[i].username + ", avarage answer time: " + std::to_string(gameResults.results[i].averageAnswerTime) + ", correct answer count: " +std::to_string(gameResults.results[i].correctAnswerCount) + ", wrong answer count: " + std::to_string(gameResults.results[i].wrongAnswerCount) + "/";
+	}
+	std::string s = std::to_string(Get_Game_Result);
+	json jsonMSG = { {"gameResults" , gameRes} };
+	return help(jsonMSG, s);
+}
+
+unsigned char* JsonResponsePacketSerializer::serializeResponse(SubmitAnswerResponse submitAnswer)
+{
+	std::string submitAns = "status: " + std::to_string(submitAnswer.status) + ", correct Answer Id: " + std::to_string(submitAnswer.correctAnswerId);
+	std::string s = std::to_string(Submit_Answer);
+	json jsonMSG = { {"submitAnswer" , submitAns} };
+	return help(jsonMSG, s);
+}
+
+unsigned char* JsonResponsePacketSerializer::serializeResponse(GetQuestionResponse getQuestion)
+{
+	std::string question = std::to_string(getQuestion.status) + ", question: " + getQuestion.question + ", answers: ";
+	for (int i = 0; i < getQuestion.answers.size(); i++)
+	{
+		question += getQuestion.answers[i];
+	}
+	std::string s = std::to_string(Get_Question);
+	json jsonMSG = { {"getQuestions", question} };
+	return help(jsonMSG, s);
+}
+
+unsigned char* JsonResponsePacketSerializer::serializeResponse(LeaveGameResponse leaveGame)
+{
+	std::string leave = std::to_string(leaveGame.status);
+	std::string s = std::to_string(Leave_Room);
+	json jsonMSG = { {"leaveGame" , leave} };
+	return help(jsonMSG, s);
 }
 
 
