@@ -19,10 +19,13 @@ class Game
 {
 public:
 	Game(std::vector<Question> questions, std::vector<LoggedUser> players, unsigned int gameId);
+	Game(const Game& game);
+	void operator=(const Game& game);
 	Question getQuestionForUser(LoggedUser);
-	void submitAnswer(LoggedUser, std::string answer);
+	void submitAnswer(LoggedUser, unsigned int answer);
 	void removePlayer(LoggedUser);
 	unsigned int getGameId();
+	std::map<LoggedUser, GameData>& getGameResults();
 
 private:
 	std::vector<Question> m_questions;

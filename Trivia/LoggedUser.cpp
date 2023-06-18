@@ -20,3 +20,8 @@ bool LoggedUser::operator==(LoggedUser const& other)
 {
 	return this->m_username == other.m_username;
 }
+
+bool LoggedUser::operator<(const LoggedUser& other)
+{
+	return this->m_username.length() < other.m_username.length();
+}

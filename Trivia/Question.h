@@ -1,13 +1,14 @@
 #pragma once
 #include <iostream>
+#include <map>
 
 class Question
 {
 public:
 	Question(std::string question, std::string first, std::string second, std::string third, std::string fourth, std::string right);
 	std::string getQuestion();
-	std::string getAnswers();
-	std::string getRightAnswer();
+	std::map<unsigned int, std::string> getAnswers();
+	unsigned int getRightAnswer();
 
 private:
 	std::string _question;

@@ -10,6 +10,7 @@ public:
 	SOCKET getUserSocket();
 
 	bool operator==(LoggedUser const& other);
+	bool operator<(const LoggedUser& other);
 
 private:
 	std::string m_username;

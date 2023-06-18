@@ -5,6 +5,7 @@
 #include <vector>
 #include "Communicator.h"
 #include "Room.h"
+#include "GameManager.h"
 
 using json = nlohmann::json;
 
