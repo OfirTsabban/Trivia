@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -13,6 +14,7 @@ namespace GUI
         private bool refresh;
         private string user;
         private string room;
+        private string players;            
         private bool hasGameBegun = false;
         private static Mutex mutex;
         Thread refreshPlayers;
@@ -20,6 +22,7 @@ namespace GUI
 
         public RoomInfo(int id, string userName, string room)
         {
+            this.players = "";
             this.timePerQuestion = 0;
             this.totalQuestions = 0;
             this.room = room;
@@ -69,7 +72,7 @@ namespace GUI
                         this.totalQuestions = int.Parse(msg.Substring(0, msg.IndexOf("/")));
                         msg = msg.Substring(msg.IndexOf("answer time out: ") + 17);
                         this.timePerQuestion = int.Parse(msg.Substring(0, msg.IndexOf("/")));
-                        Question question = new Question(this.timePerQuestion, this.totalQuestions, room);
+                        Question question = new Question(this.timePerQuestion, this.totalQuestions, this.room, this.players, this.user);
                         Hide();
                         question.Show();
                     }
@@ -203,6 +206,7 @@ namespace GUI
                         Thread.Sleep(200);
                         string players = Connector.recvMSG();
                         players = players.Substring(players.IndexOf(':') + 2);
+                        this.players = players;
                         if (players.Contains(','))
                         {
                             string admin = players.Substring(0, players.IndexOf(','));

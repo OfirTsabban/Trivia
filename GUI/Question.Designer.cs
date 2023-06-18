@@ -42,6 +42,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.labelQuestionsLeft = new System.Windows.Forms.Label();
             this.labelRoomName = new System.Windows.Forms.Label();
+            this.labelName = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -141,7 +142,7 @@
             // 
             this.labelTime.AutoSize = true;
             this.labelTime.Font = new System.Drawing.Font("Showcard Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTime.Location = new System.Drawing.Point(27, 38);
+            this.labelTime.Location = new System.Drawing.Point(62, 144);
             this.labelTime.Name = "labelTime";
             this.labelTime.Size = new System.Drawing.Size(41, 29);
             this.labelTime.TabIndex = 9;
@@ -177,12 +178,23 @@
             this.labelRoomName.TabIndex = 12;
             this.labelRoomName.Text = "room name";
             // 
+            // labelName
+            // 
+            this.labelName.AutoSize = true;
+            this.labelName.Font = new System.Drawing.Font("Showcard Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelName.Location = new System.Drawing.Point(48, 22);
+            this.labelName.Name = "labelName";
+            this.labelName.Size = new System.Drawing.Size(73, 29);
+            this.labelName.TabIndex = 13;
+            this.labelName.Text = "NAME";
+            // 
             // Question
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LemonChiffon;
             this.ClientSize = new System.Drawing.Size(1303, 809);
+            this.Controls.Add(this.labelName);
             this.Controls.Add(this.labelRoomName);
             this.Controls.Add(this.labelQuestionsLeft);
             this.Controls.Add(this.label6);
@@ -219,5 +231,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label labelQuestionsLeft;
         private System.Windows.Forms.Label labelRoomName;
+        private System.Windows.Forms.Label labelName;
     }
 }

@@ -11,29 +11,40 @@ using System.Windows.Forms;
 namespace GUI
 {
     public partial class Question : Form
-    {        
+    {
+        private string players;
         private int timePerQuestion;
         private int totalQuestions;
         private int questionCount;
         private int timeLeft;
         private int rightQuestionsNum;
         private string room;
-        public Question(int timePerQuestions, int totalQuestions, string room)
+        private string user;
+        public Question(int timePerQuestions, int totalQuestions, string room, string players, string user)
         {
+            this.user = user;
             this.room = room;
             this.rightQuestionsNum = 0;
             this.timePerQuestion = timePerQuestions;
             this.totalQuestions = totalQuestions;
-            InitializeComponent();            
+            InitializeComponent();
+            this.players = players;
         }
 
         private void labelCorresctAnswer_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void Question_Load(object sender, EventArgs e)
         {
+            if(this.totalQuestions - this.questionCount == 0)
+            {
+                EndGame endGame = new EndGame(this.players, this.user);
+                Hide();
+                endGame.Show();
+            }
+            this.labelName.Text = this.user;
             this.labelRoomName.Text = this.room;
             this.labelCorresctAnswer.Text = this.rightQuestionsNum.ToString();
             this.labelQuestionsLeft.Text = (this.totalQuestions - this.questionCount).ToString();

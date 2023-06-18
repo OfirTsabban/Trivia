@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.listViewPlayers = new System.Windows.Forms.ListView();
             this.label1 = new System.Windows.Forms.Label();
             this.labelCorrectAnswers = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -36,16 +36,23 @@
             this.label5 = new System.Windows.Forms.Label();
             this.labelName = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.buttonBack = new System.Windows.Forms.Button();
+            this.labelUserName = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // listView1
+            // listViewPlayers
             // 
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(40, 155);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1051, 300);
-            this.listView1.TabIndex = 0;
-            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listViewPlayers.Alignment = System.Windows.Forms.ListViewAlignment.Left;
+            this.listViewPlayers.BackColor = System.Drawing.Color.FloralWhite;
+            this.listViewPlayers.Font = new System.Drawing.Font("Showcard Gothic", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listViewPlayers.ForeColor = System.Drawing.Color.DarkRed;
+            this.listViewPlayers.HideSelection = false;
+            this.listViewPlayers.Location = new System.Drawing.Point(40, 155);
+            this.listViewPlayers.Name = "listViewPlayers";
+            this.listViewPlayers.Size = new System.Drawing.Size(1051, 300);
+            this.listViewPlayers.TabIndex = 0;
+            this.listViewPlayers.UseCompatibleStateImageBehavior = false;
+            this.listViewPlayers.View = System.Windows.Forms.View.List;
             // 
             // label1
             // 
@@ -119,12 +126,36 @@
             this.label2.TabIndex = 7;
             this.label2.Text = "END GAME";
             // 
+            // buttonBack
+            // 
+            this.buttonBack.BackColor = System.Drawing.Color.FloralWhite;
+            this.buttonBack.Font = new System.Drawing.Font("Showcard Gothic", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonBack.Location = new System.Drawing.Point(693, 537);
+            this.buttonBack.Name = "buttonBack";
+            this.buttonBack.Size = new System.Drawing.Size(292, 82);
+            this.buttonBack.TabIndex = 8;
+            this.buttonBack.Text = "BACK";
+            this.buttonBack.UseVisualStyleBackColor = false;
+            this.buttonBack.Click += new System.EventHandler(this.buttonBack_Click);
+            // 
+            // labelUserName
+            // 
+            this.labelUserName.AutoSize = true;
+            this.labelUserName.Font = new System.Drawing.Font("Showcard Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelUserName.Location = new System.Drawing.Point(37, 25);
+            this.labelUserName.Name = "labelUserName";
+            this.labelUserName.Size = new System.Drawing.Size(73, 29);
+            this.labelUserName.TabIndex = 9;
+            this.labelUserName.Text = "name";
+            // 
             // EndGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LemonChiffon;
             this.ClientSize = new System.Drawing.Size(1120, 676);
+            this.Controls.Add(this.labelUserName);
+            this.Controls.Add(this.buttonBack);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.labelName);
             this.Controls.Add(this.label5);
@@ -132,10 +163,11 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.labelCorrectAnswers);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.listViewPlayers);
             this.ForeColor = System.Drawing.Color.DarkRed;
             this.Name = "EndGame";
             this.Text = "Trivia-end game";
+            this.Load += new System.EventHandler(this.EndGame_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -143,7 +175,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView listViewPlayers;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label labelCorrectAnswers;
         private System.Windows.Forms.Label label3;
@@ -151,5 +183,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label labelName;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button buttonBack;
+        private System.Windows.Forms.Label labelUserName;
     }
 }

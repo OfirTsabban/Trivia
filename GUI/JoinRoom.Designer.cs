@@ -64,6 +64,7 @@
             this.label1.Size = new System.Drawing.Size(464, 98);
             this.label1.TabIndex = 1;
             this.label1.Text = "JOIN ROOM";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // buttonNext
             // 

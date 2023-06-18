@@ -152,10 +152,18 @@ unsigned char* JsonResponsePacketSerializer::serializeResponse(GetGameResultsRes
 		return help(jsonMSG, s);
 	}
 	std::string gameRes = "status: " + std::to_string(gameResults.status) + ", results: ";
+	std::string winner = "";
+	double win = 0;
 	for (int i = 0; i < gameResults.results.size(); i++)
-	{
+	{		
 		gameRes += "\nuser name: " + gameResults.results[i].username + ", avarage answer time: " + std::to_string(gameResults.results[i].averageAnswerTime) + ", correct answer count: " +std::to_string(gameResults.results[i].correctAnswerCount) + ", wrong answer count: " + std::to_string(gameResults.results[i].wrongAnswerCount) + "/";
+		if (gameResults.results[i].correctAnswerCount / gameResults.results[i].averageAnswerTime > win)
+		{
+			win = gameResults.results[i].correctAnswerCount / gameResults.results[i].averageAnswerTime;
+			winner = gameResults.results[i].username;
+		}
 	}
+	gameRes += ", winner: " + winner;
 	std::string s = std::to_string(Get_Game_Result);
 	json jsonMSG = { {"gameResults" , gameRes} };
 	return help(jsonMSG, s);

@@ -10,9 +10,9 @@ namespace GUI
         private string user;
         private int id;
         private string room;
-        private bool refresh;
+        private bool refresh;        
         public JoinRoom(string user)
-        {
+        {           
             InitializeComponent();
             this.user = user;
             this.refresh = true;
@@ -201,7 +201,6 @@ namespace GUI
                             }
                         }
                     });
-
                 }
                 else
                 {
@@ -212,6 +211,11 @@ namespace GUI
         }
 
         private void labelName_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
         {
 
         }
